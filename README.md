@@ -1,2 +1,2 @@
 # CSGO_Project
-A project to get information from CSGO games
+This is the best CSGO project named CSGO_Project ever invented at this current time.
