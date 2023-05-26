@@ -10,11 +10,8 @@ oldMatchCode = 'FILL IN YOURS'
 knownMatchCode = 'FILL IN YOURS'
 
 
-
-
 #This function gives us a list of match codes from steam
 #myGames = findMatchSteamAPI.giveCodes(key, steam, steamKEY, knownMatchCode)
 #CSGOsql.addGameCodes(myGames)
 
-getJSONInfo.getJSONInfo('CSGO-TmtKB-aMoKk-FqZYO-ZJO3z-ozioE')
 

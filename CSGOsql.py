@@ -15,3 +15,9 @@ def addGameCodes(codes):
         val = ([singleCode])
         dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, val)
     return
+
+
+
+#Going to need a second function to add to the new stats table
+#1 Query game code table to find the id of a specific match code
+#2 If the code is in the table, use the id and then fill the new table with game stats information
