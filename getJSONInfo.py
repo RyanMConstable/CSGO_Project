@@ -27,12 +27,13 @@ def getJSONInfo(code):
         w = open(pathToCSGOreplays + "/" + file)
         info = w.read()
         w.close()
-        return info
-    return "Failure"
+        return [code, info]
+    return
 
 #Takes the output from the above function and turns the json into the statistics we want to grab from the game for all 10 players
 def returnGameInfo(jsonInputFormat):
-    gameJSON = getJSONInfo(jsonInputFormat)
+
+    gameJSON = jsonInputFormat[1]
 
     thisGame = json.loads(gameJSON)
 
@@ -44,4 +45,4 @@ def returnGameInfo(jsonInputFormat):
     for player in thisGame["team_t"]["team_players"]:
         playersList.append([player["steamid"], player["name"], player["kill_count"], player["score"], player["tk_count"], player["assist_count"], player["death_count"], player["5k_count"], player["4k_count"], player["3k_count"], player["2k_count"], player["1k_count"], player["hs_count"], player["kd"], player["esea_rws"], player["shot_count"], player["hit_count"], player["flashbang_count"], player["smoke_count"], player["he_count"], player["molotov_count"], player["incendiary_count"], player["decoy_count"], player["round_count"]])
     
-    return playersList
+    return [jsonInputFormat[0], playersList]
