@@ -1,5 +1,7 @@
 import os
 import json
+import time
+import shutil
 
 #1 download command to download with share code
 #2 Find where it downloaded, analyze it
@@ -32,7 +34,6 @@ def getJSONInfo(code):
 
 #Takes the output from the above function and turns the json into the statistics we want to grab from the game for all 10 players
 def returnGameInfo(jsonInputFormat):
-
     gameJSON = jsonInputFormat[1]
 
     thisGame = json.loads(gameJSON)

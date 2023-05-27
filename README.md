@@ -7,6 +7,9 @@ Run this to run the project
 
 
 
+# Reminder:
+Remove files after they are created...
+
 ### CSGOsql.py 
 addGameCodes: Takes list of game codes, and adds them to a sql table if they're not already in there
 addGameStats: This takes a list of 10 lists (players), which gets added to the table if they're not duplicates

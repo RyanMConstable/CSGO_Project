@@ -1,6 +1,7 @@
 import findMatchSteamAPI
 import CSGOsql
 import getJSONInfo
+import dbdatasetup
 
 #Variables to be passed to function (Should eventually move the given parameters to different file)
 key = 'FILL IN YOURS'
@@ -14,4 +15,4 @@ knownMatchCode = 'FILL IN YOURS'
 #myGames = findMatchSteamAPI.giveCodes(key, steam, steamKEY, knownMatchCode)
 #CSGOsql.addGameCodes(myGames)
 
-
+dbdatasetup.populateStats()
