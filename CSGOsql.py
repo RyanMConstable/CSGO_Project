@@ -1,4 +1,3 @@
-import mysql.connector
 import dbconnection
 #temp import below
 
@@ -23,6 +22,7 @@ def addGameCodes(codes):
 #1 Query game code table to find the id of a specific match code
 #2 If the code is in the table, use the id and then fill the new table with game stats information
 
+#input in the form of a list [matchCode, statsOfGame]
 def addGameStats(playerStats):
     #Takes the id from the first table and stores in result
     query = "SELECT id FROM gamecodes WHERE code = '{}'".format(playerStats[0])
@@ -42,3 +42,15 @@ def addGameStats(playerStats):
             dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, val)
     return
 
+
+#This function returns all the codes in the first table
+def returnAllCodes():
+    query = "SELECT code from gamecodes"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result == None or result == []:
+        return None
+    
+    #Fix the weird SQL format, probably a better and more efficient way to do (TODO)
+    for i in range(0, len(result)):
+        result[i] = result[i][0]
+    return result

@@ -1,4 +1,4 @@
-import requests, os, time
+import requests, time
 
 #Return list of game codes since given code (include code given)
 def giveCodes(steamAPIKey, steamID, steamIDKey, knownCode):
