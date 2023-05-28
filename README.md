@@ -2,12 +2,8 @@
 A project to retrieve all information about recent CSGO games given a game code. A frontend will eventually grab the data from the database and display it on a browser.
 
 # main.py
-Run this to run the project, currently only populates a table for you
+Run this to run the project, currently only populates a table for you, as long as you connected it with a database
 
-
-
-# Reminder:
-Remove files after they are created...
 
 ### CSGOsql.py 
 addGameCodes(gameShareCode): Takes list of game codes, and adds them to a sql table if they're not already in there
@@ -20,7 +16,7 @@ giveCodes(steamInformation): Takes your steam information, to make an API call, 
 ### getJSONInfo.py
 getJSONInfo(gameShareCode): Takes a game code, then downloads the game, analyzes it, and returns a JSON file with info if the code existed, returns 'Failure' otherwise
 returnGameInfo(gameShareCode, json): Takes a JSON formatted input and outputs the statistics of the 10 players that played a game
-clearReplayDir(): Takes nothing and removes all files from the csgo replay directory, util function.
+clearReplayDir(): Takes nothing and removes all files from the csgo replay directory, util function
 
 ### dbdatasetup.py
 populateStats(): Takes nothing and populates the gamestats table by analyzing and parsing JSON files from every game in the gamecode table
