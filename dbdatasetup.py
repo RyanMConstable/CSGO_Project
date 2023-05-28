@@ -7,5 +7,7 @@ def populateStats():
     codeList = CSGOsql.returnAllCodes()
     for code in codeList:
         gameInfo = getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(code))
+        if gameInfo == None:
+            continue
         CSGOsql.addGameStats(gameInfo)
     return

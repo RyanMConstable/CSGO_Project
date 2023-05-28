@@ -11,6 +11,7 @@ import shutil
 #6 Delete Files
 
 def getJSONInfo(code):
+    code = code.strip()
     pathToCSGODm = os.path.abspath(r'C:/\"Program Files (x86)\"/\"CSGO Demos Manager\"/csgodm.exe')
     pathToCSGOreplays = os.path.abspath(r'C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/replays')
     os.system(pathToCSGODm + " download " + str(code))
@@ -26,17 +27,22 @@ def getJSONInfo(code):
         os.system(pathToJSON)
     if pathToJSON:
         pathToJSON = pathToCSGODm + " json " + r'C:/"Program Files (x86)"/Steam/steamapps/common/"Counter-Strike Global Offensive"/csgo/replays/' + file
-        w = open(pathToCSGOreplays + "/" + file)
-        info = w.read()
+        w = open(pathToCSGOreplays + "/" + file, "r", encoding = 'utf-8', errors='ignore')
+        tmp = w.read()
+        try:
+            info = json.loads(tmp)
+        except:
+            return
         w.close()
+        #Delete all files in replay tree CSGO
         return [code, info]
     return
 
 #Takes the output from the above function and turns the json into the statistics we want to grab from the game for all 10 players
 def returnGameInfo(jsonInputFormat):
-    gameJSON = jsonInputFormat[1]
-
-    thisGame = json.loads(gameJSON)
+    if jsonInputFormat == None:
+        return
+    thisGame = jsonInputFormat[1]
 
     playersList = []
     for player in thisGame["team_ct"]["team_players"]:
