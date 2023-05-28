@@ -26,3 +26,10 @@ clearReplayDir(): Takes nothing and removes all files from the csgo replay direc
 populateStats(): Takes nothing and populates the gamestats table by analyzing and parsing JSON files from every game in the gamecode table
 
 
+
+### Known bugs
+Multiple additions of same input into table, deleting files may be the cause of this, most likely within getJSONInfo.py
+
+Code is messy, needs refactoring
+
+
