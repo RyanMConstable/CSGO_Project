@@ -1,15 +1,8 @@
 import os
 import json
-import time
-import shutil
 
-#1 download command to download with share code
-#2 Find where it downloaded, analyze it
-#3 Download into JSON file
-#4 Parse JSON file for DATA
-#5 Add information to database
-#6 Delete Files
 
+#Takes a game code and returns the format [code, info], info can be None
 def getJSONInfo(code):
     code = code.strip()
     pathToCSGODm = os.path.abspath(r'C:/\"Program Files (x86)\"/\"CSGO Demos Manager\"/csgodm.exe')
@@ -20,7 +13,6 @@ def getJSONInfo(code):
     pathToJSON = None
     file = None
     info = None
-    #for every file in the replays directory
     for file in files:
         if file.split(".")[-1] == "dem":
             pathToAnlyze = pathToCSGODm + " analyze " + r'C:/"Program Files (x86)"/Steam/steamapps/common/"Counter-Strike Global Offensive"/csgo/replays/' + file
@@ -29,7 +21,6 @@ def getJSONInfo(code):
             os.system(pathToJSON)
             break
     
-    #This returns the information within the .json file created
     if pathToJSON:
         w = open(pathToCSGOreplays + "/" + file + ".json", "r", encoding = 'utf-8')
         info = json.loads(w.read())
@@ -54,6 +45,7 @@ def returnGameInfo(jsonInputFormat):
     #returns [code, [playerListStats]]
     return [jsonInputFormat[0], playersList]
 
+#Deletes all files in the CSGO replays directory, returns nothing
 def clearReplayDir():
     pathToCSGOreplays = os.path.abspath(r'C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/replays/')
     for file in os.listdir(os.path.join(pathToCSGOreplays)):
