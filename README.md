@@ -24,7 +24,7 @@ populateStats(): Takes nothing and populates the gamestats table by analyzing an
 
 
 ### Known bugs
-Multiple additions of same input into table, deleting files may be the cause of this, most likely within getJSONInfo.py
+Figure out how to get chronological ordering of games, maybe in table one?
 
 Code is messy, needs refactoring
 
