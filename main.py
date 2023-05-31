@@ -1,16 +1,13 @@
-
-
 import findMatchSteamAPI
 import CSGOsql
 import getJSONInfo
 import dbdatasetup
 
-#Variables to be passed to function (Should eventually move the given parameters to different file)
-key = '0B37DAADAD3282EF893D03A43D3CA522'
-steam = '76561198068939539'
-steamKEY = '7B6T-RSWHW-RNNK'
-oldMatchCode = 'FILL IN YOURS'
-knownMatchCode = 'FILL IN YOURS'
+#Variables to be passed to functions
+key = ''
+steam = ''
+steamKEY = ''
+knownMatchCode = ''
 
 
 #This function gives us a list of match codes from steam
@@ -19,3 +16,6 @@ knownMatchCode = 'FILL IN YOURS'
 
 #This populates the databases if there is nothing in them, need a better way of doing this
 #dbdatasetup.populateStats()
+
+#This function call adds all game codes since the most recent game code in the table to the code table
+#CSGOsql.addGameCodes(findMatchSteamAPI.generateNewCodes(key, steam, steamKEY))
