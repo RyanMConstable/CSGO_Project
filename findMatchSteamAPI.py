@@ -1,4 +1,5 @@
 import requests, time
+import dbconnection
 
 #Return list of game codes since given code (include code given)
 def giveCodes(steamAPIKey, steamID, steamIDKey, knownCode):
@@ -19,3 +20,7 @@ def giveCodes(steamAPIKey, steamID, steamIDKey, knownCode):
     #Print Ending Code
     print("Ending status: {}".format(r.status_code))
     return gamesList
+
+#This function takes your steam info and generates new codes by finding the newest code from the database
+def generateNewCodes(steamAPIKey, steamID, steamIDKey, knownCode):
+    pass
