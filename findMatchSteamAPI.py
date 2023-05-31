@@ -1,5 +1,5 @@
 import requests, time
-import dbconnection
+import CSGOsql
 
 #Return list of game codes since given code (include code given)
 def giveCodes(steamAPIKey, steamID, steamIDKey, knownCode):
@@ -22,5 +22,10 @@ def giveCodes(steamAPIKey, steamID, steamIDKey, knownCode):
     return gamesList
 
 #This function takes your steam info and generates new codes by finding the newest code from the database
-def generateNewCodes(steamAPIKey, steamID, steamIDKey, knownCode):
-    pass
+#Returns a list of new codes or None if it's the newest
+def generateNewCodes(steamAPIKey, steamID, steamIDKey):
+    newestCode = CSGOsql.findMostRecentGame(steamID)
+    if newestCode == None:
+        return
+    codeList = giveCodes(steamAPIKey, steamID, steamIDKey, newestCode)
+    return codeList

@@ -6,9 +6,9 @@ import getJSONInfo
 import dbdatasetup
 
 #Variables to be passed to function (Should eventually move the given parameters to different file)
-key = 'FILL IN YOURS'
-steam = 'FILL IN YOURS'
-steamKEY = 'FILL IN YOURS'
+key = '0B37DAADAD3282EF893D03A43D3CA522'
+steam = '76561198068939539'
+steamKEY = '7B6T-RSWHW-RNNK'
 oldMatchCode = 'FILL IN YOURS'
 knownMatchCode = 'FILL IN YOURS'
 
@@ -17,4 +17,5 @@ knownMatchCode = 'FILL IN YOURS'
 #myGames = findMatchSteamAPI.giveCodes(key, steam, steamKEY, knownMatchCode)
 #CSGOsql.addGameCodes(myGames)
 
-dbdatasetup.populateStats()
+#This populates the databases if there is nothing in them, need a better way of doing this
+#dbdatasetup.populateStats()
