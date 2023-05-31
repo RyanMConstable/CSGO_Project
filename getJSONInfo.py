@@ -9,15 +9,12 @@ def getJSONInfo(code):
     pathToCSGOreplays = os.path.abspath(r'C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/replays')
     os.system(pathToCSGODm + " download " + str(code))
     files = os.listdir(pathToCSGOreplays)
-    pathToAnlyze = None
     pathToJSON = None
     file = None
     info = None
     for file in files:
         if file.split(".")[-1] == "dem":
-            pathToAnlyze = pathToCSGODm + " analyze " + r'C:/"Program Files (x86)"/Steam/steamapps/common/"Counter-Strike Global Offensive"/csgo/replays/' + file
             pathToJSON = pathToCSGODm + " json " + r'C:/"Program Files (x86)"/Steam/steamapps/common/"Counter-Strike Global Offensive"/csgo/replays/' + file
-            os.system(pathToAnlyze)
             os.system(pathToJSON)
             break
     
