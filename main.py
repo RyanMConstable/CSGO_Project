@@ -1,3 +1,4 @@
+#! C:\Users\ry4nm\AppData\Local\Programs\Python\Python311\python.exe
 import findMatchSteamAPI
 import CSGOsql
 import getJSONInfo
