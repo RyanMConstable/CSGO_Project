@@ -28,7 +28,6 @@ def getJSONInfo(code):
 #Takes the output from the above function and turns the json into the statistics we want to grab from the game for all 10 players
 def returnGameInfo(jsonInputFormat):
     if jsonInputFormat[1] == None:
-        print("Empty jsonInput")
         return
     thisGame = jsonInputFormat[1]
 
