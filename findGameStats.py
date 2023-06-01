@@ -8,3 +8,12 @@ def selectCombinedUserStat(stat, steamid):
     if result is None or result == []:
         return
     return result[0][0]
+
+
+#Function to find how many games the user has within the table
+def findNumberOfGames(steamid):
+    query = "SELECT COUNT(*) FROM gamestats WHERE steamid = '{}'".format(steamid)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return
+    return result[0][0]
