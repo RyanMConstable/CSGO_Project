@@ -17,3 +17,12 @@ def findNumberOfGames(steamid):
     if result is None or result == []:
         return
     return result[0][0]
+
+
+#Function to find all rows for a given user in the table
+def returnAllUserRows(steamid):
+    query = "SELECT name, totalkills, score, tk_count, assist, deaths, 5k, 4k, 3k, 2k, 1k, headshot, kd, rws, shot_count, hit_count, flashbang_thrown, smoke_thrown, he_thrown, incendiary_thrown, decoy_thrown, round_count FROM gamestats WHERE steamid = '{}'".format(steamid)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return
+    return result
