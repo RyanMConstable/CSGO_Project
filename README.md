@@ -23,5 +23,10 @@ clearReplayDir(): Takes nothing and removes all files from the csgo replay direc
 ### dbdatasetup.py
 populateStats(): Takes nothing and populates the gamestats table by analyzing and parsing JSON files from every game in the gamecode table
 
+### findGameStats.py
+selectCombinedUserStat(stat, steamid): Takes the column name in the database and a steamid and returns the sum of that statistic for the entirety of the table
+findNumberOfGames(steamid): Takes a steamid and returns the amount of games saved in the database for the given id
+returnAllUserRows: Takes a steamid and returns all rows currently saved within the database of that id
+
 ### userCommands.py
 Contains commands and functions for admins
