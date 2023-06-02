@@ -14,6 +14,7 @@ def mainChainCommand():
         print("Print '1' to manually enter a new code to the database")
         print("Print '2' to find the total amount of X for a given user")
         print("Print '3' to find the total games within the table for a given user")
+        print("Print '4' to find all rows for every game within the table for a given user")
         userInput = input("Enter a command: ").lower()
         print()
         
@@ -23,6 +24,9 @@ def mainChainCommand():
             print(findTotalCol())
         elif userInput == '3':
             print(findTotalGames())
+        elif userInput == '4':
+            for x in findAllRows():
+                print(x)
             
         print()
     print("Exiting...")
@@ -64,4 +68,13 @@ def findTotalGames():
     except:
         return "Failure"
     return result
-    
+
+
+#Returns the user rows for a givne user
+def findAllRows():
+    userid = input("Enter a steam id: ")
+    try: 
+        result = findGameStats.returnAllUserRows(userid)
+    except:
+        return "Failure"
+    return result
