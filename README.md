@@ -29,4 +29,10 @@ findNumberOfGames(steamid): Takes a steamid and returns the amount of games save
 returnAllUserRows: Takes a steamid and returns all rows currently saved within the database of that id
 
 ### userCommands.py
-Contains commands and functions for admins
+Contains command line interface for backend admins, can eventually use for frontend calls as well
+
+
+
+
+### Question
+Should I switch from functional to OOP?
