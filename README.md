@@ -33,7 +33,3 @@ returnAllUserRows: Takes a steamid and returns all rows currently saved within t
 Contains command line interface for backend admins, can eventually use for frontend calls as well
 
 
-
-
-### Question
-Should I switch from functional to OOP?
