@@ -1,4 +1,5 @@
 import dbconnection
+import getJSONInfo
 
 #This function adds a list of gamecodes to the database
 #No duplicates
@@ -67,3 +68,14 @@ def findMostRecentGame(userid):
     #Returns match code of the most recent game
     return result[0][0]
 
+
+#This function will find all of the game codes that are in the first table but not the second 
+#Then it will have those codes as a list and then populate the second table with them
+def populateSecondTableFromFirst():
+    query = "SELECT code from gamecodes WHERE code NOT IN (SELECT code FROM gamecodes WHERE id IN (SELECT gameid FROM gamestats))"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return
+    for code in result:
+        addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(code[0])))
+    return
