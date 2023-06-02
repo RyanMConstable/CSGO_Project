@@ -10,6 +10,7 @@ addGameCodes(gameShareCode): Takes list of game codes, and adds them to a sql ta
 addGameStats(listPlayerStats): Takes a list of lists (players), which gets added to the table if they're not duplicates, returns None
 returnAllCodes(): No parameters, returns list of all codes from the first table
 findMostRecentGame(steamid): Takes a steamid and returns the most recent game code from that id in the database
+populateSecondTableFromFirst(): Adds all codes from the code table into the stats table, returns nothing
 
 ### findMatchSteamAPI.py
 giveCodes(steamInformation): Takes your steam information, to make an API call, to find all games after a given code up to the newest, returns a list of game codes
