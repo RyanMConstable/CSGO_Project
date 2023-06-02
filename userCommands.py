@@ -3,9 +3,6 @@ import getJSONInfo
 import findGameStats
 import findMatchSteamAPI
 
-#This file provides a command line interface for a user
-#Use this until I make a frontend
-
 #This function is just going to run a loop until the admin decides to stop
 def mainChainCommand():
     userInput = ''
@@ -40,7 +37,7 @@ def mainChainCommand():
     return
 
 
-#Make a function that allows the admin to manually enter a new match code to both databases
+#Function that allows the admin to manually enter a new match code to both databases
 def addNewCode():
     print("Enter a CSGO match sharing code")
     print("The format is 'CSGO-XXXXX-XXXXX-XXXXX-XXXXX-XXXXX'")
@@ -77,7 +74,7 @@ def findTotalGames():
     return result
 
 
-#Returns the user rows for a givne user
+#Returns the user rows for a given user
 def findAllRows():
     userid = input("Enter a steam id: ")
     try: 
