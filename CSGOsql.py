@@ -77,5 +77,8 @@ def populateSecondTableFromFirst():
     if result is None or result == []:
         return
     for code in result:
-        addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(code[0])))
+        try:
+            addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(code[0])))
+        except:
+            continue
     return

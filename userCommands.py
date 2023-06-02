@@ -17,6 +17,7 @@ def mainChainCommand():
         print("Print '3' to find the total games within the table for a given user")
         print("Print '4' to find all rows for every game within the table for a given user")
         print("Print '5' to add more games for an existing user")
+        print("Print '6' to update the gamestats table with all codes from the code table")
         userInput = input("Enter a command: ").lower()
         print()
         
@@ -31,6 +32,8 @@ def mainChainCommand():
                 print(x)
         elif userInput == '5':
             findNewGames()
+        elif userInput == '6':
+            CSGOsql.populateSecondTableFromFirst()
             
         print()
     print("Exiting...")
