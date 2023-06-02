@@ -1,6 +1,7 @@
 import CSGOsql
 import getJSONInfo
 import findGameStats
+import findMatchSteamAPI
 
 #This file provides a command line interface for a user
 #Use this until I make a frontend
@@ -15,6 +16,7 @@ def mainChainCommand():
         print("Print '2' to find the total amount of X for a given user")
         print("Print '3' to find the total games within the table for a given user")
         print("Print '4' to find all rows for every game within the table for a given user")
+        print("Print '5' to add more games for an existing user")
         userInput = input("Enter a command: ").lower()
         print()
         
@@ -27,6 +29,8 @@ def mainChainCommand():
         elif userInput == '4':
             for x in findAllRows():
                 print(x)
+        elif userInput == '5':
+            findNewGames()
             
         print()
     print("Exiting...")
@@ -56,7 +60,7 @@ def findTotalCol():
     try:
         result = findGameStats.selectCombinedUserStat(stat, userid)
     except:
-        return "Failure"
+        return -1
     return result
 
 
@@ -66,7 +70,7 @@ def findTotalGames():
     try:
         result = findGameStats.findNumberOfGames(userid)
     except:
-        return "Failure"
+        return -1
     return result
 
 
@@ -76,5 +80,17 @@ def findAllRows():
     try: 
         result = findGameStats.returnAllUserRows(userid)
     except:
-        return "Failure"
+        return -1
     return result
+
+#Adds new games for a user to the table
+def findNewGames():
+    userid = input("Enter a steam id:")
+    steamAPIKey = input("Enter a steam API Key:")
+    steamIDKey = input("Enter a steam ID Key:")
+    try:
+        listOfNewCodes = findMatchSteamAPI.generateNewCodes(steamAPIKey, userid, steamIDKey)
+        CSGOsql.addGameCodes(listOfNewCodes)
+    except:
+        return -1
+    return 1
