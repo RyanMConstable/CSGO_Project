@@ -94,3 +94,11 @@ def findNewGames():
     except:
         return -1
     return 1
+
+#Def find top 10 for a given category and print the names
+def findTop10():
+    try: 
+        result = ""
+    except:
+        return -1
+    return result
