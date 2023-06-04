@@ -36,7 +36,7 @@ def returnGameInfo(jsonInputFormat):
     
     #In case it's not a long match, or any other game mode
     if thisGame["score_team1"] != 15 and thisGame["score_team1"] != 16 and thisGame["score_team2"] != 15 and thisGame["score_team2"] != 16:
-        return 5
+        return
     
     
     for player in thisGame["team_ct"]["team_players"]:
