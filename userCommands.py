@@ -15,6 +15,7 @@ def mainChainCommand():
         print("Print '4' to find all rows for every game within the table for a given user")
         print("Print '5' to add more games for an existing user")
         print("Print '6' to update the gamestats table with all codes from the code table")
+        print("Print '7' to find the top 10 users for a given category")
         userInput = input("Enter a command: ").lower()
         print()
         
@@ -31,6 +32,8 @@ def mainChainCommand():
             findNewGames()
         elif userInput == '6':
             CSGOsql.populateSecondTableFromFirst()
+        elif userInput == '7':
+            print(findTop10())
             
         print()
     print("Exiting...")
@@ -97,8 +100,9 @@ def findNewGames():
 
 #Def find top 10 for a given category and print the names
 def findTop10():
+    category = input("Enter a category in the database:")
     try: 
-        result = ""
+        result = CSGOsql.findTop10(category)
     except:
         return -1
     return result
