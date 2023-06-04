@@ -33,6 +33,12 @@ def returnGameInfo(jsonInputFormat):
 
     playersList = []
     dt = thisGame["date"]
+    
+    #In case it's not a long match, or any other game mode
+    if thisGame["score_team1"] != 15 and thisGame["score_team1"] != 16 and thisGame["score_team2"] != 15 and thisGame["score_team2"] != 16:
+        return 5
+    
+    
     for player in thisGame["team_ct"]["team_players"]:
         playersList.append([player["steamid"], player["name"], player["kill_count"], player["score"], player["tk_count"], player["assist_count"], player["death_count"], player["5k_count"], player["4k_count"], player["3k_count"], player["2k_count"], player["1k_count"], player["hs_count"], player["kd"], player["esea_rws"], player["shot_count"], player["hit_count"], player["flashbang_count"], player["smoke_count"], player["he_count"], player["molotov_count"], player["incendiary_count"], player["decoy_count"], player["round_count"], "ct", dt])
         
