@@ -91,3 +91,11 @@ def findTop10(category):
     if result is None or result == []:
         return
     return result
+
+#Find top 10 for a specific user with a query
+def findTop10(category, userid):
+    query = "SELECT name, {} FROM gamestats ORDER BY {} DESC LIMIT 10 WHERE steamid = {}".format(category, category, userid)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return
+    return result
