@@ -106,10 +106,14 @@ def setDiscordUser(discordUser, steamid):
     query = "SELECT * FROM discorduser WHERE discordname = {}".format(discordUser)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     
+    
     if result is None or result == []:
-        newquery = "INSERT INTO discorduser (discordname, steamid) VALUES ({}, {})".format(discordUser, steamid)
-        dbconnection.executeQuery(dbconnection.createConnection(), newquery)
+        print("Empty")
+        newquery = "INSERT INTO discorduser (discordname, steamid) VALUES (%s, %s)"
+        result = dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, (discordUser, steamid))
+        print(result)
     else:
+        print("User here")
         newquery = "UPDATE discorduser SET steamid = {} WHERE discordname = {}".format(steamid, discordUser)
-        dbconnection.executeQuery(dbconnection.createConnection(), newquery)
+        dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, (discordUser, steamid))
     return
