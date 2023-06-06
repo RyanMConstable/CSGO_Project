@@ -1,5 +1,9 @@
-import dbconnection
-import getJSONInfo
+try:
+    import dbconnection
+    import getJSONInfo
+except:
+    from . import dbconnection
+    from . import dbconnection
 
 #This function adds a list of gamecodes to the database
 #No duplicates
@@ -115,5 +119,5 @@ def setDiscordUser(discordUser, steamid):
     else:
         print("User here")
         newquery = "UPDATE discorduser SET steamid = {} WHERE discordname = {}".format(steamid, discordUser)
-        dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, (discordUser, steamid))
+        dbconnection.executeQuery(dbconnection.createConnection(), newquery, True)
     return
