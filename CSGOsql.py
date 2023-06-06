@@ -121,3 +121,12 @@ def setDiscordUser(discordUser, steamid):
         newquery = "UPDATE discorduser SET steamid = {} WHERE discordname = {}".format(steamid, discordUser)
         dbconnection.executeQuery(dbconnection.createConnection(), newquery, True)
     return
+
+
+#Finds a steamid from a discorduser
+def findSteamID(discorduser):
+    query = "SELECT * FROM discorduser WHERE discordname = {}".format(discordUser)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return None
+    return result[0][0]
