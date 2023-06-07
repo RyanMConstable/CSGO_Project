@@ -1,8 +1,12 @@
 import requests, time
 import CSGOsql
+import os
+
+steamAPIKey = os.environ["STEAM_API_KEY"]
+steamIDKey = os.environ["steamIDKey"]
 
 #Return list of game codes since given code (include code given)
-def giveCodes(steamAPIKey, steamID, steamIDKey, knownCode):
+def giveCodes(steamID, knownCode):
     gamesList = []
     gamesList.append(knownCode)
     sharedUrl = 'https://api.steampowered.com/ICSGOPlayers_730/GetNextMatchSharingCode/v1?key={}&steamid={}&steamidkey={}&knowncode={}'.format(steamAPIKey, steamID, steamIDKey, knownCode)
@@ -23,7 +27,7 @@ def giveCodes(steamAPIKey, steamID, steamIDKey, knownCode):
 
 #This function takes your steam info and generates new codes by finding the newest code from the database
 #Returns a list of new codes or None if it's the newest
-def generateNewCodes(steamAPIKey, steamID, steamIDKey):
+def generateNewCodes(steamID):
     newestCode = CSGOsql.findMostRecentGame(steamID)
     if newestCode == None:
         return
