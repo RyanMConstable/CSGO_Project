@@ -1,8 +1,11 @@
 try:
     import dbconnection
     import getJSONInfo
+    import findMatchSteamAPI
 except:
     from . import dbconnection
+    from . import getJSONInfo
+    from . import findMatchSteamAPI
 
 #This function adds a list of gamecodes to the database
 #No duplicates
@@ -141,3 +144,15 @@ def findSteamID(discordUser):
     if result is None or result == []:
         return None
     return result[0][0]
+
+
+
+async def updateGames(steamid):
+    codes = findMatchSteamAPI.generateNewCodes(steamid)
+    addGameCodes(codes)
+    for code in codes:
+        try:
+            await addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(code)))
+        except:
+            continue
+    return "Games Added"
