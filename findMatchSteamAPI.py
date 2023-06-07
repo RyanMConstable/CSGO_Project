@@ -5,7 +5,7 @@ except:
     from . import CSGOsql
 
 steamAPIKey = os.environ["STEAM_API_KEY"]
-steamIDKey = os.environ["steamIDKey"]
+steamIDKey = os.environ["STEAM_KEY"]
 
 #Return list of game codes since given code (include code given)
 def giveCodes(steamID, knownCode):
@@ -33,5 +33,5 @@ def generateNewCodes(steamID):
     newestCode = CSGOsql.findMostRecentGame(steamID)
     if newestCode == None:
         return
-    codeList = giveCodes(steamAPIKey, steamID, steamIDKey, newestCode)
+    codeList = giveCodes(steamID, newestCode)
     return codeList
