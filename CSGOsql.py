@@ -136,5 +136,3 @@ def findSteamID(discordUser):
     if result is None or result == []:
         return None
     return result[0][0]
-
-print(findTop10("totalkills"))
