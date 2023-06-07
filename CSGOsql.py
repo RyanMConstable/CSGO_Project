@@ -108,7 +108,13 @@ def findTop10user(category, userid):
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
-    return result
+    formatResult = ""
+    for row in result:
+        formatResult += row[0]
+        formatResult += " "
+        formatResult += str(row[1])
+        formatResult += '\n'
+    return formatResult
 
 
 #Add the discorduser and steamid to the new table
@@ -131,7 +137,7 @@ def setDiscordUser(discordUser, steamid):
 
 #Finds a steamid from a discorduser
 def findSteamID(discordUser):
-    query = "SELECT * FROM discorduser WHERE discordname = {}".format(discordUser)
+    query = "SELECT steamid FROM discorduser WHERE discordname = {}".format(discordUser)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return None
