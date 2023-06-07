@@ -1,6 +1,8 @@
-import requests, time
-import CSGOsql
-import os
+import requests, time, os
+try:
+    import CSGOsql
+except:
+    from . import CSGOsql
 
 steamAPIKey = os.environ["STEAM_API_KEY"]
 steamIDKey = os.environ["steamIDKey"]

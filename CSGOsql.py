@@ -3,7 +3,6 @@ try:
     import getJSONInfo
 except:
     from . import dbconnection
-    from . import dbconnection
 
 #This function adds a list of gamecodes to the database
 #No duplicates
