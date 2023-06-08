@@ -151,10 +151,11 @@ def findSteamID(discordUser):
 
 #Testing out an async function
 #This function essentially gets all of the new game codes, and then asynchronously adds the game stats, I'm not sure exactly how that works
-async def updateGames(steamid):
+def updateGames(steamid):
     codes = findMatchSteamAPI.generateNewCodes(steamid)
     addGameCodes(codes)
     for code in codes:
+        print("Attempting to add code: " + code)
         try:
             addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(code)))
         except:
