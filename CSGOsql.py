@@ -144,15 +144,3 @@ def findSteamID(discordUser):
     if result is None or result == []:
         return None
     return result[0][0]
-
-
-
-async def updateGames(steamid):
-    codes = findMatchSteamAPI.generateNewCodes(steamid)
-    addGameCodes(codes)
-    for code in codes:
-        try:
-            await addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(code)))
-        except:
-            continue
-    return "Games Added"
