@@ -91,8 +91,11 @@ def populateSecondTableFromFirst():
 
 
 #Find top 10 with a query
-def findTop10(category):
-    query = "SELECT name, {} FROM gamestats ORDER BY {} DESC LIMIT 10".format(category, category)
+def findTopX(category, num):
+    if int(num) < 0 or int(num) > 100:
+        return "Number must be between 0 and 100"
+    
+    query = "SELECT name, {} FROM gamestats ORDER BY {} DESC LIMIT {}".format(category, category, num)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
