@@ -164,3 +164,17 @@ def updateGames(steamid):
         except:
             continue
     return "Games Added"
+
+
+
+#Update all users games...
+def updateAllUsers():
+    query = "SELECT steamid FROM discorduser"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return None
+    #Here we want each id to call updategames
+    for id in result:
+        print("\nUpdating user:"+str(id[0])+"\n")
+        updateGames(id[0])
+    return "Complete!"
