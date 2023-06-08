@@ -37,6 +37,8 @@ def mainChainCommand():
             print(findTop10())
         elif userInput == '8':
             print(findTop10username())
+        elif userInput == '9':
+            print(CSGOsql.updateAllUsers())
             
         print()
     print("Exiting...")
