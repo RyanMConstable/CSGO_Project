@@ -4,26 +4,40 @@ import json
 
 #Takes a game code and returns the format [code, info], info can be None
 def getJSONInfo(code):
+    #First tidys up the code
     code = code.strip()
-    pathToCSGODm = os.path.abspath(r'C:/\"Program Files (x86)\"/\"CSGO Demos Manager\"/csgodm.exe')
-    pathToCSGOreplays = os.path.abspath(r'C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/replays')
+    #Takes environment variables for paths to both CSGODM third party, and the CSGOreplay directory folder
+    pathToCSGODm = os.environ['PATH_TO_CSGODM']
+    pathToCSGOreplays = os.environ['PATH_TO_CSGOREPLAYS']
+    pathToCSGOreplay = os.environ['PATH_TO_CSGOREPLAY']
+    #Downloads, the given game using the path to the CSGODM
     os.system(pathToCSGODm + " download " + str(code))
     files = os.listdir(pathToCSGOreplays)
     pathToJSON = None
-    file = None
     info = None
+    
+    #For the files in the directory, find the demo file
     for file in files:
         if file.split(".")[-1] == "dem":
-            pathToJSON = pathToCSGODm + " json " + r'C:/"Program Files (x86)"/Steam/steamapps/common/"Counter-Strike Global Offensive"/csgo/replays/' + file
+            print("Demo found")
+            pathToJSON = pathToCSGODm + " json " + os.path.join(pathToCSGOreplay, file)
             os.system(pathToJSON)
             break
     
+    #If pathToJSON is not None, then empty it and load it to a json file
     if pathToJSON:
-        w = open(pathToCSGOreplays + "/" + file + ".json", "r", encoding = 'utf-8')
+        newfile = os.path.join(pathToCSGOreplays, file) + ".json"
+        w = open(newfile, "r", encoding = 'utf-8')
         info = json.loads(w.read())
         w.close()
+        
+    #Remove files from the directory
     clearReplayDir()
+    
+    #Return a list with index 0 being the given code, and index 1 being the information from the json file
     return [code, info]
+
+
 
 #Takes the output from the above function and turns the json into the statistics we want to grab from the game for all 10 players
 def returnGameInfo(jsonInputFormat):
@@ -53,3 +67,7 @@ def clearReplayDir():
     for file in os.listdir(os.path.join(pathToCSGOreplays)):
         os.remove(os.path.join(pathToCSGOreplays, file))
     return
+
+
+
+print(getJSONInfo('CSGO-TmtKB-aMoKk-FqZYO-ZJO3z-ozioE'))
