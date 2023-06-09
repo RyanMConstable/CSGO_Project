@@ -154,8 +154,8 @@ def findSteamID(discordUser):
 
 #Testing out an async function
 #This function essentially gets all of the new game codes, and then asynchronously adds the game stats, I'm not sure exactly how that works
-def updateGames(steamid):
-    codes = findMatchSteamAPI.generateNewCodes(steamid)
+def updateGames(steamid, steamidkey):
+    codes = findMatchSteamAPI.generateNewCodes(steamid, steamidkey)
     addGameCodes(codes)
     for code in codes:
         print("Attempting to add code: " + code)
@@ -169,12 +169,12 @@ def updateGames(steamid):
 
 #Update all users games...
 def updateAllUsers():
-    query = "SELECT steamid FROM discorduser"
+    query = "SELECT steamid, steamidkey FROM discorduser"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return None
     #Here we want each id to call updategames
     for id in result:
         print("\nUpdating user:"+str(id[0])+"\n")
-        updateGames(id[0])
+        updateGames(id[0], id[1])
     return "Complete!"
