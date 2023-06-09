@@ -123,19 +123,19 @@ def findTop10user(category, userid):
 
 
 #Add the discorduser and steamid to the new table
-def setDiscordUser(discordUser, steamid):
+def setDiscordUser(discordUser, steamid, steamidkey):
     query = "SELECT * FROM discorduser WHERE discordname = {}".format(discordUser)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     
     
     if result is None or result == []:
         print("Empty")
-        newquery = "INSERT INTO discorduser (discordname, steamid) VALUES (%s, %s)"
-        result = dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, (discordUser, steamid))
+        newquery = "INSERT INTO discorduser (discordname, steamid, steamidkey) VALUES (%s, %s, %s)"
+        result = dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, (discordUser, steamid, steamidkey))
         print(result)
     else:
-        print("User here")
-        newquery = "UPDATE discorduser SET steamid = {} WHERE discordname = {}".format(steamid, discordUser)
+        print("User here, newid:" + str(steamid) + " newidkey:" + str(steamidkey))
+        newquery = "UPDATE discorduser SET steamid = '{}', steamidkey = '{}' WHERE discordname = {}".format(steamid, steamidkey, discordUser)
         dbconnection.executeQuery(dbconnection.createConnection(), newquery, True)
     return
 
