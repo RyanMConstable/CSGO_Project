@@ -1,16 +1,16 @@
 import os
 import json
 
+pathToCSGODm = os.environ['PATH_TO_CSGODM']
+pathToCSGOreplays = os.environ['PATH_TO_CSGOREPLAYS']
+pathToCSGOreplay = os.environ['PATH_TO_CSGOREPLAY']
+
 
 #Takes a single game code as input, downloads the file, then analyzes the file and downloads a json
 #Opens the json and loads the json into a variable (can be improved), then returns the variable and the game code in a list
 def getJSONInfo(code):
     #First tidys up the code
     code = code.strip()
-    #Takes environment variables for paths to both CSGODM third party, and the CSGOreplay directory folder
-    pathToCSGODm = os.environ['PATH_TO_CSGODM']
-    pathToCSGOreplays = os.environ['PATH_TO_CSGOREPLAYS']
-    pathToCSGOreplay = os.environ['PATH_TO_CSGOREPLAY']
     #Downloads, the given game using the path to the CSGODM
     os.system(pathToCSGODm + " download " + str(code))
     files = os.listdir(pathToCSGOreplays)
@@ -63,13 +63,15 @@ def returnGameInfo(jsonInputFormat):
     
     return [jsonInputFormat[0], playersList]
 
+
+
 #Deletes all files in the CSGO replays directory, returns nothing
+#We want to keep the replays folder, but delete everything in it
 def clearReplayDir():
-    pathToCSGOreplays = os.path.abspath(r'C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/replays/')
-    for file in os.listdir(os.path.join(pathToCSGOreplays)):
+    for file in os.listdir(pathToCSGOreplays):
         os.remove(os.path.join(pathToCSGOreplays, file))
     return
 
 
 
-print(getJSONInfo('CSGO-TmtKB-aMoKk-FqZYO-ZJO3z-ozioE'))
+print(returnGameInfo(getJSONInfo('CSGO-TmtKB-aMoKk-FqZYO-ZJO3z-ozioE')))
