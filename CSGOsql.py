@@ -178,3 +178,21 @@ def updateAllUsers():
         print("\nUpdating user:"+str(id[0])+"\n")
         updateGames(id[0], id[1])
     return "Complete!"
+
+
+
+#Check if a given game is in the gamestats table
+#returns boolean True if the game is in the table, otherwise Falses
+def inGameStats(code):
+    #Part 1 check code is in first database
+    query = "SELECT id FROM gamecodes WHERE code = '{}'".format(code)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return False
+    result = result[0][0]
+    
+    query = "SELECT * FROM gamestats WHERE gameid = {}".format(result)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return False
+    return True
