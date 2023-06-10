@@ -152,8 +152,7 @@ def findSteamID(discordUser):
 
 
 
-#Testing out an async function
-#This function essentially gets all of the new game codes, and then asynchronously adds the game stats, I'm not sure exactly how that works
+#This function not only needs to add the games, but then update the most recent game in the recent game table
 def updateGames(steamid, steamidkey):
     codes = findMatchSteamAPI.generateNewCodes(steamid, steamidkey)
     addGameCodes(codes)
@@ -196,3 +195,16 @@ def inGameStats(code):
     if result is None or result == []:
         return False
     return True
+
+
+#Function to add to the recentgame table
+def newRecentGame(steamid, code):
+    query = "SELECT * FROM recentgame WHERE steamid = {}".format(steamid)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        query = "INSERT INTO recentgame (steamid, code) VALUES (%s, %s)"
+        result = dbconnection.executeQuery(dbconnection.createConnection(), query, True, (steamid, code))
+    else:
+        query = "UPDATE recentgame SET code = '{}' WHERE steamid = '{}'".format(code, steamid)
+        result = dbconnection.executeQuery(dbconnection.createConnection(), query, True, (steamid, code))
+    return
