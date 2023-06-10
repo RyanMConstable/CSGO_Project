@@ -41,26 +41,34 @@ def getJSONInfo(code):
 
 
 
-#Takes the output from the above function and turns the json into the statistics we want to grab from the game for all 10 players
+#Takes a list in the format [gameCode, jsonLoadedVariable] and parses the information for what we want.
+#It then returns a list including the game code, and another list containing each player and their stats in another list
 def returnGameInfo(jsonInputFormat):
+    #If the json variable in the list is none, then return
     if jsonInputFormat[1] == None:
         return
+    
+    #Initialize thisGame to the json loaded variable
     thisGame = jsonInputFormat[1]
 
+    #Initialize playerlist
     playersList = []
-    dt = thisGame["date"]
     
-    #In case it's not a long match, or any other game mode
+    #Check to ensure that it's a long match and not any other type of game
     if thisGame["score_team1"] != 15 and thisGame["score_team1"] != 16 and thisGame["score_team2"] != 15 and thisGame["score_team2"] != 16:
         return
     
+    #Set date of game played
+    dt = thisGame["date"]
     
+    #Loop for every player on team_ct, add parsed data (obnoxiously long)
     for player in thisGame["team_ct"]["team_players"]:
         playersList.append([player["steamid"], player["name"], player["kill_count"], player["score"], player["tk_count"], player["assist_count"], player["death_count"], player["5k_count"], player["4k_count"], player["3k_count"], player["2k_count"], player["1k_count"], player["hs_count"], player["kd"], player["esea_rws"], player["shot_count"], player["hit_count"], player["flashbang_count"], player["smoke_count"], player["he_count"], player["molotov_count"], player["incendiary_count"], player["decoy_count"], player["round_count"], "ct", dt])
         
     for player in thisGame["team_t"]["team_players"]:
         playersList.append([player["steamid"], player["name"], player["kill_count"], player["score"], player["tk_count"], player["assist_count"], player["death_count"], player["5k_count"], player["4k_count"], player["3k_count"], player["2k_count"], player["1k_count"], player["hs_count"], player["kd"], player["esea_rws"], player["shot_count"], player["hit_count"], player["flashbang_count"], player["smoke_count"], player["he_count"], player["molotov_count"], player["incendiary_count"], player["decoy_count"], player["round_count"], "t", dt])
     
+    #Return the code, 
     return [jsonInputFormat[0], playersList]
 
 
@@ -71,7 +79,3 @@ def clearReplayDir():
     for file in os.listdir(pathToCSGOreplays):
         os.remove(os.path.join(pathToCSGOreplays, file))
     return
-
-
-
-print(returnGameInfo(getJSONInfo('CSGO-TmtKB-aMoKk-FqZYO-ZJO3z-ozioE')))
