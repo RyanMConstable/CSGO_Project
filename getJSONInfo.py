@@ -2,7 +2,8 @@ import os
 import json
 
 
-#Takes a game code and returns the format [code, info], info can be None
+#Takes a single game code as input, downloads the file, then analyzes the file and downloads a json
+#Opens the json and loads the json into a variable (can be improved), then returns the variable and the game code in a list
 def getJSONInfo(code):
     #First tidys up the code
     code = code.strip()
@@ -36,6 +37,7 @@ def getJSONInfo(code):
     
     #Return a list with index 0 being the given code, and index 1 being the information from the json file
     return [code, info]
+
 
 
 
