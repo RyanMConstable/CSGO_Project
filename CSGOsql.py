@@ -142,11 +142,11 @@ def setDiscordUser(discordUser, steamid, steamidkey):
 
 #Finds a steamid from a discorduser
 def findSteamID(discordUser):
-    query = "SELECT steamid FROM discorduser WHERE discordname = {}".format(discordUser)
+    query = "SELECT steamid, steamidkey FROM discorduser WHERE discordname = {}".format(discordUser)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return None
-    return result[0][0]
+    return [result[0][0], result[0][1]]
 
 
 
