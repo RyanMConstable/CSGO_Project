@@ -1,4 +1,4 @@
-import requests, time, os, CSGOsql
+import requests, time, os, simplesql
 
 steamAPIKey = os.environ["STEAM_API_KEY"]
 
@@ -23,7 +23,7 @@ def giveCodes(steamID, knownCode, steamidkey):
 #This function takes your steam info and generates new codes by finding the newest code from the database
 #Returns a list of new codes or None if it's the newest
 def generateNewCodes(steamID, steamidkey):
-    newestCode = CSGOsql.findMostRecentGame(steamID)
+    newestCode = simplesql.findMostRecentGame(steamID)
     if newestCode == None:
         return
     codeList = giveCodes(steamID, newestCode, steamidkey)
