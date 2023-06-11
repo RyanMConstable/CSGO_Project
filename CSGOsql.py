@@ -1,11 +1,10 @@
+#For importing exceptions...
 try:
-    import dbconnection
-    import getJSONInfo
-    import findMatchSteamAPI
-except:
-    from . import dbconnection
-    from . import getJSONInfo
-    from . import findMatchSteamAPI
+    import dbconnection, getJSONInfo, findMatchSteamAPI
+except Exception as e:
+    print(e)
+    from . import dbconnection, getJSONInfo, findMatchSteamAPI
+
 
 #This function adds a list of gamecodes to the database
 #No duplicates
@@ -213,3 +212,26 @@ def newRecentGame(steamid, code):
         query = "UPDATE recentgame SET code = '{}' WHERE steamid = '{}'".format(code, steamid)
         result = dbconnection.executeQuery(dbconnection.createConnection(), query, True, (steamid, code))
     return
+
+
+#Function to get every id from discorduser and check if they're in the the newestgame list
+#If they're not use the oldest game to check first
+def updateNewGames():
+    query = "SELECT steamid FROM discorduser"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return
+    
+    #Check if the user id is in the next table
+    listToUpdate = []
+    for id in result:
+        query = "SELECT steamid FROM recentgame WHERE steamid = '{}'".format(id[0])
+        result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+        if result is None or result == []:
+            listToUpdate.append(id[0])
+    
+    #Now for every user in listToUpdate, we update the recent game after searching the table
+    print(listToUpdate)
+    return
+    
+updateNewGames()
