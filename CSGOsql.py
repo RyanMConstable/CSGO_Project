@@ -231,7 +231,16 @@ def updateNewGames():
             listToUpdate.append(id[0])
     
     #Now for every user in listToUpdate, we update the recent game after searching the table
-    print(listToUpdate)
+    for user in listToUpdate:
+        query = "SELECT gameid FROM gamestats WHERE steamid = '{}' ORDER BY date ASC LIMIT 1".format(user)
+        result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+        if result is not None or result != []:
+            query = "SELECT code FROM gamecodes WHERE id = '{}'".format(result[0][0])
+            result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+            if result is not None:
+                query = "INSERT INTO recentgame (steamid, code) VALUES (%s, %s)"
+                result = dbconnection.executeQuery(dbconnection.createConnection(), query, True, (user, result[0][0]))
+        
     return
     
 updateNewGames()
