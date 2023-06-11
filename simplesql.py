@@ -1,4 +1,7 @@
-import dbconnection
+try:
+    import dbconnection
+except:
+    from . import dbconnection
 
 #This function takes in a steamid and returns the most recent match code from the table
 def findMostRecentGame(userid):
