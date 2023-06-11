@@ -232,7 +232,7 @@ def updateNewGames():
         result = dbconnection.executeQuery(dbconnection.createConnection(), query)
         if result is None or result == []:
             listToUpdate.append(id[0])
-    
+            
     #Now for every user in listToUpdate, we update the recent game after searching the table
     for user in listToUpdate:
         query = "SELECT gameid FROM gamestats WHERE steamid = '{}' ORDER BY date ASC LIMIT 1".format(user)
