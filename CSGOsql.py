@@ -158,6 +158,7 @@ def findSteamID(discordUser):
 #This function not only needs to add the games, but then update the most recent game in the recent game table
 def updateGames(steamid, steamidkey):
     codes = findMatchSteamAPI.generateNewCodes(steamid, steamidkey)
+    print("CodeList:" + str(codes))
     newRecentGame(steamid, codes[-1])
     addGameCodes(codes)
     for code in codes:
@@ -210,7 +211,7 @@ def newRecentGame(steamid, code):
         result = dbconnection.executeQuery(dbconnection.createConnection(), query, True, (steamid, code))
     else:
         query = "UPDATE recentgame SET code = '{}' WHERE steamid = '{}'".format(code, steamid)
-        result = dbconnection.executeQuery(dbconnection.createConnection(), query, True, (steamid, code))
+        result = dbconnection.executeQuery(dbconnection.createConnection(), query, True)
     return
 
 
@@ -235,13 +236,20 @@ def updateNewGames():
             
     #Now for every user in listToUpdate, we update the recent game after searching the table
     for user in listToUpdate:
+        #This query finds the oldest game from the given user in the table
         query = "SELECT gameid FROM gamestats WHERE steamid = '{}' ORDER BY date ASC LIMIT 1".format(user)
         result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+        
+        #This finds the actual code
         if result is not None or result != []:
             query = "SELECT code FROM gamecodes WHERE id = '{}'".format(result[0][0])
             result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+            
+            #This inserts the code into the recentgame
             if result is not None:
                 query = "INSERT INTO recentgame (steamid, code) VALUES (%s, %s)"
                 result = dbconnection.executeQuery(dbconnection.createConnection(), query, True, (user, result[0][0]))
         
     return
+
+updateAllUsers()
