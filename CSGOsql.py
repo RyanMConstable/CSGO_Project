@@ -158,7 +158,6 @@ def findSteamID(discordUser):
 #This function not only needs to add the games, but then update the most recent game in the recent game table
 def updateGames(steamid, steamidkey):
     codes = findMatchSteamAPI.generateNewCodes(steamid, steamidkey)
-    print("CodeList:" + str(codes))
     
     #Remove codes that are already in the database to save time
     for code in codes:
@@ -166,9 +165,10 @@ def updateGames(steamid, steamidkey):
         result = dbconnection.executeQuery(dbconnection.createConnection(), query)
         if result is not None or result != []:
             codes.remove(code)
-    print("NewCodeList:" + str(codes))
     if codes is None or codes == []:
+        print("Already updated...")
         return
+    print("Code List:" + str(codes))
     
     newRecentGame(steamid, codes[-1])
     addGameCodes(codes)
@@ -190,7 +190,7 @@ def updateAllUsers():
         return None
     #Here we want each id to call updategames
     for id in result:
-        print("\nUpdating user:"+str(id[0])+"\n")
+        print("\n-------------------------------\nUpdating user:"+str(id[0])+"\n-------------------------------\n")
         updateGames(id[0], id[1])
     return "Complete!"
 
