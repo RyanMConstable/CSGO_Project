@@ -252,5 +252,5 @@ def updateNewGames():
         
     return
 
-#updateNewGames() call this when users are not in recentgame db
-#updateAllUsers() call this to update all games in db
+#updateNewGames() #call this when users are not in recentgame db
+#updateAllUsers() #call this to update all games in db
