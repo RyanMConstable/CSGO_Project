@@ -1,5 +1,4 @@
-import os
-import json
+import os, json, subprocess
 
 pathToCSGODm = os.environ['PATH_TO_CSGODM']
 pathToCSGOreplays = os.environ['PATH_TO_CSGOREPLAYS']
@@ -12,7 +11,8 @@ def getJSONInfo(code):
     #First tidys up the code
     code = code.strip()
     #Downloads, the given game using the path to the CSGODM
-    os.system(pathToCSGODm + " download " + str(code))
+    os.system(pathToCSGODm + " download " + str(code) + " >> log.txt")
+    #print("This is a test: " + str(test))
     files = os.listdir(pathToCSGOreplays)
     pathToJSON = None
     info = None
