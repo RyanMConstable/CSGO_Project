@@ -7,4 +7,6 @@ if __name__ == '__main__':
     
     #Otherwise we want to automatically check for new games for every user
     CSGOsql.updateNewGames()
+    
+    #!!!!!!This needs to be quicker!!!!!!
     CSGOsql.updateAllUsers()
