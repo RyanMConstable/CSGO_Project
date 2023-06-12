@@ -251,6 +251,3 @@ def updateNewGames():
                 result = dbconnection.executeQuery(dbconnection.createConnection(), query, True, (user, result[0][0]))
         
     return
-
-#updateNewGames() #call this when users are not in recentgame db
-#updateAllUsers() #call this to update all games in db
