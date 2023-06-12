@@ -13,5 +13,5 @@ Change the following environment variables:
 
 
 ### Usability
-1) Can test use our discord bot! 
+1) A discord bot that holds a database of information for users to parse. 
 2) Website coming soon!
