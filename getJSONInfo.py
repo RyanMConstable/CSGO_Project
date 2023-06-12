@@ -1,4 +1,4 @@
-import os, json, subprocess, re
+import os, json
 
 pathToCSGODm = os.environ['PATH_TO_CSGODM']
 pathToCSGOreplays = os.environ['PATH_TO_CSGOREPLAYS']
@@ -79,6 +79,3 @@ def clearReplayDir():
     for file in os.listdir(pathToCSGOreplays):
         os.remove(os.path.join(pathToCSGOreplays, file))
     return
-
-
-getJSONInfo('CSGO-TmtKB-aMoKk-FqZYO-ZJO3z-ozioE')
