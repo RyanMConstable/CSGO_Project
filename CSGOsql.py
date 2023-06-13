@@ -2,7 +2,6 @@
 try:
     import dbconnection, getJSONInfo, findMatchSteamAPI
 except Exception as e:
-    print(e)
     from . import dbconnection, getJSONInfo, findMatchSteamAPI
 
 
