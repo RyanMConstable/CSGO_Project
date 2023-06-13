@@ -28,7 +28,7 @@ def addGameStats(playerStats):
     #Takes the id from the first table and stores in result
     query = "SELECT id FROM gamecodes WHERE code = '{}'".format(playerStats[0])
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    if result == None or result == []:
+    if result == []:
         return "Not in match table?"
     result = result[0][0]
     
@@ -268,4 +268,22 @@ def updateNewGames():
                 query = "INSERT INTO recentgame (steamid, code) VALUES (%s, %s)"
                 result = dbconnection.executeQuery(dbconnection.createConnection(), query, True, (user, result[0][0]))
         
+    return
+
+
+
+#Function to find all game codes in the first table to add to the second one
+def addCodedbToStatdb():
+    #Find id
+    query = "SELECT id, code FROM gamecodes WHERE id NOT IN (SELECT gameid FROM gamestats) ORDER BY id DESC"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    print(result)
+    if result != []:
+        for firstResult in result:
+            try:
+                addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(firstResult[1])))
+                print("Added: {}".format(firstResult[1]))
+            except Exception as e:
+                print("Exception, can't add: {}".format(firstResult[1]))
+                print(e)
     return
