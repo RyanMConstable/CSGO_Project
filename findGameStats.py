@@ -10,6 +10,15 @@ def selectCombinedUserStat(stat, steamid):
     return result[0][0]
 
 
+#Very useful stat function, type in the column name of the database, and the steam id and it will return the sum of that column
+def selectCombinedUserStat(stat, steamid):
+    query = "SELECT AVG({}) FROM gamestats WHERE steamid = '{}'".format(stat, steamid)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return
+    return result[0][0]
+
+
 #Function to find how many games the user has within the table
 def findNumberOfGames(steamid):
     query = "SELECT COUNT(*) FROM gamestats WHERE steamid = '{}'".format(steamid)
@@ -26,3 +35,5 @@ def returnAllUserRows(steamid):
     if result is None or result == []:
         return
     return result
+
+print(selectCombinedUserStat('rws', '76561198068939539'))
