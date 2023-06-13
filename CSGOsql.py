@@ -161,10 +161,14 @@ def updateGames(steamid, steamidkey):
     
     #Remove codes that are already in the database to save time
     for code in codes:
-        query = "SELECT * FROM gamecodes WHERE code = '{}'".format(code)
+        query = "SELECT id FROM gamecodes WHERE code = '{}'".format(code)
         result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-        if result is not None or result != []:
-            codes.remove(code)
+        if result != []:
+            #Check gamestats table
+            query = "SELECT * FROM gamestats WHERE gameid = '{}'".format(result[0][0])
+            result2 = dbconnection.executeQuery(dbconnection.createConnection(), query)
+            if result2 != []:
+                codes.remove(code)
     if codes is None or codes == []:
         print("Already updated...")
         return
@@ -173,10 +177,13 @@ def updateGames(steamid, steamidkey):
     newRecentGame(steamid, codes[-1])
     addGameCodes(codes)
     for code in codes:
-        print("Attempting to add code: " + code)
+        print("Attempting to add code: '{}'".format(code))
         try:
             addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(code)))
+            print("Successfully added game stats!")
         except Exception as e:
+            print("Exception")
+            print(e)
             continue
     return "Games Added"
 
