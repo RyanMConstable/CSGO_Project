@@ -88,7 +88,7 @@ def populateSecondTableFromFirst():
     return
 
 
-#Find top 10 with a query
+#Find top X amount for a category with a query
 def findTopX(category, num):
     if int(num) < 0 or int(num) > 100:
         return "Number must be between 0 and 100"
