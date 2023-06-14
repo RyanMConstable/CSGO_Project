@@ -239,6 +239,7 @@ def newRecentGame(steamid, code):
 
 
 #This function needs to be revamped... 
+#SOURCE OF PROBLEM WITH MULTIPLE USERS DOWNLOADING SAME FILE
 
 #Function to get every id from discorduser and check if they're in the the newestgame list
 #If they're not use the oldest game to check first
