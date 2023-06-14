@@ -238,7 +238,8 @@ def newRecentGame(steamid, code):
 
 
 
-#Useful admin functionality
+#This function needs to be revamped... 
+
 #Function to get every id from discorduser and check if they're in the the newestgame list
 #If they're not use the oldest game to check first
 def updateNewGames():
