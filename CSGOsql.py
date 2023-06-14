@@ -105,7 +105,7 @@ def findTopX(category, num):
         formatResult += '\n'
     return formatResult
 
-#Find top 10 for a specific user with a query
+#Find top X for a specific user with a query
 def findTop10user(category, userid, limit):
     query = "SELECT name, {} FROM gamestats WHERE steamid = {} ORDER BY {} DESC LIMIT {}".format(category, userid, category, limit)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
