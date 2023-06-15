@@ -32,3 +32,7 @@ def generateNewCodes(steamID, steamidkey):
         return
     codeList = giveCodes(steamID, newestCode, steamidkey)
     return codeList
+
+
+def validateUser(steamid, steamidkey):
+    return True
