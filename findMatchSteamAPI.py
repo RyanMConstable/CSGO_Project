@@ -34,5 +34,9 @@ def generateNewCodes(steamID, steamidkey):
     return codeList
 
 
+#Test to validate a steam id
 def validateUser(steamid, steamidkey):
+    testRequest = 'http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key={}&steamid={}'.format(steamAPIKey, steamid)
+    if requests.get(testRequest).status_code != 200:
+        return False
     return True
