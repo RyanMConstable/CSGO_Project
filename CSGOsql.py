@@ -248,12 +248,14 @@ def newRecentGame(steamid, code):
 #Function to get every id from discorduser and check if they're in the the newestgame list
 #If they're not use the oldest game to check first
 def updateNewGames():
+    #Get all steamids from the discorduser table
     query = "SELECT steamid FROM discorduser"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
     
-    #Check if the user id is in the next table
+    #Check if the user id is in the recentgame table
+    #If the id is not in the table, then we update the table
     listToUpdate = []
     for id in result:
         query = "SELECT steamid FROM recentgame WHERE steamid = '{}'".format(id[0])
