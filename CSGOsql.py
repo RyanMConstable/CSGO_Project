@@ -124,7 +124,7 @@ def findTop10user(category, userid, limit):
 def setDiscordUser(discordUser, steamid, steamidkey):
     #Here we want to validate the steamid, and steamidkey given
     if findMatchSteamAPI.validateUser(steamid, steamidkey) == False:
-        return "Invalid id/idkey"
+        return "Invalid steam id"
     
     query = "SELECT * FROM discorduser WHERE discordname = {}".format(discordUser)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
