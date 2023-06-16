@@ -163,19 +163,18 @@ def updateGames(steamid, steamidkey):
     codes = findMatchSteamAPI.generateNewCodes(steamid, steamidkey)
     #Remove codes that are already in the database to save time
     for code in codes:
-        ##########################################################
-        #This query checks to see if the gamecode table isn't empty
-        query = "SELECT id FROM gamecodes WHERE code = '{}'".format(code)
-        result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-        ##############################################################
-        if result != []:
-            #If the result is not empty, check the gamestats table
-            query = "SELECT * FROM gamestats WHERE gameid = '{}'".format(result[0][0])
-            result2 = dbconnection.executeQuery(dbconnection.createConnection(), query)
-            #If the gamestats table is also none, then we remove the code from the list
-            if result2 != []:
+        try:
+            query = "SELECT id from gamecodes WHERE code = '{}'".format(code)
+            result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+            if result == []:
+                continue
+            query = "SELECT * from gamestats WHERE gameid = '{}'".format(result[0][0])
+            result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+            if result != []:
                 codes.remove(code)
-                
+        except Exception as e:
+            print("EXCEPTION: " + e)
+            return     
                 
     if codes is None or codes == []:
         print("Already updated...")
