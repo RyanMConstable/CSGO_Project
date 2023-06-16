@@ -365,5 +365,3 @@ def findusertop(steamid):
     userStats += 'Shots Fired: ' + str(findTop10user('shot_count', steamid, 1)).split(" ")[-1]
     userStats += 'Hit Count: ' + str(findTop10user('hit_count', steamid, 1)).split(" ")[-1]
     return userStats
-
-print(findusertop('76561198068939539'))
