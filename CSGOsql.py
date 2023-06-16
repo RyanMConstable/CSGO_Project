@@ -176,7 +176,7 @@ def updateGames(steamid, steamidkey):
                 codes.remove(code)
         except Exception as e:
             print("EXCEPTION: " + e)
-            return     
+            codes.remove(code)     
                 
     if codes is None or codes == []:
         print("Already updated...")
