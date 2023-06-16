@@ -162,26 +162,30 @@ def findSteamID(discordUser):
 def updateGames(steamid, steamidkey):
     codes = findMatchSteamAPI.generateNewCodes(steamid, steamidkey)
     newRecentGame(steamid, codes[-1])
-    
+    print("Codes before: " + str(codes))
+    codesToUpdate = []
     #Remove codes that are already in the database to save time
     for code in codes:
         try:
             query = "SELECT id from gamecodes WHERE code = '{}'".format(code)
             result = dbconnection.executeQuery(dbconnection.createConnection(), query)
             if result == []:
+                codesToUpdate.append(code)
                 continue
             query = "SELECT * from gamestats WHERE gameid = '{}'".format(result[0][0])
             result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-            if result != []:
-                codes.remove(code)
+            if result == []:
+                codesToUpdate.append(code)
         except Exception as e:
-            print("EXCEPTION: " + e)
-            codes.remove(code)     
-                
-    if codes is None or codes == []:
+            print("Exception code remove: " + str(code))
+            codesToUpdate.append(code)
+    
+    print("Code List:" + str(codes))
+    print("Code List2:" + str(codesToUpdate))    
+    if codesToUpdate is None or codesToUpdate == []:
         print("Already updated...")
         return
-    print("Code List:" + str(codes))
+    codes = codesToUpdate
     
     addGameCodes(codes)
     for code in codes:
