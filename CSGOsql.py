@@ -11,13 +11,13 @@ def addGameCodes(codes):
     #The following line creates a connection to the database
     #dbconnection.createConnection()
     for singleCode in codes:
-        query = "SELECT * FROM gamecodes WHERE code = '{}'".format(singleCode)
-        result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-        if result:
-            continue
-        newquery = "INSERT INTO gamecodes (code) VALUES (%s)"
-        val = ([singleCode])
-        dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, val)
+        try:
+            newquery = "INSERT INTO gamecodes (code) VALUES (%s)"
+            val = ([singleCode])
+            dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, val)
+        except Exception as e:
+            #print("Error in addGameCodes: " + str(e))
+            pass
     return
 
 
@@ -161,12 +161,13 @@ def findSteamID(discordUser):
 #This function not only needs to add the games, but then update the most recent game in the recent game table
 def updateGames(steamid, steamidkey):
     codes = findMatchSteamAPI.generateNewCodes(steamid, steamidkey)
-    
     #Remove codes that are already in the database to save time
     for code in codes:
+        ##########################################################
         #This query checks to see if the gamecode table isn't empty
         query = "SELECT id FROM gamecodes WHERE code = '{}'".format(code)
         result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+        ##############################################################
         if result != []:
             #If the result is not empty, check the gamestats table
             query = "SELECT * FROM gamestats WHERE gameid = '{}'".format(result[0][0])
