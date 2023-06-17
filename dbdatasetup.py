@@ -3,6 +3,7 @@ import getJSONInfo
 
 
 #This function populates the gamestats table using all game codes from the gamecodes table
+#This should only be used in a testing environment
 def populateStats():
     codeList = CSGOsql.returnAllCodes()
     for code in codeList:
