@@ -349,6 +349,7 @@ def returnAllUserRows(steamid):
 #Write a function to find all top categories for a user given an id
 def findusertop(steamid):
     userStats = 'Your highest stats of all time:\n'
+    userStats += 'Total Games Played: ' + str(findNumberOfGames(steamid)) + '\n'
     userStats += 'Kills: ' + findTop10user('totalkills', steamid, 1).split(" ")[-1]
     userStats += 'Score: ' + findTop10user('score', steamid, 1).split(" ")[-1]
     userStats += 'Team kills: ' + findTop10user('tk_count', steamid, 1).split(" ")[-1]
