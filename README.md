@@ -1,4 +1,4 @@
-# CSGO_Project
+# CSGO_Project V2.0
 A project to retrieve all information about users CSGO games automatically. Once entering a users steamid, and steamkey into the table information will be automatically updated into the database.
 
 
