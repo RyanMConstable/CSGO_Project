@@ -115,6 +115,7 @@ def analyzeDems():
     return
 
 downloadDems('CSGO-cNZmw-USn3H-hNDnn-7MFOG-s9ROG')
+downloadDems('CSGO-WEbTq-q4Q7i-PXJ2k-vGSJi-9YKsE')
 analyzeDems()
 #Saving call to analyze games
 #subprocess.call(["csgodm", "json", os.getcwd(), "--output", os.getcwd(), "--force-analyze"])
