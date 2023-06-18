@@ -111,6 +111,7 @@ def analyzeDem(code):
     os.chdir(originalDir)
     return
 
+#Now we need to open the file, load it as a json and then parse it...
 
 if __name__ == '__main__':
     with Pool(2) as p:
