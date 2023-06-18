@@ -103,10 +103,15 @@ def downloadDems(code):
 
 
 #Scrapped the previous... Need to analyze one at a time given a directory name
-def analyzeDem():
+def analyzeDem(code):
+    originalDir = os.getcwd()
+    os.chdir("demoDownloads")
+    if len(os.listdir(os.path.join(os.getcwd(), code))) == 2:
+        subprocess.call(["csgodm", "json", os.path.join(os.getcwd(), code), "--output", os.path.join(os.getcwd(), code), "--force-analyze"])
+    os.chdir(originalDir)
     return
 
 
-analyzeDem()
+analyzeDem('CSGO-cNZmw-USn3H-hNDnn-7MFOG-s9ROG')
 #Saving call to analyze games
 #subprocess.call(["csgodm", "json", os.getcwd(), "--output", os.getcwd(), "--force-analyze"])
