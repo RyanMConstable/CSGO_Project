@@ -90,7 +90,6 @@ def clearReplayDir():
 def downloadDems(code):
     #Keep originalDir in case of adding new
     originalDir = os.getcwd()
-    print(os.getcwd())
     os.chdir("demoDownloads")
     if code not in os.listdir():
         os.mkdir(code)
@@ -101,6 +100,17 @@ def downloadDems(code):
     subprocess.call(["csgodm", "download", code, "--output", os.getcwd()])
     os.chdir(originalDir)
     return
+
+
+#This function analyzes all games
+def analyzeDems():
+    originalDir = os.getcwd()
+    os.chdir("demoDownloads")
+    print(os.listdir())
+    os.chdir(originalDir)
+    return
+
+
 
 #Saving call to analyze games
 #subprocess.call(["csgodm", "json", os.getcwd(), "--output", os.getcwd(), "--force-analyze"])
