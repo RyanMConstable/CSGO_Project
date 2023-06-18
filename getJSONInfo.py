@@ -1,4 +1,5 @@
-import os, json, shutil, subprocess
+import os, json, shutil, subprocess, threading
+from multiprocessing import Pool
 
 pathToCSGOreplays = os.environ['PATH_TO_CSGOREPLAYS']
 pathToCSGOreplay = os.environ['PATH_TO_CSGOREPLAY']
@@ -85,8 +86,11 @@ def clearReplayDir():
 ###############################################################
 
 def downloadDems(code):
+    pathToDir = r'C:\Users\ry4nm/OneDrive\Desktop\CSGOBOTTHING\CSGO_Project\demoDownloads'
+    
     #Keep originalDir in case of adding new
     originalDir = os.getcwd()
+    print(os.getcwd())
     os.chdir("demoDownloads")
     if code not in os.listdir():
         os.mkdir(code)
@@ -98,3 +102,12 @@ def downloadDems(code):
     subprocess.call(["csgodm", "json", os.getcwd(), "--output", os.getcwd(), "--force-analyze"])
     os.chdir(originalDir)
     return
+
+#### Can't open multiple CSGO's at the same time? ####
+if __name__ == '__main__':
+    myList = []
+    myList.append('CSGO-kS57S-bNnVN-tD8WT-BS3zw-F3VTB')
+    myList.append('CSGO-VwvF6-2StCH-puOQz-OieFE-8oZEC')
+
+    with Pool(2) as p:
+        p.map(downloadDems, myList)
