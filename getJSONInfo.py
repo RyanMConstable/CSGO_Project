@@ -1,6 +1,5 @@
 import os, json
 
-pathToCSGODm = os.environ['PATH_TO_CSGODM']
 pathToCSGOreplays = os.environ['PATH_TO_CSGOREPLAYS']
 pathToCSGOreplay = os.environ['PATH_TO_CSGOREPLAY']
 
@@ -11,7 +10,7 @@ def getJSONInfo(code):
     #First tidys up the code
     code = code.strip()
     #Downloads, the given game using the path to the CSGODM, logs it to log.txt
-    os.system(pathToCSGODm + " download " + str(code) + " > log.txt")
+    os.system("csgodm download " + str(code) + " > log.txt")
     
     files = os.listdir(pathToCSGOreplays)
     pathToJSON = None
@@ -21,7 +20,7 @@ def getJSONInfo(code):
     for file in files:
         if file.split(".")[-1] == "dem":
             print("Demo found")
-            pathToJSON = pathToCSGODm + " json " + os.path.join(pathToCSGOreplay, file)
+            pathToJSON = "csgodm json " + os.path.join(pathToCSGOreplay, file)
             os.system(pathToJSON)
             break
     
@@ -79,3 +78,8 @@ def clearReplayDir():
     for file in os.listdir(pathToCSGOreplays):
         os.remove(os.path.join(pathToCSGOreplays, file))
     return
+
+
+
+
+getJSONInfo('CSGO-TmtKB-aMoKk-FqZYO-ZJO3z-ozioE')
