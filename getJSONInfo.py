@@ -106,11 +106,15 @@ def downloadDems(code):
 def analyzeDems():
     originalDir = os.getcwd()
     os.chdir("demoDownloads")
-    print(os.listdir())
+    if any(os.listdir()):
+        for directory in os.listdir():
+            print(os.listdir(os.path.join(os.getcwd(), directory)))
+    
+    
     os.chdir(originalDir)
     return
 
-
-
+downloadDems('CSGO-cNZmw-USn3H-hNDnn-7MFOG-s9ROG')
+analyzeDems()
 #Saving call to analyze games
 #subprocess.call(["csgodm", "json", os.getcwd(), "--output", os.getcwd(), "--force-analyze"])
