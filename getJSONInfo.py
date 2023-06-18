@@ -78,8 +78,3 @@ def clearReplayDir():
     for file in os.listdir(pathToCSGOreplays):
         os.remove(os.path.join(pathToCSGOreplays, file))
     return
-
-
-
-
-getJSONInfo('CSGO-TmtKB-aMoKk-FqZYO-ZJO3z-ozioE')
