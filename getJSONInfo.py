@@ -1,4 +1,4 @@
-import os, json
+import os, json, shutil
 
 pathToCSGOreplays = os.environ['PATH_TO_CSGOREPLAYS']
 pathToCSGOreplay = os.environ['PATH_TO_CSGOREPLAY']
@@ -80,7 +80,24 @@ def clearReplayDir():
     return
 
 
-
+###############################################################
 ##### New function to allow for multithreading procedures #####
+###############################################################
+
 def downloadDems(code):
+    #Keep originalDir in case of adding new
+    originalDir = os.getcwd()
+    os.chdir("demoDownloads")
+    if code not in os.listdir():
+        os.mkdir(code)
+        os.chdir(code)
+    else:
+        os.chdir(code)
+    #Here we have a new directory with the name of the code, inside we want to just download the game
+    
+        
+    os.chdir(originalDir)
     return
+
+downloadDems('CSGO-TmtKB-aMoKk-FqZYO-ZJO3z-ozioE')
+downloadDems('CSGO-a5xnx-Wectk-xp2dj-RtZre-55vTC')
