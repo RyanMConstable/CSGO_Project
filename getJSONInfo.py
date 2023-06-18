@@ -112,6 +112,11 @@ def analyzeDem(code):
     return
 
 
-analyzeDem('CSGO-cNZmw-USn3H-hNDnn-7MFOG-s9ROG')
+if __name__ == '__main__':
+    with Pool(2) as p:
+        p.map(analyzeDem, ['CSGO-cNZmw-USn3H-hNDnn-7MFOG-s9ROG','CSGO-WEbTq-q4Q7i-PXJ2k-vGSJi-9YKsE'])
+        
+        
+    
 #Saving call to analyze games
 #subprocess.call(["csgodm", "json", os.getcwd(), "--output", os.getcwd(), "--force-analyze"])
