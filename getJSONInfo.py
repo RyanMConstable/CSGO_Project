@@ -1,4 +1,4 @@
-import os, json, shutil
+import os, json, shutil, subprocess
 
 pathToCSGOreplays = os.environ['PATH_TO_CSGOREPLAYS']
 pathToCSGOreplay = os.environ['PATH_TO_CSGOREPLAY']
@@ -94,10 +94,7 @@ def downloadDems(code):
     else:
         os.chdir(code)
     #Here we have a new directory with the name of the code, inside we want to just download the game
-    
-        
+    subprocess.call(["csgodm", "download", code, "--output", os.getcwd()])
+    subprocess.call(["csgodm", "json", os.getcwd(), "--output", os.getcwd(), "--force-analyze"])
     os.chdir(originalDir)
     return
-
-downloadDems('CSGO-TmtKB-aMoKk-FqZYO-ZJO3z-ozioE')
-downloadDems('CSGO-a5xnx-Wectk-xp2dj-RtZre-55vTC')
