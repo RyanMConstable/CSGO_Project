@@ -1,7 +1,7 @@
 import os, json, shutil, subprocess
 from multiprocessing import Pool
 
-pathToCSGOreplays = os.environ['PATH_TO_CSGOREPLAYS']
+"""pathToCSGOreplays = os.environ['PATH_TO_CSGOREPLAYS']
 pathToCSGOreplay = os.environ['PATH_TO_CSGOREPLAY']
 
 
@@ -36,7 +36,7 @@ def getJSONInfo(code):
     clearReplayDir()
     
     #Return a list with index 0 being the given code, and index 1 being the information from the json file
-    return [code, info]
+    return [code, info]"""
 
 
 
@@ -75,10 +75,10 @@ def returnGameInfo(jsonInputFormat):
 
 #Deletes all files in the CSGO replays directory, returns nothing
 #We want to keep the replays folder, but delete everything in it
-def clearReplayDir():
+"""def clearReplayDir():
     for file in os.listdir(pathToCSGOreplays):
         os.remove(os.path.join(pathToCSGOreplays, file))
-    return
+    return"""
 
 
 ###############################################################
