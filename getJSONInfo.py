@@ -122,10 +122,3 @@ def analyzeDem(code):
     if returnParse:
         return [code, returnParse]
     return
-
-
-
-
-"""if __name__ == '__main__':
-    with Pool(len(os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))) as p:
-        p.map(analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))"""
