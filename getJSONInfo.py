@@ -116,6 +116,7 @@ def analyzeDem(code):
                 info = json.loads(w.read())
                 w.close()
                 returnParse = returnGameInfo([code, info])
+                shutil.rmtree(os.path.join(os.path.join(os.getcwd(), code)))
     os.chdir(originalDir)
     if returnParse:
         return [code, returnParse]
@@ -127,7 +128,3 @@ def analyzeDem(code):
 if __name__ == '__main__':
     with Pool(len(os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))) as p:
         p.map(analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
-        
-        
-#Saving call to analyze games
-#subprocess.call(["csgodm", "json", os.getcwd(), "--output", os.getcwd(), "--force-analyze"])
