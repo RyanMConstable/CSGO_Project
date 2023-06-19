@@ -15,15 +15,19 @@ if __name__ == '__main__':
         processes = 40
     
     
+    #This way they are not called multiple times, increases speed of program
+    gamesIngamecodes = CSGOsql.findAllCodes()
+    gamesIngamestats = CSGOsql.findAllCodesInStats()
+    
     #Multiprocesses demoDownloads to speed up analyzing
     with Pool(len(os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))) as p:
         x = p.map(getJSONInfo.analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
         #X is going to be a list of the gamecode at index 0 and the parsed info in index 1
         #Call functions to add them to the database below
         for game in x:
-            if game[0] in CSGOsql.findAllCodes():
+            if game[0] in gamesIngamecodes:
                 print("Game is in gamecodes already")
-                if game[0] in CSGOsql.findAllCodesInStats():
+                if game[0] in gamesIngamestats:
                     print("Game is also in gamestats")
                 else:
                     CSGOsql.addGameStats(game[1])
