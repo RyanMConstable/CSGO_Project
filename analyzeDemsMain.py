@@ -1,3 +1,4 @@
+#! C:\Users\ry4nm\AppData\Local\Programs\Python\Python311\python.exe
 from multiprocessing import Pool
 import getJSONInfo, os, CSGOsql
 

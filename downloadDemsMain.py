@@ -1,3 +1,4 @@
+#! C:\Users\ry4nm\AppData\Local\Programs\Python\Python311\python.exe
 import findMatchSteamAPI as API
 import CSGOsql, getJSONInfo, os, time
 #1) Given a userid, and steamkey, find that users new list of codes
