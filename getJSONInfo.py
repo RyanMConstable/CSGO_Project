@@ -112,12 +112,14 @@ def analyzeDem(code):
     return
 
 #Now we need to open the file, load it as a json and then parse it...
+def loadAndParseJson(code):
+    return
 
-if __name__ == '__main__':
-    with Pool(2) as p:
-        p.map(analyzeDem, ['CSGO-cNZmw-USn3H-hNDnn-7MFOG-s9ROG','CSGO-WEbTq-q4Q7i-PXJ2k-vGSJi-9YKsE'])
+
+"""if __name__ == '__main__':
+    with Pool(len(os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))) as p:
+        p.map(analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))"""
         
         
-    
 #Saving call to analyze games
 #subprocess.call(["csgodm", "json", os.getcwd(), "--output", os.getcwd(), "--force-analyze"])
