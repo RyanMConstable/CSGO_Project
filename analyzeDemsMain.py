@@ -4,13 +4,14 @@ import getJSONInfo, os
 
 
 if __name__ == '__main__':
+    #Sets the number of processes it should run, max is 60 on windows, so the max will be set to 40 just in case
     processes = len(os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
     if processes <= 0:
         print("No demos in the demoDownloads directory")
         exit(-1)
-    elif processes > 30:
-        print("Processes set to 30")
-        processes = 30
+    elif processes > 40:
+        print("Processes set to 40")
+        processes = 40
     
     
     #Multiprocesses demoDownloads to speed up analyzing
