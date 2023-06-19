@@ -10,6 +10,8 @@ import CSGOsql, getJSONInfo, os, time
 CSGOsql.updateNewGames()
 print("Ending updateNewGames\n")
 
+#Variable to track amount of time
+startTime = time.time()
 
 #Set variables early so time isn't wasted in the loop
 codesIngamecodes = CSGOsql.findAllCodes
@@ -35,5 +37,7 @@ for user in CSGOsql.findAllid():
             if (code in os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))):
                 continue
             getJSONInfo.downloadDems(code)
-            
 
+#Prints the amount of time to download all the user files     
+totalTime = time.time()-startTime
+print(f'Time: {totalTime:.2f} sec')
