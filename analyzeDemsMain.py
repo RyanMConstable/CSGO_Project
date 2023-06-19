@@ -2,7 +2,7 @@ from multiprocessing import Pool
 import getJSONInfo, os
 
 
-
+#Run this script every 30 seconds or so to check for new games, increase if load increases
 if __name__ == '__main__':
     #Sets the number of processes it should run, max is 60 on windows, so the max will be set to 40 just in case
     processes = len(os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
