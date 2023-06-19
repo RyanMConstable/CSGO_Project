@@ -335,6 +335,12 @@ def findAllCodesInStats():
                 codeDict[code[0]] = True
     return codeDict
 
+#Returns list of steamid and steamidkeys
+def findAllid():
+    query = "SELECT steamid, steamidkey FROM discorduser"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    return result
+
 ############################################################################
 #########################Finding Game Stats#################################
 ############################################################################
