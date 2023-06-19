@@ -16,4 +16,5 @@ if __name__ == '__main__':
     
     #Multiprocesses demoDownloads to speed up analyzing
     with Pool(len(os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))) as p:
-        p.map(getJSONInfo.analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
+        x = p.map(getJSONInfo.analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
+        print(str(x))
