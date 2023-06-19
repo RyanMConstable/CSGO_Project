@@ -102,7 +102,7 @@ def downloadDems(code):
     return
 
 
-#Scrapped the previous... Need to analyze one at a time given a directory name
+#New analyzeDem function... Outputs the same code and returnParse function but is able to be done with multiprocessing
 def analyzeDem(code):
     originalDir = os.getcwd()
     os.chdir("demoDownloads")
