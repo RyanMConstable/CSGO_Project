@@ -120,5 +120,5 @@ def analyzeDem(code):
                 shutil.rmtree(os.path.join(os.path.join(os.getcwd(), code)))
     os.chdir(originalDir)
     if returnParse:
-        return [code, returnParse]
+        return returnParse
     return

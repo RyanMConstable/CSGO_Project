@@ -17,4 +17,5 @@ if __name__ == '__main__':
     #Multiprocesses demoDownloads to speed up analyzing
     with Pool(len(os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))) as p:
         x = p.map(getJSONInfo.analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
-        print(str(x))
+        #X is going to be a list of the gamecode at index 0 and the parsed info in index 1
+        #Call functions to add them to the database below
