@@ -26,6 +26,8 @@ if __name__ == '__main__':
                 if game[0] in CSGOsql.findAllCodesInStats():
                     print("Game is also in gamestats")
                 else:
+                    CSGOsql.addGameStats(game[1])
                     print("Game is not yet in gamestats")
             else:
-                print("Game is not in gamecodes")
+                print("Game is being added to gamecodes")
+                CSGOsql.addGameCodes(game[0])
