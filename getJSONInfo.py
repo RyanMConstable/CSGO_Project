@@ -1,4 +1,4 @@
-import os, json, shutil, subprocess, threading
+import os, json, shutil, subprocess
 from multiprocessing import Pool
 
 pathToCSGOreplays = os.environ['PATH_TO_CSGOREPLAYS']
@@ -103,6 +103,7 @@ def downloadDems(code):
 
 
 #New analyzeDem function... Outputs the same code and returnParse function but is able to be done with multiprocessing
+#Returns none if there is a weird error...
 def analyzeDem(code):
     originalDir = os.getcwd()
     os.chdir("demoDownloads")
@@ -125,6 +126,6 @@ def analyzeDem(code):
 
 
 
-if __name__ == '__main__':
+"""if __name__ == '__main__':
     with Pool(len(os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))) as p:
-        p.map(analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
+        p.map(analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))"""
