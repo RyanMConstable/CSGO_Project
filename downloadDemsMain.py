@@ -19,16 +19,15 @@ if __name__ == '__main__':
 
     #For every user in the user db, find the new codes and then download new ones
     for user in CSGOsql.findAllid():
+        print('+-----------------+')
+        print('|' + str(user[0]) + '|')
+        print('+-----------------+')
         updateList = API.generateNewCodes(user[0], user[1])
         
-        #Set new update
-        if len(updateList) > 1:
-            CSGOsql.newRecentGame(user[0], updateList[-1])
-        else:
-            print("Already up to date\n")
-            continue
-        
+        #If there are new codes update the recentgame code and download the demo
         if any(updateList):
+            print("Updating: " + str(updateList))
+            CSGOsql.newRecentGame(user[0], updateList[-1])
             for code in updateList:
                 #Checks to see if the code is in the database
                 if (code in codesIngamecodes and code in codesInGamestats):
@@ -37,6 +36,9 @@ if __name__ == '__main__':
                 if (code in os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))):
                     continue
                 getJSONInfo.downloadDems(code)
+        else:
+            print("Already up to date\n")
+            continue
 
     #Prints the amount of time to download all the user files     
     totalTime = time.time()-startTime
