@@ -1,1 +1,1 @@
-This directory is strictly for downloading and analyzing demos, it should be empty besides the README when cloning
+DELETE THIS README AFTER THE CLONE

@@ -320,7 +320,7 @@ def findAllCodes():
                 codeDict[code[0]] = True
     return codeDict
 
-
+#Finds list of codes that are in gamestats
 def findAllCodesInStats():
     query = "SELECT DISTINCT gameid FROM gamestats"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
