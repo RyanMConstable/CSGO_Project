@@ -304,6 +304,21 @@ def addCodedbToStatdb():
     return
 
 
+#######################################################
+####New cleaner functions for multiprocessing##########
+#######################################################
+
+#Returns list of game codes, useful for other calls
+def findAllCodes():
+    query = "SELECT code FROM gamecodes"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    #Create a dictionary here
+    codeDict = {}
+    if any(result):
+        for code in result:
+            if code[0] not in codeDict:
+                codeDict[code[0]] = True
+    return codeDict
 
 ############################################################################
 #########################Finding Game Stats#################################
