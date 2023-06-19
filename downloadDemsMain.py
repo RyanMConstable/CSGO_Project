@@ -6,6 +6,10 @@ import CSGOsql, getJSONInfo, os
 #4) Check the list 
 
 
+#Update function for new users
+CSGOsql.updateNewGames()
+print("Ending updateNewGames")
+
 #Set variables early so time isn't wasted in the loop
 codesIngamecodes = CSGOsql.findAllCodes
 codesInGamestats = CSGOsql.findAllCodesInStats
