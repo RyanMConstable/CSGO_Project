@@ -117,7 +117,9 @@ def analyzeDem(code):
                 w.close()
                 returnParse = returnGameInfo([code, info])
     os.chdir(originalDir)
-    return returnParse
+    if returnParse:
+        return [code, returnParse]
+    return
 
 
 
