@@ -68,7 +68,7 @@ def returnGameInfo(jsonInputFormat):
     for player in thisGame["team_t"]["team_players"]:
         playersList.append([player["steamid"], player["name"], player["kill_count"], player["score"], player["tk_count"], player["assist_count"], player["death_count"], player["5k_count"], player["4k_count"], player["3k_count"], player["2k_count"], player["1k_count"], player["hs_count"], player["kd"], player["esea_rws"], player["shot_count"], player["hit_count"], player["flashbang_count"], player["smoke_count"], player["he_count"], player["molotov_count"], player["incendiary_count"], player["decoy_count"], player["round_count"], "t", dt])
     
-    #Return the code, 
+    #Return the code, and the list
     return [jsonInputFormat[0], playersList]
 
 
@@ -106,19 +106,25 @@ def downloadDems(code):
 def analyzeDem(code):
     originalDir = os.getcwd()
     os.chdir("demoDownloads")
+    returnParse = None
     if len(os.listdir(os.path.join(os.getcwd(), code))) == 2:
         subprocess.call(["csgodm", "json", os.path.join(os.getcwd(), code), "--output", os.path.join(os.getcwd(), code), "--force-analyze"])
+    if len(os.listdir(os.path.join(os.getcwd(), code))) == 3:
+        for file in os.listdir(os.path.join(os.getcwd(), code)):
+            if file.split('.')[-1] == 'json':
+                w = open(os.path.join(os.path.join(os.getcwd(), code), file), "r", encoding = 'utf-8')
+                info = json.loads(w.read())
+                w.close()
+                returnParse = returnGameInfo([code, info])
     os.chdir(originalDir)
-    return
-
-#Now we need to open the file, load it as a json and then parse it...
-def loadAndParseJson(code):
-    return
+    return returnParse
 
 
-"""if __name__ == '__main__':
+
+
+if __name__ == '__main__':
     with Pool(len(os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))) as p:
-        p.map(analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))"""
+        p.map(analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
         
         
 #Saving call to analyze games
