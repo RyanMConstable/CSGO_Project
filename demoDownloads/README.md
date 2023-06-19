@@ -1,1 +1,0 @@
-Delete this readme after the clone

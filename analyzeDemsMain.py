@@ -4,7 +4,6 @@ import getJSONInfo, os, CSGOsql
 
 #Run this script every 30 seconds or so to check for new games, increase if load increases
 if __name__ == '__main__':
-    getJSONInfo.downloadDems('CSGO-prhLj-VOG5B-2AtSe-xD7Lc-sFzAC')
     #Sets the number of processes it should run, max is 60 on windows, so the max will be set to 40 just in case
     processes = len(os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
     if processes <= 0:
@@ -20,7 +19,7 @@ if __name__ == '__main__':
     gamesIngamestats = CSGOsql.findAllCodesInStats()
     
     #Multiprocesses demoDownloads to speed up analyzing
-    with Pool(len(os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))) as p:
+    with Pool(processes) as p:
         x = p.map(getJSONInfo.analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
         #X is going to be a list of the gamecode at index 0 and the parsed info in index 1
         #Call functions to add them to the database below
