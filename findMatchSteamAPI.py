@@ -31,8 +31,8 @@ def generateNewCodes(steamID, steamidkey):
     if newestCode == None:
         return
     codeList = giveCodes(steamID, newestCode, steamidkey)
+    codeList.remove(newestCode)
     return codeList
-
 
 #Test to validate a steam id, need to find a way to also validate steamidkey
 def validateUser(steamid, steamidkey):
