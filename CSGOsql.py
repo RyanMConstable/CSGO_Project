@@ -335,6 +335,9 @@ def findAllCodesInStats():
                 codeDict[code[0]] = True
     return codeDict
 
+#Function that returns a list of game codes that are new since the last played game
+def returnNewGames(steamid, steamidkey):
+    return
 ############################################################################
 #########################Finding Game Stats#################################
 ############################################################################
