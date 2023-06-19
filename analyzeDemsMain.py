@@ -35,3 +35,4 @@ if __name__ == '__main__':
             else:
                 print("Game is being added to gamecodes")
                 CSGOsql.addGameCodes(game[0])
+                CSGOsql.addGameStats(game[1])
