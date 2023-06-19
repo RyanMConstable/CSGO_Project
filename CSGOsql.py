@@ -308,7 +308,7 @@ def addCodedbToStatdb():
 ####New cleaner functions for multiprocessing##########
 #######################################################
 
-#Returns list of game codes, useful for other calls
+#Returns dictionary of game codes in gamecodes
 def findAllCodes():
     query = "SELECT code FROM gamecodes"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
@@ -320,7 +320,7 @@ def findAllCodes():
                 codeDict[code[0]] = True
     return codeDict
 
-#Finds list of codes that are in gamestats
+#Returns dictionary of game codes in gamestats
 def findAllCodesInStats():
     query = "SELECT DISTINCT gameid FROM gamestats"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
