@@ -9,7 +9,7 @@ if __name__ == '__main__':
     processes = len(os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
     if processes <= 0:
         print("No demos in the demoDownloads directory")
-        exit(-1)
+        exit(1)
     elif processes > 40:
         print("Processes set to 40")
         processes = 40
