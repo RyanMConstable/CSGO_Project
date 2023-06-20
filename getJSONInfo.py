@@ -1,45 +1,6 @@
 import os, json, shutil, subprocess
 from multiprocessing import Pool
 
-"""pathToCSGOreplays = os.environ['PATH_TO_CSGOREPLAYS']
-pathToCSGOreplay = os.environ['PATH_TO_CSGOREPLAY']
-
-
-#Takes a single game code as input, downloads the file, then analyzes the file and downloads a json
-#Opens the json and loads the json into a variable (can be improved), then returns the variable and the game code in a list
-def getJSONInfo(code):
-    #First tidys up the code
-    code = code.strip()
-    #Downloads, the given game using the path to the CSGODM, logs it to log.txt
-    os.system("csgodm download " + str(code) + " > log.txt")
-    
-    files = os.listdir(pathToCSGOreplays)
-    pathToJSON = None
-    info = None
-    
-    #For the files in the directory, find the demo file
-    for file in files:
-        if file.split(".")[-1] == "dem":
-            print("Demo found")
-            pathToJSON = "csgodm json " + os.path.join(pathToCSGOreplay, file)
-            os.system(pathToJSON)
-            break
-    
-    #If pathToJSON is not None, then empty it and load it to a json file
-    if pathToJSON:
-        newfile = os.path.join(pathToCSGOreplays, file) + ".json"
-        w = open(newfile, "r", encoding = 'utf-8')
-        info = json.loads(w.read())
-        w.close()
-        
-    #Remove files from the directory
-    clearReplayDir()
-    
-    #Return a list with index 0 being the given code, and index 1 being the information from the json file
-    return [code, info]"""
-
-
-
 
 #Takes a list in the format [gameCode, jsonLoadedVariable] and parses the information for what we want.
 #It then returns a list including the game code, and another list containing each player and their stats in another list
@@ -70,16 +31,6 @@ def returnGameInfo(jsonInputFormat):
     
     #Return the code, and the list
     return [jsonInputFormat[0], playersList]
-
-
-
-#Deletes all files in the CSGO replays directory, returns nothing
-#We want to keep the replays folder, but delete everything in it
-"""def clearReplayDir():
-    for file in os.listdir(pathToCSGOreplays):
-        os.remove(os.path.join(pathToCSGOreplays, file))
-    return"""
-
 
 ###############################################################
 ##### New function to allow for multithreading procedures #####
