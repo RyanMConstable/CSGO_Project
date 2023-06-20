@@ -107,14 +107,8 @@ def findTop10user(category, userid, limit):
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
-    formatResult = ""
-    for row in result:
-        formatResult += row[0]
-        formatResult += " "
-        formatResult += str(row[1])
-        formatResult += '\n'
-    return formatResult
-
+    head = ["Name", category]
+    return tabulate(result, headers=head, tablefmt="grid")
 
 #Add the discorduser and steamid to the new table
 def setDiscordUser(discordUser, steamid, steamidkey):
