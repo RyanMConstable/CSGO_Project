@@ -1,4 +1,5 @@
 #For importing exceptions...
+from tabulate import tabulate
 try:
     import dbconnection, getJSONInfo, findMatchSteamAPI
 except Exception as e:
@@ -97,6 +98,7 @@ def findTopX(category, num):
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
+    
     formatResult = ""
     for row in result:
         formatResult += row[0]
