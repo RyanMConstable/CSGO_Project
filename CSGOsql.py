@@ -98,14 +98,8 @@ def findTopX(category, num):
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
-    
-    formatResult = ""
-    for row in result:
-        formatResult += row[0]
-        formatResult += " "
-        formatResult += str(row[1])
-        formatResult += '\n'
-    return formatResult
+    head = ["Name", category]
+    return tabulate(result, headers=head, tablefmt="grid")
 
 #Find top X for a specific user with a query
 def findTop10user(category, userid, limit):
