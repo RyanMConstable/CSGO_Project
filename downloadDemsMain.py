@@ -16,8 +16,8 @@ if __name__ == '__main__':
         startTime = time.time()
 
         #Set variables early so time isn't wasted in the loop
-        codesIngamecodes = CSGOsql.findAllCodes
-        codesInGamestats = CSGOsql.findAllCodesInStats
+        codesIngamecodes = CSGOsql.findAllCodes()
+        codesInGamestats = CSGOsql.findAllCodesInStats()
 
         #For every user in the user db, find the new codes and then download new ones
         for user in CSGOsql.findAllid():
