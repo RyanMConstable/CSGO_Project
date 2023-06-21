@@ -391,4 +391,6 @@ def findusertop(steamid):
     userStats.append(['RWS: ' , findTop10user('rws', steamid, 1).split(" ")[-1]])
     userStats.append(['Shots Fired: ' , str(findTop10user('shot_count', steamid, 1)).split(" ")[-1]])
     userStats.append(['Hit Count: ' , str(findTop10user('hit_count', steamid, 1)).split(" ")[-1]])
-    return userStats
+    
+    head = ["Category", "All Time Best"]
+    return tabulate(userStats, headers=head, tablefmt="grid")
