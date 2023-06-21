@@ -374,21 +374,21 @@ def returnAllUserRows(steamid):
 
 #Write a function to find all top categories for a user given an id
 def findusertop(steamid):
-    userStats = 'Your highest stats of all time:\n'
-    userStats += 'Total Games Played: ' + str(findNumberOfGames(steamid)) + '\n'
-    userStats += 'Kills: ' + findTop10user('totalkills', steamid, 1).split(" ")[-1]
-    userStats += 'Score: ' + findTop10user('score', steamid, 1).split(" ")[-1]
-    userStats += 'Team kills: ' + findTop10user('tk_count', steamid, 1).split(" ")[-1]
-    userStats += 'Assists: ' + findTop10user('assist', steamid, 1).split(" ")[-1]
-    userStats += 'Deaths: ' + findTop10user('deaths', steamid, 1).split(" ")[-1]
-    userStats += '5ks: ' + findTop10user('5k', steamid, 1).split(" ")[-1]
-    userStats += '4ks: ' + findTop10user('4k', steamid, 1).split(" ")[-1]
-    userStats += '3ks: ' + findTop10user('3k', steamid, 1).split(" ")[-1]
-    userStats += '2ks: ' + findTop10user('2k', steamid, 1).split(" ")[-1]
-    userStats += '1ks: ' + findTop10user('1k', steamid, 1).split(" ")[-1]
-    userStats += 'Headshots: ' + findTop10user('headshot', steamid, 1).split(" ")[-1]
-    userStats += 'KD: ' + findTop10user('kd', steamid, 1).split(" ")[-1]
-    userStats += 'RWS: ' + findTop10user('rws', steamid, 1).split(" ")[-1]
-    userStats += 'Shots Fired: ' + str(findTop10user('shot_count', steamid, 1)).split(" ")[-1]
-    userStats += 'Hit Count: ' + str(findTop10user('hit_count', steamid, 1)).split(" ")[-1]
+    userStats = []
+    userStats.append(['Total Games Played: ' , str(findNumberOfGames(steamid))])
+    userStats.append(['Kills: ' , findTop10user('totalkills', steamid, 1).split(" ")[-1]])
+    userStats.append(['Score: ' , findTop10user('score', steamid, 1).split(" ")[-1]])
+    userStats.append(['Team kills: ' , findTop10user('tk_count', steamid, 1).split(" ")[-1]])
+    userStats.append(['Assists: ' , findTop10user('assist', steamid, 1).split(" ")[-1]])
+    userStats.append(['Deaths: ' , findTop10user('deaths', steamid, 1).split(" ")[-1]])
+    userStats.append(['5ks: ' , findTop10user('5k', steamid, 1).split(" ")[-1]])
+    userStats.append(['4ks: ' , findTop10user('4k', steamid, 1).split(" ")[-1]])
+    userStats.append(['3ks: ' , findTop10user('3k', steamid, 1).split(" ")[-1]])
+    userStats.append(['2ks: ' , findTop10user('2k', steamid, 1).split(" ")[-1]])
+    userStats.append(['1ks: ' , findTop10user('1k', steamid, 1).split(" ")[-1]])
+    userStats.append(['Headshots: ' , findTop10user('headshot', steamid, 1).split(" ")[-1]])
+    userStats.append(['KD: ' , findTop10user('kd', steamid, 1).split(" ")[-1]])
+    userStats.append(['RWS: ' , findTop10user('rws', steamid, 1).split(" ")[-1]])
+    userStats.append(['Shots Fired: ' , str(findTop10user('shot_count', steamid, 1)).split(" ")[-1]])
+    userStats.append(['Hit Count: ' , str(findTop10user('hit_count', steamid, 1)).split(" ")[-1]])
     return userStats
