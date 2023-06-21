@@ -399,3 +399,34 @@ def findusertop(steamid):
     
     head = ["Category", "All Time Best"]
     return [userStats, head]
+
+
+def finduserandstat(category):
+    query = "SELECT name, {} FROM gamestats ORDER BY {} DESC LIMIT 1".format(category, category)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return
+    return str(result[0][0]) + ": " + str(result[0][1])
+
+
+#Write a function to find all top categories for a user given an id
+def findtopstat():
+    userStats = []
+    userStats.append(['Kills: ' , finduserandstat('totalkills')])
+    userStats.append(['Score: ' , finduserandstat('score')])
+    userStats.append(['Team kills: ' , finduserandstat('tk_count')])
+    userStats.append(['Assists: ' , finduserandstat('assist')])
+    userStats.append(['Deaths: ' , finduserandstat('deaths')])
+    userStats.append(['5ks: ' , finduserandstat('5k')])
+    userStats.append(['4ks: ' , finduserandstat('4k')])
+    userStats.append(['3ks: ' , finduserandstat('3k')])
+    userStats.append(['2ks: ' , finduserandstat('2k')])
+    userStats.append(['1ks: ' , finduserandstat('1k')])
+    userStats.append(['Headshots: ' , finduserandstat('headshot')])
+    userStats.append(['KD: ' , finduserandstat('kd')])
+    userStats.append(['RWS: ' , finduserandstat('rws')])
+    userStats.append(['Shots Fired: ' , str(finduserandstat('shot_count'))])
+    userStats.append(['Hit Count: ' , str(finduserandstat('hit_count'))])
+    
+    head = ["Category", "Best Recorded Game"]
+    return [userStats, head]
