@@ -370,27 +370,32 @@ def returnAllUserRows(steamid):
         return
     return result
 
-
+def findTop1user(category, userid):
+    query = "SELECT name, {} FROM gamestats WHERE steamid = {} ORDER BY {} DESC LIMIT 1".format(category, userid, category)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return
+    return result[0][1]
 
 #Write a function to find all top categories for a user given an id
 def findusertop(steamid):
     userStats = []
     userStats.append(['Total Games Played: ' , str(findNumberOfGames(steamid))])
-    userStats.append(['Kills: ' , findTop10user('totalkills', steamid, 1).split(" ")[-1]])
-    userStats.append(['Score: ' , findTop10user('score', steamid, 1).split(" ")[-1]])
-    userStats.append(['Team kills: ' , findTop10user('tk_count', steamid, 1).split(" ")[-1]])
-    userStats.append(['Assists: ' , findTop10user('assist', steamid, 1).split(" ")[-1]])
-    userStats.append(['Deaths: ' , findTop10user('deaths', steamid, 1).split(" ")[-1]])
-    userStats.append(['5ks: ' , findTop10user('5k', steamid, 1).split(" ")[-1]])
-    userStats.append(['4ks: ' , findTop10user('4k', steamid, 1).split(" ")[-1]])
-    userStats.append(['3ks: ' , findTop10user('3k', steamid, 1).split(" ")[-1]])
-    userStats.append(['2ks: ' , findTop10user('2k', steamid, 1).split(" ")[-1]])
-    userStats.append(['1ks: ' , findTop10user('1k', steamid, 1).split(" ")[-1]])
-    userStats.append(['Headshots: ' , findTop10user('headshot', steamid, 1).split(" ")[-1]])
-    userStats.append(['KD: ' , findTop10user('kd', steamid, 1).split(" ")[-1]])
-    userStats.append(['RWS: ' , findTop10user('rws', steamid, 1).split(" ")[-1]])
-    userStats.append(['Shots Fired: ' , str(findTop10user('shot_count', steamid, 1)).split(" ")[-1]])
-    userStats.append(['Hit Count: ' , str(findTop10user('hit_count', steamid, 1)).split(" ")[-1]])
+    userStats.append(['Kills: ' , findTop1user('totalkills', steamid)])
+    userStats.append(['Score: ' , findTop1user('score', steamid)])
+    userStats.append(['Team kills: ' , findTop1user('tk_count', steamid)])
+    userStats.append(['Assists: ' , findTop1user('assist', steamid)])
+    userStats.append(['Deaths: ' , findTop1user('deaths', steamid)])
+    userStats.append(['5ks: ' , findTop1user('5k', steamid)])
+    userStats.append(['4ks: ' , findTop1user('4k', steamid)])
+    userStats.append(['3ks: ' , findTop1user('3k', steamid)])
+    userStats.append(['2ks: ' , findTop1user('2k', steamid)])
+    userStats.append(['1ks: ' , findTop1user('1k', steamid)])
+    userStats.append(['Headshots: ' , findTop1user('headshot', steamid)])
+    userStats.append(['KD: ' , findTop1user('kd', steamid)])
+    userStats.append(['RWS: ' , findTop1user('rws', steamid)])
+    userStats.append(['Shots Fired: ' , str(findTop1user('shot_count', steamid))])
+    userStats.append(['Hit Count: ' , str(findTop1user('hit_count', steamid))])
     
     head = ["Category", "All Time Best"]
-    return tabulate(userStats, headers=head, tablefmt="grid")
+    return [userStats, head]
