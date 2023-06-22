@@ -100,8 +100,7 @@ def findTopX(category, num):
     if result is None or result == []:
         return
     head = ["Name", category]
-    output = t2a(header=head, body=result, style=PresetStyle.thin_compact)
-    return output
+    return [result, head]
 
 #Find top X for a specific user with a query
 def findTop10user(category, userid, limit):
