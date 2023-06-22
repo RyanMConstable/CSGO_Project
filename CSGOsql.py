@@ -110,8 +110,7 @@ def findTop10user(category, userid, limit):
     if result is None or result == []:
         return
     head = ["Name", category]
-    output = t2a(header=head, body=result, style=PresetStyle.thin_compact)
-    return output
+    return [result, head]
 
 #Add the discorduser and steamid to the new table
 def setDiscordUser(discordUser, steamid, steamidkey):
