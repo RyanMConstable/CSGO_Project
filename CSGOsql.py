@@ -1,5 +1,6 @@
 #For importing exceptions...
 from tabulate import tabulate
+from table2ascii import table2ascii as t2a, PresetStyle
 try:
     import dbconnection, getJSONInfo, findMatchSteamAPI
 except Exception as e:
@@ -99,7 +100,8 @@ def findTopX(category, num):
     if result is None or result == []:
         return
     head = ["Name", category]
-    return tabulate(result, headers=head, tablefmt="grid")
+    output = t2a(header=head, body=result, style=PresetStyle.thin_compact)
+    return output
 
 #Find top X for a specific user with a query
 def findTop10user(category, userid, limit):
@@ -108,7 +110,8 @@ def findTop10user(category, userid, limit):
     if result is None or result == []:
         return
     head = ["Name", category]
-    return tabulate(result, headers=head, tablefmt="grid")
+    output = t2a(header=head, body=result, style=PresetStyle.thin_compact)
+    return output
 
 #Add the discorduser and steamid to the new table
 def setDiscordUser(discordUser, steamid, steamidkey):
@@ -236,8 +239,6 @@ def newRecentGame(steamid, code):
 
 
 
-#This function needs to be revamped... 
-#SOURCE OF PROBLEM WITH MULTIPLE USERS DOWNLOADING SAME FILE
 
 #Function to get every id from discorduser and check if they're in the the newestgame list
 #If they're not use the oldest game to check first
