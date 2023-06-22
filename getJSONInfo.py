@@ -24,6 +24,7 @@ def returnGameInfo(jsonInputFormat):
     
     #Loop for every player on team_ct, add parsed data (obnoxiously long)
     for player in thisGame["team_ct"]["team_players"]:
+        print(player['average_health_damage'])
         playersList.append([player["steamid"], player["name"], player["kill_count"], player["score"], player["tk_count"], player["assist_count"], player["death_count"], player["5k_count"], player["4k_count"], player["3k_count"], player["2k_count"], player["1k_count"], player["hs_count"], player["kd"], player["esea_rws"], player["shot_count"], player["hit_count"], player["flashbang_count"], player["smoke_count"], player["he_count"], player["molotov_count"], player["incendiary_count"], player["decoy_count"], player["round_count"], "ct", dt])
         
     for player in thisGame["team_t"]["team_players"]:
@@ -73,3 +74,6 @@ def analyzeDem(code):
     if returnParse:
         return returnParse
     return
+
+downloadDems('CSGO-AiDk7-Uc5t4-4RA8Q-uBjaf-GusnC')
+analyzeDem('CSGO-AiDk7-Uc5t4-4RA8Q-uBjaf-GusnC')
