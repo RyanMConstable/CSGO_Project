@@ -5,6 +5,7 @@ import getJSONInfo, os, CSGOsql, time
 
 #Run this script every 30 seconds or so to check for new games, increase if load increases
 if __name__ == '__main__':
+    getJSONInfo.downloadDems('CSGO-65zTr-n7ATe-MsdXS-PDo78-DBF4C')
     os.system("echo [START] Starting at time: {} >> autoLOG.txt".format(datetime.now()))
     #Sets the number of processes it should run, max is 60 on windows, so the max will be set to 40 just in case
     processes = len(os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
