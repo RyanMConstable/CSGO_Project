@@ -49,7 +49,7 @@ def downloadDems(code):
     else:
         os.chdir(code)
     #Here we have a new directory with the name of the code, inside we want to just download the game
-    subprocess.call(["csgodm", "download", code, "--output", os.getcwd()])
+    os.system("csgodm download {} --output {}".format(code, os.getcwd()))
     os.chdir(originalDir)
     return
 
