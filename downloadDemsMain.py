@@ -39,8 +39,10 @@ if __name__ == '__main__':
             continue
     
     
-    
-    os.system("echo [PATH] {} >> downloaddemoLOG.txt".format(os.getcwd()))
+    #Call analyze
+    os.system("echo [CALL] Starting Analyze File >> downloaddemoLOG.txt")
+    os.system("python {}".format(os.path.join(os.getcwd(), "analyzeDemsMain.py")))
+    os.system("echo [CALL] Ending Analyze File >> downloaddemoLOG.txt")
     
     #Prints the amount of time to download all the user files     
     totalTime = time.time()-startTime
