@@ -30,6 +30,7 @@ if __name__ == '__main__':
         #X is going to be a list of the gamecode at index 0 and the parsed info in index 1
         #Call functions to add them to the database below
         for game in x:
+            os.system("echo [GAME?] {} >> analyzeLOG.txt".format(game))
             if game[0] in gamesIngamecodes:
                 os.system("echo [INFO] Game is in gamecodes already >> analyzeLOG.txt")
                 if game[0] in gamesIngamestats:
