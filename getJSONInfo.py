@@ -50,6 +50,7 @@ def downloadDems(code):
         os.chdir(code)
     #Here we have a new directory with the name of the code, inside we want to just download the game
     try:
+        os.system("echo [DOWNLOADING] {} >> autoLOG.txt".format(code))
         os.system("csgodm download {} --output {}".format(code, os.getcwd()))
     except Exception as e:
         os.system("echo [EXCEPTION] {} >> autoLOG.txt".format(e))
