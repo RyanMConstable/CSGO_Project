@@ -75,5 +75,7 @@ def analyzeDem(code):
         return returnParse
     return
 
-downloadDems('CSGO-AiDk7-Uc5t4-4RA8Q-uBjaf-GusnC')
-analyzeDem('CSGO-AiDk7-Uc5t4-4RA8Q-uBjaf-GusnC')
+
+#Testing purposes
+#downloadDems('CSGO-AiDk7-Uc5t4-4RA8Q-uBjaf-GusnC')
+#analyzeDem('CSGO-AiDk7-Uc5t4-4RA8Q-uBjaf-GusnC')
