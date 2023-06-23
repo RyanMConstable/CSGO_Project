@@ -41,7 +41,7 @@ if __name__ == '__main__':
     
     #Call analyze
     os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
-    os.system("python {}".format(os.path.join(os.getcwd(), "analyzeDemsMain.py")))
+    #os.system("python {}".format(os.path.join(os.getcwd(), "analyzeDemsMain.py")))
     os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
     
     #Prints the amount of time to download all the user files     
