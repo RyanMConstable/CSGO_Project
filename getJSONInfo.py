@@ -69,13 +69,9 @@ def analyzeDem(code):
                 info = json.loads(w.read())
                 w.close()
                 returnParse = returnGameInfo([code, info])
-                shutil.rmtree(os.path.join(os.path.join(os.getcwd(), code)))
+                os.system("rmdir {}".format(os.path.join(os.path.join(os.getcwd(), code))))
     os.chdir(originalDir)
     if returnParse:
         return returnParse
     return
 
-
-#Testing purposes
-#downloadDems('CSGO-AiDk7-Uc5t4-4RA8Q-uBjaf-GusnC')
-#analyzeDem('CSGO-AiDk7-Uc5t4-4RA8Q-uBjaf-GusnC')
