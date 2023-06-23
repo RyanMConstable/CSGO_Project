@@ -8,7 +8,7 @@ import CSGOsql, getJSONInfo, os, time
 if __name__ == '__main__':
     #Update function for new users
     CSGOsql.updateNewGames()
-    os.system("echo [INFO] Ending updateNewGames >> autoLOG")
+    os.system("echo [INFO] Ending updateNewGames >> autoLOG.txt")
 
     #Variable to track amount of time
     startTime = time.time()
@@ -19,12 +19,12 @@ if __name__ == '__main__':
 
     #For every user in the user db, find the new codes and then download new ones
     for user in CSGOsql.findAllid():
-        os.system("echo [INFO] User: {} >> autoLOG".format(str(user[0])))
+        os.system("echo [INFO] User: {} >> autoLOG.txt".format(str(user[0])))
         updateList = API.generateNewCodes(user[0], user[1])
         
         #If there are new codes update the recentgame code and download the demo
         if any(updateList):
-            os.system("echo [INFO] Updating: {} >> autoLOG".format(str(updateList)))
+            os.system("echo [INFO] Updating: {} >> autoLOG.txt".format(str(updateList)))
             CSGOsql.newRecentGame(user[0], updateList[-1])
             for code in updateList:
                 #Checks to see if the code is in the database
@@ -35,18 +35,18 @@ if __name__ == '__main__':
                     continue
                 getJSONInfo.downloadDems(code)
         else:
-            os.system("echo [INFO] Already up to date >> autoLOG")
+            os.system("echo [INFO] Already up to date >> autoLOG.txt")
             continue
     
     
     #Call analyze
-    os.system("echo [CALL] Starting Analyze File >> autoLOG")
+    os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
     os.system("python {}".format(os.path.join(os.getcwd(), "analyzeDemsMain.py")))
-    os.system("echo [CALL] Ending Analyze File >> autoLOG")
+    os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
     
     #Prints the amount of time to download all the user files     
     totalTime = time.time()-startTime
-    os.system("echo [EXIT] Exiting after: {} >> autoLOG".format(f'Time: {totalTime:.2f} sec'))
+    os.system("echo [EXIT] Exiting after: {} >> autoLOG.txt".format(f'Time: {totalTime:.2f} sec'))
     
     
     exit(0)
