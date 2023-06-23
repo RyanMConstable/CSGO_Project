@@ -40,6 +40,7 @@ def returnGameInfo(jsonInputFormat):
 
 #This function downloads a game code
 def downloadDems(code):
+    os.system("echo [DOWNLOADDEMS] DOWNLOADING >> autoLOG.txt")
     #Keep originalDir in case of adding new
     originalDir = os.getcwd()
     os.chdir("demoDownloads")
