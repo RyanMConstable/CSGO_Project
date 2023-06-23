@@ -27,7 +27,7 @@ if __name__ == '__main__':
     
     
     #Multiprocesses demoDownloads to speed up analyzing
-    os.system("echo [SET1] >> autoLOG.txt")
+    os.system("echo [SET1] {} >> autoLOG.txt".format(processes))
     with Pool(processes) as p:
         os.system("echo [SET2] >> autoLOG.txt")
         x = p.map(getJSONInfo.analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
