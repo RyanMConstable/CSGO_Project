@@ -22,8 +22,6 @@ if __name__ == '__main__':
     #This way they are not called multiple times, increases speed of program
     gamesIngamecodes = CSGOsql.findAllCodes()
     gamesIngamestats = CSGOsql.findAllCodesInStats()
-    os.system("echo [DEBUG] {} >> autoLOG.txt".format(gamesIngamecodes))
-    os.system("echo [DEBUG] {} >> autoLOG.txt".format(gamesIngamestats))
     
     
     #Multiprocesses demoDownloads to speed up analyzing
