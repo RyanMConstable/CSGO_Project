@@ -37,8 +37,14 @@ if __name__ == '__main__':
         else:
             os.system("echo [INFO] Already up to date >> downloaddemoLOG.txt")
             continue
-
+    
+    
+    
+    os.system("echo [PATH] {} >> downloaddemoLOG.txt".format(os.getcwd()))
+    
     #Prints the amount of time to download all the user files     
     totalTime = time.time()-startTime
     os.system("echo [EXIT] Exiting after: {} >> downloaddemoLOG.txt".format(f'Time: {totalTime:.2f} sec'))
+    
+    
     exit(0)
