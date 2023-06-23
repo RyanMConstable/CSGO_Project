@@ -57,7 +57,6 @@ def downloadDems(code):
 #New analyzeDem function... Outputs the same code and returnParse function but is able to be done with multiprocessing
 #Returns none if there is a weird error...
 def analyzeDem(code):
-    os.system("echo [ANALYZE] {} >> autoLOG.txt".format(code))
     originalDir = os.getcwd()
     os.chdir("demoDownloads")
     returnParse = None
