@@ -1,6 +1,4 @@
 #For importing exceptions...
-from tabulate import tabulate
-from table2ascii import table2ascii as t2a, PresetStyle
 try:
     import dbconnection, getJSONInfo, findMatchSteamAPI
 except Exception as e:
