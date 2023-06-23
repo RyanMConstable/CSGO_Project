@@ -30,7 +30,7 @@ if __name__ == '__main__':
     with Pool(processes) as p:
         os.system("echo [SET2] >> autoLOG.txt")
         x = p.map(getJSONInfo.analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
-        os.system("echo [SET3] {} >> autoLOG.txt".format(x))
+        os.system("echo [SET3] {} >> autoLOG.txt".format(str(x)))
         #X is going to be a list of the gamecode at index 0 and the parsed info in index 1
         #Call functions to add them to the database below
         for game in x:
