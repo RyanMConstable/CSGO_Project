@@ -15,6 +15,8 @@ if __name__ == '__main__':
     elif processes > 40:
         os.system("echo [INFO] Processes set to 40 >> analyzeLOG.txt".format())
         processes = 40
+    else:
+        os.system("echo [DIRECTORIES] {} >> analyzeLOG.txt".format(os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))))
     
     
     #This way they are not called multiple times, increases speed of program
