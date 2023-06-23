@@ -5,12 +5,10 @@ import getJSONInfo, os, CSGOsql
 
 #Run this script every 30 seconds or so to check for new games, increase if load increases
 if __name__ == '__main__':
-    os.system("echo [START] Starting at time: {} >> autoLOG.txt".format(datetime.now()))
     #Sets the number of processes it should run, max is 60 on windows, so the max will be set to 40 just in case
     processes = len(os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
     if processes <= 0:
-        os.system("echo [INFO] No demos in the demoDownloads directory >> autoLOG.txt")
-        os.system("echo [EXIT] Exiting >> autoLOG.txt")
+        os.system("echo [EXIT] Exiting no demos found >> autoLOG.txt")
         exit(0)
     elif processes > 40:
         os.system("echo [INFO] Processes set to 40 >> autoLOG.txt".format())
@@ -44,5 +42,4 @@ if __name__ == '__main__':
                 os.system("echo [DOUBLEADD] Game is being added to gamecodes and gamestats >> autoLOG.txt")
                 CSGOsql.addGameCodes([game[0]])
                 CSGOsql.addGameStats(game)
-    os.system("echo [EXIT] Exiting >> autoLOG.txt")
     exit(0)
