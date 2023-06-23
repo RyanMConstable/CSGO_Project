@@ -22,8 +22,11 @@ if __name__ == '__main__':
     gamesIngamestats = CSGOsql.findAllCodesInStats()
     
     #Multiprocesses demoDownloads to speed up analyzing
+    os.system("echo [SET1] >> analyzeLOG.txt")
     with Pool(processes) as p:
+        os.system("echo [SET2] >> analyzeLOG.txt")
         x = p.map(getJSONInfo.analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
+        os.system("echo [SET3] >> analyzeLOG.txt")
         #X is going to be a list of the gamecode at index 0 and the parsed info in index 1
         #Call functions to add them to the database below
         for game in x:
