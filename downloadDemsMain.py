@@ -19,7 +19,6 @@ if __name__ == '__main__':
     #For every user in the user db, find the new codes and then download new ones
     for user in CSGOsql.findAllid():
         updateList = API.generateNewCodes(user[0], user[1])
-        #updateList = ['CSGO-65zTr-n7ATe-MsdXS-PDo78-DBF4C', 'CSGO-ZvdK8-iqdX7-V4BvA-EBQfh-GusnC']
         
         #If there are new codes update the recentgame code and download the demo
         if any(updateList):
