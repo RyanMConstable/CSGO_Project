@@ -427,3 +427,20 @@ def findtopstat():
     
     head = ["Category", "Best Recorded Game"]
     return [userStats, head]
+
+
+####Write a function for 
+def findAvg(id):
+    strVal = []
+    strVal.append(["Total Games", str(findNumberOfGames(id))])
+    strVal.append(["Kills", str(selectAvgUserStat("totalkills", id))])
+    strVal.append(["Score", str(selectAvgUserStat("score", id))])
+    strVal.append(["Team Kills", str(selectAvgUserStat("tk_count", id))])
+    strVal.append(["Assists", str(selectAvgUserStat("assist", id))])
+    strVal.append(["Deaths", str(selectAvgUserStat("deaths", id))])
+    strVal.append(["Headshots", str(selectAvgUserStat("headshot", id))])
+    strVal.append(["KD", str(selectAvgUserStat("kd", id))])
+    strVal.append(["RWS", str(selectAvgUserStat("rws", id))])
+    strVal.append(["Shot Count", str(selectAvgUserStat("shot_count", id))])
+    strVal.append(["Hit Count", str(selectAvgUserStat("hit_count", id))])
+    return [["Category", "Average"], strVal]
