@@ -69,7 +69,6 @@ def analyzeDem(code):
                 info = json.loads(w.read())
                 w.close()
                 returnParse = returnGameInfo([code, info])
-                os.system("rd /s /q {}".format(os.path.join(os.path.join(os.getcwd(), code))))
     os.chdir(originalDir)
     if returnParse:
         return returnParse
