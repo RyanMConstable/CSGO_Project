@@ -36,13 +36,13 @@ if __name__ == '__main__':
     
     
     #Call analyze
-    os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
+    #os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
     os.system("python {}".format(os.path.join(os.getcwd(), "analyzeDemsMain.py")))
-    os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
+    #os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
     
     #Prints the amount of time to download all the user files   
     totalTime = time.time()-startTime
-    os.system("echo [EXIT] Exiting after: {} >> autoLOG.txt".format(f'Time: {totalTime:.2f} sec'))
+    #os.system("echo [EXIT] Exiting after: {} >> autoLOG.txt".format(f'Time: {totalTime:.2f} sec'))
     
     
     exit(0)
