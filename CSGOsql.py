@@ -446,7 +446,7 @@ def findAvg(id):
     return [["Category", "Average"], strVal]
 
 #New function to find a users steamid
-def findSteamID(name):
+def findSteamID2(name):
     #Given a users name find their id
     query = "SELECT steamid FROM gamestats WHERE name = '{}' ORDER BY date DESC LIMIT 1".format(name)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
