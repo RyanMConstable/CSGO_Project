@@ -444,3 +444,12 @@ def findAvg(id):
     strVal.append(["Shot Count", str(selectAvgUserStat("shot_count", id))])
     strVal.append(["Hit Count", str(selectAvgUserStat("hit_count", id))])
     return [["Category", "Average"], strVal]
+
+#New function to find a users steamid
+def findSteamID(name):
+    #Given a users name find their id
+    query = "SELECT steamid FROM gamestats WHERE name = '{}' ORDER BY date DESC LIMIT 1".format(name)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if any(result):
+        return result[0][0]
+    return
