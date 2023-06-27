@@ -14,8 +14,3 @@ Files that need to be created
 
 ### Runtime
 1) Run downloadDemsMain.py as much as possible to continuously check for new user games.
-
-
-### Usability
-1) A discord bot that holds a database of information for users to parse. 
-2) Website coming soon!
