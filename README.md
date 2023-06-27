@@ -14,7 +14,6 @@ Files that need to be created
 
 ### Runtime
 1) Run downloadDemsMain.py as much as possible to continuously check for new user games.
-2) Run analyzeDemsMain.py occasionally to check, analyze and add new information to the database
 
 
 ### Usability
