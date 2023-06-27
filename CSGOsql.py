@@ -109,6 +109,15 @@ def findTop10user(category, userid, limit):
     head = ["Name", category]
     return [result, head]
 
+#Find top X for a specific user with a query
+def findTopUser(category, userid, limit):
+    query = "SELECT {} FROM gamestats WHERE steamid = {} ORDER BY {} DESC LIMIT {}".format(category, userid, category, limit)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return
+    head = ["Name", category]
+    return [result, head]
+
 #Add the discorduser and steamid to the new table
 def setDiscordUser(discordUser, steamid, steamidkey):
     #Here we want to validate the steamid, and steamidkey given
