@@ -462,3 +462,9 @@ def findSteamID2(name):
     if any(result):
         return result[0][0]
     return
+
+
+
+#New temp function
+def redownload():
+    return
