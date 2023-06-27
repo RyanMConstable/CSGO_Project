@@ -9,6 +9,8 @@ Extra Tools Needed:
 Add the following environment variables:
 1) 'STEAM_API_KEY' = Your steam API key
 
+Files that need to be created
+1) dbconnection.py -> this will be a connection to your own personal database
 
 ### Runtime
 1) Run downloadDemsMain.py as much as possible to continuously check for new user games.
