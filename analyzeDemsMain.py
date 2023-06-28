@@ -21,17 +21,22 @@ if __name__ == '__main__':
     gamesIngamecodes = CSGOsql.findAllCodes()
     gamesIngamestats = CSGOsql.findAllCodesInStats()
     
-    
+
     #Multiprocesses demoDownloads to speed up analyzing
     with Pool(processes) as p:
         try:
             x = p.map(getJSONInfo.analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
         except Exception as e:
-            pass
+            print("Exception")
+            print(e)
+            exit(0)
             #os.system("echo [ERROR] {} >> autoLOG.txt".format(e))
         #X is going to be a list of the gamecode at index 0 and the parsed info in index 1
         #Call functions to add them to the database below
         for game in x:
+            if game is None:
+                #os.system("rd /s /q {}".format(os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), game[0])))
+                continue
             if game[0] in gamesIngamecodes:
                 #os.system("echo [INFO] Game is in gamecodes already >> autoLOG.txt")
                 if game[0] in gamesIngamestats:

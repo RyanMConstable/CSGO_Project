@@ -467,4 +467,9 @@ def findSteamID2(name):
 
 #New temp function
 def redownload():
+    query = "SELECT * from gamecodes"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    for items in result:
+        getJSONInfo.downloadDems(items[1])
+    
     return

@@ -15,9 +15,6 @@ def returnGameInfo(jsonInputFormat):
     #Initialize playerlist
     playersList = []
     
-    #Check to ensure that it's a long match and not any other type of game
-    if thisGame["score_team1"] != 15 and thisGame["score_team1"] != 16 and thisGame["score_team2"] != 15 and thisGame["score_team2"] != 16:
-        return
     
     #Set date of game played
     dt = thisGame["date"]
@@ -180,6 +177,8 @@ def analyzeDem(code):
     originalDir = os.getcwd()
     os.chdir("demoDownloads")
     returnParse = None
+    if len(os.listdir(os.path.join(os.getcwd(), code))) == 0:
+        return []
     if len(os.listdir(os.path.join(os.getcwd(), code))) == 2:
         subprocess.call(["csgodm", "json", os.path.join(os.getcwd(), code), "--output", os.path.join(os.getcwd(), code), "--force-analyze"])
     if len(os.listdir(os.path.join(os.getcwd(), code))) == 3:
