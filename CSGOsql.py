@@ -1,4 +1,5 @@
 #For importing exceptions...
+import os
 try:
     import dbconnection, getJSONInfo, findMatchSteamAPI
 except Exception as e:
@@ -469,9 +470,16 @@ def findSteamID2(name):
 def redownload():
     query = "SELECT * from gamecodes"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    for items in result:
-        getJSONInfo.downloadDems(items[1])
+    #for items in result:
+    #    getJSONInfo.downloadDems(items[1])
     #Find items in demoDownloads, then get the list of those items and remove them from gamestats, then re-add them
+    codeList = os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))
+    for code in codeList:
+        #Here we want to find the gameid from gamecodes then delete those rows from gamestats
+        query = "SELECT id from gamecodes WHERE code = '{}'".format(code)
+        result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+        if any(result):
+            query = "DELETE FROM gamestats WHERE (gameid = {})".format(result[0][0])
+            dbconnection.executeQuery(dbconnection.createConnection(), query, True)
+            addGameStats(getJSONInfo.analyzeDem(code))
     return
-
-redownload()
