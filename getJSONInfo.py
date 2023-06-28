@@ -168,8 +168,11 @@ def downloadDems(code):
     #Here we have a new directory with the name of the code, inside we want to just download the game
     os.system("csgodm download {} --output {}".format(code, os.getcwd()))
     os.chdir(originalDir)
+    #Here we want to see the length of the files in the directory that was created
+    downloadPath = os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), code)
+    if len(os.listdir(downloadPath)) == 0:
+        os.system("rd /s /q {}".format(downloadPath))
     return
-
 
 #New analyzeDem function... Outputs the same code and returnParse function but is able to be done with multiprocessing
 #Returns none if there is a weird error...

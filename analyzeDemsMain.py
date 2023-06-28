@@ -35,7 +35,6 @@ if __name__ == '__main__':
         #Call functions to add them to the database below
         for game in x:
             if game is None:
-                #os.system("rd /s /q {}".format(os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), game[0])))
                 continue
             if game[0] in gamesIngamecodes:
                 #os.system("echo [INFO] Game is in gamecodes already >> autoLOG.txt")

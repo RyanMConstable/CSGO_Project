@@ -471,5 +471,7 @@ def redownload():
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     for items in result:
         getJSONInfo.downloadDems(items[1])
-    
+    #Find items in demoDownloads, then get the list of those items and remove them from gamestats, then re-add them
     return
+
+redownload()
