@@ -462,14 +462,9 @@ def findtopstat():
     userStats.append(['Entries Denied: ' , str(finduserandstat('entry_hold_kill_won_count'))])
     userStats.append(['Entries Given: ' , str(finduserandstat('entry_hold_kill_loss_count'))])
     userStats.append(['Total Health Damage: ' , str(finduserandstat('total_health_damage'))])
-    userStats.append(['Total Armor Damage: ' , str(finduserandstat('total_armor_damage'))])
-    userStats.append(['Total Health Damage Taken: ' , str(finduserandstat('total_health_damage_taken'))])
-    userStats.append(['Total Armor Damage Taken: ' , str(finduserandstat('total_armor_damage_taken'))])
     userStats.append(['Kills Per Round: ' , str(finduserandstat('kill_per_round'))])
     userStats.append(['Assists Per Round: ' , str(finduserandstat('assist_per_round'))])
     userStats.append(['Deaths Per Round: ' , str(finduserandstat('death_per_round'))])
-    userStats.append(['Total Death Time: ' , str(finduserandstat('total_time_death'))])
-    userStats.append(['Avg Death Time: ' , str(finduserandstat('avg_time_death'))])
     userStats.append(['1v1 Wins: ' , str(finduserandstat('1v1_won_count'))])
     userStats.append(['1v2 Wins: ' , str(finduserandstat('1v2_won_count'))])
     userStats.append(['1v3 Wins: ' , str(finduserandstat('1v3_won_count'))])
@@ -504,11 +499,6 @@ def findAvg(id):
     strVal.append(["Deaths Per Round", str(selectAvgUserStat("death_per_round", id))])
     strVal.append(["Total Death Time", str(selectAvgUserStat("total_time_death", id))])
     strVal.append(["Avg Death Time", str(selectAvgUserStat("avg_time_death", id))])
-    strVal.append(["1v1 Wins", str(selectAvgUserStat("1v1_won_count", id))])
-    strVal.append(["1v2 Wins", str(selectAvgUserStat("1v2_won_count", id))])
-    strVal.append(["1v3 Wins", str(selectAvgUserStat("1v3_won_count", id))])
-    strVal.append(["1v4 Wins", str(selectAvgUserStat("1v4_won_count", id))])
-    strVal.append(["1v5 Wins", str(selectAvgUserStat("1v5_won_count", id))])
     return [["Category", "Average"], strVal]
 
 #New function to find a users steamid
