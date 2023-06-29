@@ -456,7 +456,6 @@ def findtopstat():
     userStats.append(['Hit Count: ' , str(finduserandstat('hit_count'))])
     userStats.append(['ADR: ' , str(finduserandstat('adr'))])
     userStats.append(['Clutch won: ' , str(finduserandstat('clutch_won_count'))])
-    userStats.append(['Clutch loss: ' , str(finduserandstat('clutch_loss_count'))])
     userStats.append(['Entry Frags: ' , str(finduserandstat('entry_kill_won_count'))])
     userStats.append(['Entry Deaths: ' , str(finduserandstat('entry_kill_loss_count'))])
     userStats.append(['Entries Denied: ' , str(finduserandstat('entry_hold_kill_won_count'))])
