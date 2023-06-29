@@ -494,6 +494,21 @@ def findAvg(id):
     strVal.append(["RWS", str(selectAvgUserStat("rws", id))])
     strVal.append(["Shot Count", str(selectAvgUserStat("shot_count", id))])
     strVal.append(["Hit Count", str(selectAvgUserStat("hit_count", id))])
+    strVal.append(["ADR", str(selectAvgUserStat("adr", id))])
+    strVal.append(["Entry Frags", str(selectAvgUserStat("entry_kill_won_count", id))])
+    strVal.append(["Entry Deaths", str(selectAvgUserStat("entry_kill_loss_count", id))])
+    strVal.append(["Total Damage", str(selectAvgUserStat("total_health_damage", id))])
+    strVal.append(["Total Damage Taken", str(selectAvgUserStat("total_health_damage_taken", id))])
+    strVal.append(["Kills Per Round", str(selectAvgUserStat("kill_per_round", id))])
+    strVal.append(["Assists Per Round", str(selectAvgUserStat("assist_per_round", id))])
+    strVal.append(["Deaths Per Round", str(selectAvgUserStat("death_per_round", id))])
+    strVal.append(["Total Death Time", str(selectAvgUserStat("total_time_death", id))])
+    strVal.append(["Avg Death Time", str(selectAvgUserStat("avg_time_death", id))])
+    strVal.append(["1v1 Wins", str(selectAvgUserStat("1v1_won_count", id))])
+    strVal.append(["1v2 Wins", str(selectAvgUserStat("1v2_won_count", id))])
+    strVal.append(["1v3 Wins", str(selectAvgUserStat("1v3_won_count", id))])
+    strVal.append(["1v4 Wins", str(selectAvgUserStat("1v4_won_count", id))])
+    strVal.append(["1v5 Wins", str(selectAvgUserStat("1v5_won_count", id))])
     return [["Category", "Average"], strVal]
 
 #New function to find a users steamid
