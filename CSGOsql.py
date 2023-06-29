@@ -482,6 +482,4 @@ def redownload():
             print("Deleting: {}, id: {}".format(code, result[0][0]))
             query = "DELETE FROM gamestats WHERE (gameid = {})".format(result[0][0])
             dbconnection.executeQuery(dbconnection.createConnection(), query, True)
-            #print("Adding")
-            #addGameStats(getJSONInfo.analyzeDem(code))
     return
