@@ -173,21 +173,20 @@ def downloadDems(code):
 #New analyzeDem function... Outputs the same code and returnParse function but is able to be done with multiprocessing
 #Returns none if there is a weird error...
 def analyzeDem(code):
-    originalDir = os.getcwd()
-    os.chdir("demoDownloads")
+    downloadDir = os.path.join(os.getcwd(), 'demoDownloads')
+    codeDir = os.path.join(downloadDir, code)
     returnParse = None
-    if len(os.listdir(os.path.join(os.getcwd(), code))) == 0:
+    if len(os.listdir(codeDir)) == 0:
         return []
-    if len(os.listdir(os.path.join(os.getcwd(), code))) == 2:
-        subprocess.call(["csgodm", "json", os.path.join(os.getcwd(), code), "--output", os.path.join(os.getcwd(), code), "--force-analyze"])
-    if len(os.listdir(os.path.join(os.getcwd(), code))) == 3:
-        for file in os.listdir(os.path.join(os.getcwd(), code)):
+    if len(os.listdir(codeDir)) == 2:
+        subprocess.call(["csgodm", "json", codeDir, "--output", codeDir, "--force-analyze"])
+    if len(os.listdir(codeDir)) == 3:
+        for file in os.listdir(codeDir):
             if file.split('.')[-1] == 'json':
-                w = open(os.path.join(os.path.join(os.getcwd(), code), file), "r", encoding = 'utf-8')
+                w = open(os.path.join(codeDir, file), "r", encoding = 'utf-8')
                 info = json.loads(w.read())
                 w.close()
                 returnParse = returnGameInfo([code, info])
-    os.chdir(originalDir)
     if returnParse:
         return returnParse
     return
