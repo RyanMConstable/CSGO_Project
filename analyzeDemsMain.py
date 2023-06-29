@@ -34,7 +34,7 @@ if __name__ == '__main__':
         #X is going to be a list of the gamecode at index 0 and the parsed info in index 1
         #Call functions to add them to the database below
         for game in x:
-            if game is None:
+            if game is None or game == []:
                 continue
             if game[0] in gamesIngamecodes:
                 #os.system("echo [INFO] Game is in gamecodes already >> autoLOG.txt")
