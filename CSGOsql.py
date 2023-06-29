@@ -470,8 +470,8 @@ def findSteamID2(name):
 def redownload():
     query = "SELECT * from gamecodes"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    #for items in result:
-    #    getJSONInfo.downloadDems(items[1])
+    for items in result:
+        getJSONInfo.downloadDems(items[1])
     #Find items in demoDownloads, then get the list of those items and remove them from gamestats, then re-add them
     codeList = os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))
     for code in codeList:
@@ -479,7 +479,9 @@ def redownload():
         query = "SELECT id from gamecodes WHERE code = '{}'".format(code)
         result = dbconnection.executeQuery(dbconnection.createConnection(), query)
         if any(result):
+            print("Deleting: {}, id: {}".format(code, result[0][0]))
             query = "DELETE FROM gamestats WHERE (gameid = {})".format(result[0][0])
             dbconnection.executeQuery(dbconnection.createConnection(), query, True)
-            addGameStats(getJSONInfo.analyzeDem(code))
+            #print("Adding")
+            #addGameStats(getJSONInfo.analyzeDem(code))
     return

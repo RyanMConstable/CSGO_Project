@@ -33,7 +33,8 @@ if __name__ == '__main__':
                 getJSONInfo.downloadDems(code)
         else:
             continue
-    
+    #Uncomment the below line if you wish to redownload-analyze all files possible for more info
+    #CSGOsql.redownload()
     
     #Call analyze
     #os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
