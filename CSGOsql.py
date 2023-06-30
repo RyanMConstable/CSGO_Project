@@ -528,3 +528,10 @@ def redownload():
             query = "DELETE FROM gamestats WHERE (gameid = {})".format(result[0][0])
             dbconnection.executeQuery(dbconnection.createConnection(), query, True)
     return
+
+
+#Function to find the bottom X Users
+def findBottom(category, limit):
+    query = "SELECT {} FROM gamestats ORDER BY {} ASC LIMIT {}".format(category, category, limit)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    return result
