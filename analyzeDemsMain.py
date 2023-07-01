@@ -1,5 +1,4 @@
 from multiprocessing import Pool
-from datetime import datetime
 import getJSONInfo, os, CSGOsql
 
 
