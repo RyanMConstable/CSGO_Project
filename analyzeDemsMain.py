@@ -28,7 +28,7 @@ if __name__ == '__main__':
             x = p.map(getJSONInfo.analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
         except Exception as e:
             print("Exception")
-            print(e)
+            os.system("echo [EXCEPTION] {}".format(e))
             exit(0)
             #os.system("echo [ERROR] {} >> autoLOG.txt".format(e))
         #X is going to be a list of the gamecode at index 0 and the parsed info in index 1
