@@ -10,7 +10,7 @@ if __name__ == '__main__':
         #os.system("echo [EXIT] Exiting no demos found >> autoLOG.txt")
         exit(0)
     elif processes > 8:
-        os.system("echo [INFO] Processes set to 40 >> autoLOG.txt".format())
+        os.system("echo [INFO] Processes set to 8 >> autoLOG.txt".format())
         processes = 8
     else:
         os.system("echo [DIRECTORIES] {} >> autoLOG.txt".format(os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))))
