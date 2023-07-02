@@ -34,8 +34,9 @@ if __name__ == '__main__':
     #CSGOsql.redownload()
     
     #Call analyze
-    #os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
-    os.system("python {}".format(os.path.join(os.getcwd(), "analyzeDemsMain.py")))
-    #os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
+    while any(os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))):
+        #os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
+        os.system("python {}".format(os.path.join(os.getcwd(), "analyzeDemsMain.py")))
+        #os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
     
     exit(0)
