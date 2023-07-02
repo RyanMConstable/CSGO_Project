@@ -5,7 +5,7 @@ A project to retrieve all information about users CSGO games automatically. Once
 ### Setup
 Extra Tools Needed:
 1) CSGO Demos Manager (A program that downloads and analyzes your CSGO games), make sure that this is added to PATH so that it can be called anywhere via 'csgodm'
-2) SQL Server, or some type of database
+2) A database
 
 Add the following environment variables:
 1) 'STEAM_API_KEY' = Your steam API key
