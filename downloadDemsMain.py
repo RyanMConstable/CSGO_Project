@@ -43,4 +43,6 @@ if __name__ == '__main__':
         #os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
         count+=1
     
+    if count == 10:
+        os.system("echo [COUNT ERROR] Analyze loop reached 10... Directories in demo downloads aren't being removed >> autoLog.txt")
     exit(0)
