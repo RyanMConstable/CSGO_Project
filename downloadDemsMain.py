@@ -30,10 +30,13 @@ if __name__ == '__main__':
                 getJSONInfo.downloadDems(code)
         else:
             continue
+        
+        
     #Uncomment the below line if you wish to redownload-analyze all files possible for more info
     #CSGOsql.redownload()
     
-    #Call analyze
+    
+    #Call analyze only if there are directories in demoDownloads
     while any(os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))):
         #os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
         os.system("python {}".format(os.path.join(os.getcwd(), "analyzeDemsMain.py")))
