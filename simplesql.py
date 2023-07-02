@@ -9,7 +9,6 @@ except:
 def findMostRecentGame(userid):
     query = "SELECT code FROM recentgame WHERE steamid = '{}'".format(userid)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    if result is None or result == []:
-        return
-    gameid = result[0][0]
-    return gameid
+    if any(result):
+        return result[0][0]
+    return
