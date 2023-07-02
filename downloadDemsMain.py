@@ -9,9 +9,6 @@ if __name__ == '__main__':
     #Update function for new users
     CSGOsql.updateNewGames()
 
-    #Variable to track amount of time
-    startTime = time.time()
-
     #Set variables early so time isn't wasted in the loop
     codesIngamecodes = CSGOsql.findAllCodes()
     codesInGamestats = CSGOsql.findAllCodesInStats()
@@ -40,10 +37,5 @@ if __name__ == '__main__':
     #os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
     os.system("python {}".format(os.path.join(os.getcwd(), "analyzeDemsMain.py")))
     #os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
-    
-    #Prints the amount of time to download all the user files   
-    totalTime = time.time()-startTime
-    #os.system("echo [EXIT] Exiting after: {} >> autoLOG.txt".format(f'Time: {totalTime:.2f} sec'))
-    
     
     exit(0)
