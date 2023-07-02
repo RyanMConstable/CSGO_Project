@@ -35,11 +35,12 @@ if __name__ == '__main__':
     #Uncomment the below line if you wish to redownload-analyze all files possible for more info
     #CSGOsql.redownload()
     
-    
+    count = 0
     #Call analyze only if there are directories in demoDownloads
-    while any(os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))):
+    while any(os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))) or count >= 10:
         #os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
         os.system("python {}".format(os.path.join(os.getcwd(), "analyzeDemsMain.py")))
         #os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
+        count+=1
     
     exit(0)
