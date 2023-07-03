@@ -532,6 +532,6 @@ def redownload():
 
 #Function to find the bottom X Users
 def findBottom(category, limit):
-    query = "SELECT name, {} FROM gamestats ORDER BY {} ASC LIMIT {}".format(category, category, limit)
+    query = "SELECT name, {} FROM gamestats WHERE {} > 0.0 ORDER BY {} ASC LIMIT {}".format(category, category, category, limit)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     return result
