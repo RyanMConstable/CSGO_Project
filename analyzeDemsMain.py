@@ -1,5 +1,5 @@
 from multiprocessing import Pool
-import getJSONInfo, os, CSGOsql
+import getJSONInfo, os, CSGOsql, datetime
 
 
 #Run this script every 30 seconds or so to check for new games, increase if load increases
@@ -42,9 +42,9 @@ if __name__ == '__main__':
                     #os.system("echo [INFO] Game is also in gamestats {} >> autoLOG.txt".format(os.path.join(os.path.join(os.getcwd, 'demoDownloads')), game[0]))
                 else:
                     CSGOsql.addGameStats(game)
-                    os.system("echo [ADD] Adding to gamestats >> autoLOG.txt")
+                    os.system("echo [ADD] Adding to gamestats >> addLOG.txt")
             else:
-                os.system("echo [DOUBLEADD] Game is being added to gamecodes and gamestats >> autoLOG.txt")
+                os.system("echo [DOUBLEADD] Game is being added to gamecodes and gamestats >> addLOG.txt")
                 CSGOsql.addGameCodes([game[0]])
                 CSGOsql.addGameStats(game)
     exit(0)
