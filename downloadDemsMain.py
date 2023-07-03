@@ -6,10 +6,10 @@ import CSGOsql, getJSONInfo, os
 #4) Check the list 
 
 if __name__ == '__main__':
-    #Update function for new users
+    #Update function for new users (IE users who have a row in the user table, but not the recentgame table)
     CSGOsql.updateNewGames()
 
-    #Set variables early so time isn't wasted in the loop
+    #Set variables early so time isn't wasted in the loop, these are all game codes that exit (there has to be a faster way to check this)
     codesIngamecodes = CSGOsql.findAllCodes()
     codesInGamestats = CSGOsql.findAllCodesInStats()
 
