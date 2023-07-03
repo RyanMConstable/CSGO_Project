@@ -25,7 +25,7 @@ if __name__ == '__main__':
                 if (code in codesIngamecodes and code in codesInGamestats):
                     continue
                 #Checks to see if code is already in the directory folder
-                if (code in os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))):
+                elif (code in os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))):
                     continue
                 getJSONInfo.downloadDems(code)
         else:
