@@ -33,6 +33,7 @@ if __name__ == '__main__':
         #X is going to be a list of the gamecode at index 0 and the parsed info in index 1
         #Call functions to add them to the database below
         for game in x:
+            currentTime = datetime.datetime.now()
             if game is None or game == []:
                 continue
             if game[0] in gamesIngamecodes:
@@ -42,9 +43,9 @@ if __name__ == '__main__':
                     #os.system("echo [INFO] Game is also in gamestats {} >> autoLOG.txt".format(os.path.join(os.path.join(os.getcwd, 'demoDownloads')), game[0]))
                 else:
                     CSGOsql.addGameStats(game)
-                    os.system("echo [ADD] Adding to gamestats >> addLOG.txt")
+                    os.system("echo [ADD] Adding to gamestats [TIME] {} >> addLOG.txt".format(currentTime))
             else:
-                os.system("echo [DOUBLEADD] Game is being added to gamecodes and gamestats >> addLOG.txt")
+                os.system("echo [DOUBLEADD] Game is being added to gamecodes and gamestats [TIME] {} >> addLOG.txt".format(currentTime))
                 CSGOsql.addGameCodes([game[0]])
                 CSGOsql.addGameStats(game)
     exit(0)
