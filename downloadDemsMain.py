@@ -37,6 +37,7 @@ if __name__ == '__main__':
     
     count = 0
     #Call analyze only if there are directories in demoDownloads
+    #Calls up to 10 times, if it calls more than twice there is most likely an issue (enable logging at that point)
     while any(os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))) or count >= 10:
         #os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
         os.system("python {}".format(os.path.join(os.getcwd(), "analyzeDemsMain.py")))
