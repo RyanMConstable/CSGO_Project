@@ -164,7 +164,7 @@ def downloadDems(code):
         os.mkdir(downloadCodeDir)
         #Here we have a new directory with the name of the code, inside we want to just download the game
         os.system("csgodm download {} --output {}".format(code, downloadCodeDir))
-        #Here we want to see the length of the files in the directory that was created
+        #Check to see if any files were downloaded, if not, delete the directory
         if len(os.listdir(downloadCodeDir)) == 0:
             os.system("rd /s /q {}".format(downloadCodeDir))
     return
