@@ -7,7 +7,7 @@ if __name__ == '__main__':
     #Sets the number of processes it should run, max is 60 on windows, so the max will be set to 40 just in case
     processes = len(os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
     if processes <= 0:
-        #os.system("echo [EXIT] Exiting no demos found >> autoLOG.txt")
+        os.system("echo [EXIT] Exiting no demos found >> autoLOG.txt")
         exit(0)
     elif processes > 8:
         os.system("echo [INFO] Processes set to 8 >> autoLOG.txt".format())
@@ -28,8 +28,8 @@ if __name__ == '__main__':
         except Exception as e:
             print("Exception")
             os.system("echo [EXCEPTION] {}".format(e))
+            os.system("echo [ERROR] {} >> autoLOG.txt".format(e))
             exit(0)
-            #os.system("echo [ERROR] {} >> autoLOG.txt".format(e))
         #X is going to be a list of the gamecode at index 0 and the parsed info in index 1
         #Call functions to add them to the database below
         for game in x:
@@ -37,10 +37,10 @@ if __name__ == '__main__':
             if game is None or game == []:
                 continue
             if game[0] in gamesIngamecodes:
-                #os.system("echo [INFO] Game is in gamecodes already >> autoLOG.txt")
+                os.system("echo [INFO] Game is in gamecodes already >> autoLOG.txt")
                 if game[0] in gamesIngamestats:
                     os.system("rd /s /q {}".format(os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), game[0])))
-                    #os.system("echo [INFO] Game is also in gamestats {} >> autoLOG.txt".format(os.path.join(os.path.join(os.getcwd, 'demoDownloads')), game[0]))
+                    os.system("echo [INFO] Game is also in gamestats {} >> autoLOG.txt".format(os.path.join(os.path.join(os.getcwd, 'demoDownloads')), game[0]))
                 else:
                     CSGOsql.addGameStats(game)
                     os.system("echo [ADD] Adding to gamestats [TIME] {} >> addLOG.txt".format(currentTime))
