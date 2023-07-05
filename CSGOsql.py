@@ -436,43 +436,6 @@ def finduserandstat(category):
     return str(result[0][0]) + ": " + str(result[0][1])
 
 
-#Write a function to find all top categories for a user given an id
-def findtopstat():
-    userStats = []
-    userStats.append(['Kills: ' , finduserandstat('totalkills')])
-    userStats.append(['Score: ' , finduserandstat('score')])
-    userStats.append(['Team kills: ' , finduserandstat('tk_count')])
-    userStats.append(['Assists: ' , finduserandstat('assist')])
-    userStats.append(['Deaths: ' , finduserandstat('deaths')])
-    userStats.append(['5ks: ' , finduserandstat('5k')])
-    userStats.append(['4ks: ' , finduserandstat('4k')])
-    userStats.append(['3ks: ' , finduserandstat('3k')])
-    userStats.append(['2ks: ' , finduserandstat('2k')])
-    userStats.append(['1ks: ' , finduserandstat('1k')])
-    userStats.append(['Headshots: ' , finduserandstat('headshot')])
-    userStats.append(['KD: ' , finduserandstat('kd')])
-    userStats.append(['RWS: ' , finduserandstat('rws')])
-    userStats.append(['Shots Fired: ' , str(finduserandstat('shot_count'))])
-    userStats.append(['Hit Count: ' , str(finduserandstat('hit_count'))])
-    userStats.append(['ADR: ' , str(finduserandstat('adr'))])
-    userStats.append(['Clutch won: ' , str(finduserandstat('clutch_won_count'))])
-    userStats.append(['Entry Frags: ' , str(finduserandstat('entry_kill_won_count'))])
-    userStats.append(['Entry Deaths: ' , str(finduserandstat('entry_kill_loss_count'))])
-    userStats.append(['Entries Denied: ' , str(finduserandstat('entry_hold_kill_won_count'))])
-    userStats.append(['Entries Given: ' , str(finduserandstat('entry_hold_kill_loss_count'))])
-    userStats.append(['Total Health Damage: ' , str(finduserandstat('total_health_damage'))])
-    userStats.append(['Kills Per Round: ' , str(finduserandstat('kill_per_round'))])
-    userStats.append(['Assists Per Round: ' , str(finduserandstat('assist_per_round'))])
-    userStats.append(['Deaths Per Round: ' , str(finduserandstat('death_per_round'))])
-    userStats.append(['1v1 Wins: ' , str(finduserandstat('1v1_won_count'))])
-    userStats.append(['1v2 Wins: ' , str(finduserandstat('1v2_won_count'))])
-    userStats.append(['1v3 Wins: ' , str(finduserandstat('1v3_won_count'))])
-    userStats.append(['1v4 Wins: ' , str(finduserandstat('1v4_won_count'))])
-    userStats.append(['1v5 Wins: ' , str(finduserandstat('1v5_won_count'))])
-    
-    head = ["Category", "Best Recorded Game"]
-    return [userStats, head]
-
 
 ####Write a function for 
 def findAvg(id):
