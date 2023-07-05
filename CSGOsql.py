@@ -395,32 +395,6 @@ def finduserandstat(category):
 
 
 
-####Write a function for 
-def findAvg(id):
-    strVal = []
-    strVal.append(["Total Games", str(findNumberOfGames(id))])
-    strVal.append(["Kills", str(selectAvgUserStat("totalkills", id))])
-    strVal.append(["Score", str(selectAvgUserStat("score", id))])
-    strVal.append(["Team Kills", str(selectAvgUserStat("tk_count", id))])
-    strVal.append(["Assists", str(selectAvgUserStat("assist", id))])
-    strVal.append(["Deaths", str(selectAvgUserStat("deaths", id))])
-    strVal.append(["Headshots", str(selectAvgUserStat("headshot", id))])
-    strVal.append(["KD", str(selectAvgUserStat("kd", id))])
-    strVal.append(["RWS", str(selectAvgUserStat("rws", id))])
-    strVal.append(["Shot Count", str(selectAvgUserStat("shot_count", id))])
-    strVal.append(["Hit Count", str(selectAvgUserStat("hit_count", id))])
-    strVal.append(["ADR", str(selectAvgUserStat("adr", id))])
-    strVal.append(["Entry Frags", str(selectAvgUserStat("entry_kill_won_count", id))])
-    strVal.append(["Entry Deaths", str(selectAvgUserStat("entry_kill_loss_count", id))])
-    strVal.append(["Total Damage", str(selectAvgUserStat("total_health_damage", id))])
-    strVal.append(["Total Damage Taken", str(selectAvgUserStat("total_health_damage_taken", id))])
-    strVal.append(["Kills Per Round", str(selectAvgUserStat("kill_per_round", id))])
-    strVal.append(["Assists Per Round", str(selectAvgUserStat("assist_per_round", id))])
-    strVal.append(["Deaths Per Round", str(selectAvgUserStat("death_per_round", id))])
-    strVal.append(["Total Death Time", str(selectAvgUserStat("total_time_death", id))])
-    strVal.append(["Avg Death Time", str(selectAvgUserStat("avg_time_death", id))])
-    return [["Category", "Average"], strVal]
-
 #New function to find a users steamid
 def findSteamID2(name):
     #Given a users name find their id
