@@ -384,48 +384,6 @@ def findTop1user(category, userid):
         return
     return result[0][1]
 
-#Write a function to find all top categories for a user given an id
-def findusertop(steamid):
-    userStats = []
-    userStats.append(['Total Games Played: ' , str(findNumberOfGames(steamid))])
-    userStats.append(['Kills: ' , findTop1user('totalkills', steamid)])
-    userStats.append(['Score: ' , findTop1user('score', steamid)])
-    userStats.append(['Team kills: ' , findTop1user('tk_count', steamid)])
-    userStats.append(['Assists: ' , findTop1user('assist', steamid)])
-    userStats.append(['Deaths: ' , findTop1user('deaths', steamid)])
-    userStats.append(['5ks: ' , findTop1user('5k', steamid)])
-    userStats.append(['4ks: ' , findTop1user('4k', steamid)])
-    userStats.append(['3ks: ' , findTop1user('3k', steamid)])
-    userStats.append(['2ks: ' , findTop1user('2k', steamid)])
-    userStats.append(['1ks: ' , findTop1user('1k', steamid)])
-    userStats.append(['Headshots: ' , findTop1user('headshot', steamid)])
-    userStats.append(['KD: ' , findTop1user('kd', steamid)])
-    userStats.append(['RWS: ' , findTop1user('rws', steamid)])
-    userStats.append(['Shots Fired: ' , str(findTop1user('shot_count', steamid))])
-    userStats.append(['Hit Count: ' , str(findTop1user('hit_count', steamid))])
-    userStats.append(['ADR: ' , str(findTop1user('adr', steamid))])
-    userStats.append(['Clutch won: ' , str(findTop1user('clutch_won_count', steamid))])
-    userStats.append(['Clutch loss: ' , str(findTop1user('clutch_loss_count', steamid))])
-    userStats.append(['Entry Frags: ' , str(findTop1user('entry_kill_won_count', steamid))])
-    userStats.append(['Entry Deaths: ' , str(findTop1user('entry_kill_loss_count', steamid))])
-    userStats.append(['Entries Denied: ' , str(findTop1user('entry_hold_kill_won_count', steamid))])
-    userStats.append(['Entries Given: ' , str(findTop1user('entry_hold_kill_loss_count', steamid))])
-    userStats.append(['Total Health Damage: ' , str(findTop1user('total_health_damage', steamid))])
-    userStats.append(['Total Armor Damage: ' , str(findTop1user('total_armor_damage', steamid))])
-    userStats.append(['Total Health Damage Taken: ' , str(findTop1user('total_health_damage_taken', steamid))])
-    userStats.append(['Total Armor Damage Taken: ' , str(findTop1user('total_armor_damage_taken', steamid))])
-    userStats.append(['Kills Per Round: ' , str(findTop1user('kill_per_round', steamid))])
-    userStats.append(['Assists Per Round: ' , str(findTop1user('assist_per_round', steamid))])
-    userStats.append(['Deaths Per Round: ' , str(findTop1user('death_per_round', steamid))])
-    userStats.append(['Total Death Time: ' , str(findTop1user('total_time_death', steamid))])
-    userStats.append(['Avg Death Time: ' , str(findTop1user('avg_time_death', steamid))])
-    userStats.append(['1v1 Wins: ' , str(findTop1user('1v1_won_count', steamid))])
-    userStats.append(['1v2 Wins: ' , str(findTop1user('1v2_won_count', steamid))])
-    userStats.append(['1v3 Wins: ' , str(findTop1user('1v3_won_count', steamid))])
-    userStats.append(['1v4 Wins: ' , str(findTop1user('1v4_won_count', steamid))])
-    userStats.append(['1v5 Wins: ' , str(findTop1user('1v5_won_count', steamid))])
-    head = ["Category", "All Time Best"]
-    return [userStats, head]
 
 
 def finduserandstat(category):
