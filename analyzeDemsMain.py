@@ -26,7 +26,8 @@ if __name__ == '__main__':
         try:
             x = p.map(getJSONInfo.analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
         except Exception as e:
-            print("Exception")
+            print("EXCEPTION")
+            print(e)
             os.system("echo [EXCEPTION] {}".format(e))
             os.system("echo [ERROR] {} >> autoLOG.txt".format(e))
             exit(0)
@@ -40,7 +41,7 @@ if __name__ == '__main__':
                 os.system("echo [INFO] Game is in gamecodes already >> autoLOG.txt")
                 if game[0] in gamesIngamestats:
                     os.system("rd /s /q {}".format(os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), game[0])))
-                    os.system("echo [INFO] Game is also in gamestats {} >> autoLOG.txt".format(os.path.join(os.path.join(os.getcwd, 'demoDownloads')), game[0]))
+                    os.system("echo [INFO] Game is also in gamestats {} >> autoLOG.txt".format(os.path.join(os.path.join(os.getcwd(), 'demoDownloads')), game[0]))
                 else:
                     CSGOsql.addGameStats(game)
                     os.system("echo [ADD] Adding to gamestats [TIME] {} >> addLOG.txt".format(currentTime))

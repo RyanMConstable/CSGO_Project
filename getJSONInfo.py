@@ -163,7 +163,7 @@ def downloadDems(code):
     if code not in os.listdir(downloadDir):
         os.mkdir(downloadCodeDir)
         #Here we have a new directory with the name of the code, inside we want to just download the game
-        os.system("csgodm download {} --output {}".format(code, downloadCodeDir))
+        subprocess.call(["csgodm", "download", code, "--output", downloadCodeDir])
         #Check to see if any files were downloaded, if not, delete the directory
         if len(os.listdir(downloadCodeDir)) == 0:
             os.system("rd /s /q {}".format(downloadCodeDir))

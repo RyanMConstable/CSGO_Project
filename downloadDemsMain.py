@@ -19,14 +19,19 @@ if __name__ == '__main__':
         
         #If there are new codes update the recentgame code and download the demo
         if any(updateList):
+            print("UpdateList Follows")
+            print(updateList)
             CSGOsql.newRecentGame(user[0], updateList[-1])
             for code in updateList:
                 #Checks to see if the code is in the database
                 if (code in codesIngamecodes and code in codesInGamestats):
+                    print("Code: {} Already in gamecodes and gamestats".format(code))
                     continue
                 #Checks to see if code is already in the directory folder
                 elif (code in os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))):
+                    print("Code: {} already in demoDownloads".format(code))
                     continue
+                print("Downloading: {}".format(code))
                 getJSONInfo.downloadDems(code)
         else:
             continue
