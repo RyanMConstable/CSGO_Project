@@ -9,7 +9,7 @@ if __name__ == '__main__':
     #Update function for new users (IE users who have a row in the user table, but not the recentgame table)
     CSGOsql.updateNewGames()
 
-    #Set variables early so time isn't wasted in the loop, these are all game codes that exit (there has to be a faster way to check this)
+    #Set variables early so time isn't wasted in the loop, these are all game codes that exist (there has to be a faster way to check this)
     codesIngamecodes = CSGOsql.findAllCodes()
     codesInGamestats = CSGOsql.findAllCodesInStats()
 
@@ -19,19 +19,18 @@ if __name__ == '__main__':
         
         #If there are new codes update the recentgame code and download the demo
         if any(updateList):
-            print("UpdateList Follows")
-            print(updateList)
+            os.system("echo [UPDATELIST] {} >> autoLOG.txt".format(updateList))
             CSGOsql.newRecentGame(user[0], updateList[-1])
             for code in updateList:
                 #Checks to see if the code is in the database
                 if (code in codesIngamecodes and code in codesInGamestats):
-                    print("Code: {} Already in gamecodes and gamestats".format(code))
+                    os.system("echo [DUPLICATE] Code: {} Already in gamecodes and gamestats >> autoLOG.txt".format(code))
                     continue
                 #Checks to see if code is already in the directory folder
                 elif (code in os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))):
-                    print("Code: {} already in demoDownloads".format(code))
+                    os.system("echo [INDEMODOWNLOADS] Code: {} already in demoDownloads >> autoLOG.txt".format(code))
                     continue
-                print("Downloading: {}".format(code))
+                os.system("echo [DOWNLOADING] {} >> autoLOG.txt".format(code))
                 getJSONInfo.downloadDems(code)
         else:
             continue
