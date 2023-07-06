@@ -1,5 +1,5 @@
 import findMatchSteamAPI as API
-import CSGOsql, getJSONInfo, os
+import CSGOsql, getJSONInfo, os, subprocess
 #1) Given a userid, and steamkey, find that users new list of codes
 #2) Generate every users new games
 #3) Update the users recentgamecode with the newest game code
@@ -45,7 +45,7 @@ if __name__ == '__main__':
     #Calls up to 10 times, if it calls more than twice there is most likely an issue (enable logging at that point)
     while any(os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))) or count >= 10:
         os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
-        os.system("python {}".format(os.path.join(os.getcwd(), "analyzeDemsMain.py")))
+        subprocess.call(["python", os.path.join(os.getcwd(), "analyzeDemsMain.py")])
         os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
         count+=1
     
