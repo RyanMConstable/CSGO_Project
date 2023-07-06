@@ -44,9 +44,9 @@ if __name__ == '__main__':
                     os.system("echo [INFO] Game is also in gamestats {} >> autoLOG.txt".format(os.path.join(os.path.join(os.getcwd(), 'demoDownloads')), game[0]))
                 else:
                     CSGOsql.addGameStats(game)
-                    os.system("echo [ADD] Adding to gamestats [TIME] {} >> addLOG.txt".format(currentTime))
+                    os.system("echo [ADD] Adding {} to gamestats [TIME] {} >> addLOG.txt".format(game[0], currentTime))
             else:
-                os.system("echo [DOUBLEADD] Game is being added to gamecodes and gamestats [TIME] {} >> addLOG.txt".format(currentTime))
+                os.system("echo [DOUBLEADD] Game {} is being added to gamecodes and gamestats [TIME] {} >> addLOG.txt".format(game[0], currentTime))
                 CSGOsql.addGameCodes([game[0]])
                 CSGOsql.addGameStats(game)
     exit(0)
