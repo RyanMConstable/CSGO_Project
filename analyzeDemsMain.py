@@ -26,9 +26,6 @@ if __name__ == '__main__':
         try:
             x = p.map(getJSONInfo.analyzeDem, os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
         except Exception as e:
-            print("EXCEPTION")
-            print(e)
-            os.system("echo [EXCEPTION] {}".format(e))
             os.system("echo [ERROR] {} >> autoLOG.txt".format(e))
             exit(0)
         #X is going to be a list of the gamecode at index 0 and the parsed info in index 1
@@ -36,6 +33,7 @@ if __name__ == '__main__':
         for game in x:
             currentTime = datetime.datetime.now()
             if game is None or game == []:
+                os.system("echo [NONE] game is none? >> autoLOG.txt")
                 continue
             if game[0] in gamesIngamecodes:
                 os.system("echo [INFO] Game is in gamecodes already >> autoLOG.txt")
