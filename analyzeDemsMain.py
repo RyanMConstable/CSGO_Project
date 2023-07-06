@@ -40,7 +40,7 @@ if __name__ == '__main__':
             if game[0] in gamesIngamecodes:
                 os.system("echo [INFO] Game is in gamecodes already >> autoLOG.txt")
                 if game[0] in gamesIngamestats:
-                    os.system("rd /s /q {}".format(os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), game[0])))
+                    subprocess.call(["rd", "/s", "/q", os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), game[0])])
                     os.system("echo [INFO] Game is also in gamestats {} >> autoLOG.txt".format(os.path.join(os.path.join(os.getcwd(), 'demoDownloads')), game[0]))
                 else:
                     CSGOsql.addGameStats(game)
