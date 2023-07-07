@@ -27,9 +27,9 @@ if __name__ == '__main__':
                     os.system("echo [DUPLICATE] Code: {} Already in gamecodes and gamestats >> autoLOG.txt".format(code))
                     continue
                 #Checks to see if code is already in the directory folder
-                elif (code in os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))):
-                    os.system("echo [INDEMODOWNLOADS] Code: {} already in demoDownloads >> autoLOG.txt".format(code))
-                    continue
+                #elif (code in os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))):
+                    #os.system("echo [INDEMODOWNLOADS] Code: {} already in demoDownloads >> autoLOG.txt".format(code))
+                    #continue
                 os.system("echo [DOWNLOADING] {} >> autoLOG.txt".format(code))
                 getJSONInfo.downloadDems(code)
         else:
