@@ -40,8 +40,8 @@ if __name__ == '__main__':
                 os.system("echo [INFO] Game is in gamecodes already >> autoLOG.txt")
                 if game[0] in gamesIngamestats:
                     try:
-                        subprocess.call(["rm", "-r", os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), game[0])])
                         os.system("echo [INFO] Game is also in gamestats {} >> autoLOG.txt".format(os.path.join(os.path.join(os.getcwd(), 'demoDownloads')), game[0]))
+                        subprocess.call(["rm", "-r", os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), game[0])])
                     except Exception as e:
                         os.system("echo [ERROR] {} >> autoLOG.txt".format(e))
                         os.system("echo [PATH] {} >> autoLOG.txt".format(os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), game[0])))
