@@ -6,8 +6,6 @@ import CSGOsql, getJSONInfo, os, subprocess
 #4) Check the list 
 
 if __name__ == '__main__':
-    for code in os.listdir(os.path.join(os.getcwd(), 'demoDownloads')):
-        getJSONInfo.downloadDems(code)
     
     #Update function for new users (IE users who have a row in the user table, but not the recentgame table)
     CSGOsql.updateNewGames()
