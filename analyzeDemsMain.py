@@ -30,7 +30,7 @@ if __name__ == '__main__':
             exit(0)
         #X is going to be a list of the gamecode at index 0 and the parsed info in index 1
         #Call functions to add them to the database below
-        os.system("echo [X] {} >> autoLOG.txt".format(x))
+        #os.system("echo [X] {} >> autoLOG.txt".format(x))
         for game in x:
             currentTime = datetime.datetime.now()
             if game is None or game == []:
