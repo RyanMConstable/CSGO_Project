@@ -167,6 +167,8 @@ def downloadDems(code):
         #Check to see if any files were downloaded, if not, delete the directory
         if len(os.listdir(downloadCodeDir)) == 0:
             subprocess.call(["rd", "/s", "/q", downloadCodeDir])
+    else:
+        subprocess.call(["csgodm", "download", code, "--output", downloadCodeDir])
     return
 
 
