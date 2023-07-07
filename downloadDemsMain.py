@@ -42,15 +42,11 @@ if __name__ == '__main__':
     #Uncomment the below line if you wish to redownload-analyze all files possible for more info
     #CSGOsql.redownload()
     
-    count = 0
+
     #Call analyze only if there are directories in demoDownloads
     #Calls up to 10 times, if it calls more than twice there is most likely an issue (enable logging at that point)
-    while any(os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))) or count >= 10:
-        os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
-        subprocess.call(["python", os.path.join(os.getcwd(), "analyzeDemsMain.py")])
-        os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
-        count+=1
-    
-    if count == 10:
-        os.system("echo [COUNT ERROR] Analyze loop reached 10... Directories in demo downloads aren't being removed >> autoLog.txt")
+    os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
+    subprocess.call(["python", os.path.join(os.getcwd(), "analyzeDemsMain.py")])
+    os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
+
     exit(0)
