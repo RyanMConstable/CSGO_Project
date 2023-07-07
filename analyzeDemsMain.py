@@ -44,6 +44,7 @@ if __name__ == '__main__':
                         os.system("echo [INFO] Game is also in gamestats {} >> autoLOG.txt".format(os.path.join(os.path.join(os.getcwd(), 'demoDownloads')), game[0]))
                     except Exception as e:
                         os.system("echo [ERROR] {} >> autoLOG.txt".format(e))
+                        os.system("echo [PATH] {} >> autoLOG.txt".format(os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), game[0])))
                 else:
                     CSGOsql.addGameStats(game)
                     os.system("echo [ADD] Adding {} to gamestats [TIME] {} >> addLOG.txt".format(game[0], currentTime))
