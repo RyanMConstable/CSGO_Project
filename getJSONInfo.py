@@ -1,5 +1,4 @@
 import os, json, subprocess
-from multiprocessing import Pool
 
 
 #Takes a list in the format [gameCode, jsonLoadedVariable] and parses the information for what we want.
