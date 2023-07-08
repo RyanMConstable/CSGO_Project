@@ -43,8 +43,8 @@ if __name__ == '__main__':
 
     #Call analyze only if there are directories in demoDownloads
     #Calls up to 10 times, if it calls more than twice there is most likely an issue (enable logging at that point)
-    os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
+    #os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
     subprocess.call(["python", os.path.join(os.getcwd(), "analyzeDemsMain.py")])
-    os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
+    #os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
 
     exit(0)
