@@ -163,10 +163,16 @@ def downloadDems(code):
     if code not in os.listdir(downloadDir):
         os.mkdir(downloadCodeDir)
         #Here we have a new directory with the name of the code, inside we want to just download the game
-        subprocess.call(["csgodm", "download", code, "--output", downloadCodeDir])
+        try:
+            subprocess.call(["csgodm", "download", code, "--output", downloadCodeDir])
+        except Exception as e:
+            os.system("echo [EXCEPTION] downloadDems {} >> autoLOG.txt".format(e))
         #Check to see if any files were downloaded, if not, delete the directory
         if len(os.listdir(downloadCodeDir)) == 0:
-            os.system("rd /s /q {}".format(downloadCodeDir))
+            try:
+                os.system("rd /s /q {}".format(downloadCodeDir))
+            except Exception as e:
+                os.system("echo [EXCEPTION] downloadDems 'rd /s /q' {} >> autoLOG.txt".format(e))
     return
 
 
@@ -179,14 +185,20 @@ def analyzeDem(code):
     if len(os.listdir(codeDir)) == 0:
         return []
     if len(os.listdir(codeDir)) == 2:
-        subprocess.call(["csgodm", "json", codeDir, "--output", codeDir, "--force-analyze"])
+        try:
+            subprocess.call(["csgodm", "json", codeDir, "--output", codeDir, "--force-analyze"])
+        except Exception as e:
+            os.system("echo [EXCEPTION] analyzeDem {} >> autoLOG.txt".format(e))
     if len(os.listdir(codeDir)) == 3:
-        for file in os.listdir(codeDir):
-            if file.split('.')[-1] == 'json':
-                w = open(os.path.join(codeDir, file), "r", encoding = 'utf-8')
-                info = json.loads(w.read())
-                w.close()
-                returnParse = returnGameInfo([code, info])
+        try:
+            for file in os.listdir(codeDir):
+                if file.split('.')[-1] == 'json':
+                    w = open(os.path.join(codeDir, file), "r", encoding = 'utf-8')
+                    info = json.loads(w.read())
+                    w.close()
+                    returnParse = returnGameInfo([code, info])
+        except Exception as e:
+            os.system("echo [EXCEPTION] anaylzeDem CODE: 2 {} >> autoLOG.txt".format(e))
     if returnParse:
         return returnParse
     return
