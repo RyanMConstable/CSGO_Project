@@ -1,9 +1,5 @@
 #For importing exceptions...
-import os
-try:
-    import dbconnection, getJSONInfo, findMatchSteamAPI
-except Exception as e:
-    from . import dbconnection, getJSONInfo, findMatchSteamAPI
+import os, dbconnection, getJSONInfo, findMatchSteamAPI
 
 
 #This function adds a list of gamecodes to the database
