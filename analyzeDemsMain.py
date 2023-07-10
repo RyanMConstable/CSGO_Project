@@ -1,5 +1,5 @@
 from multiprocessing import Pool
-import getJSONInfo, os, CSGOsql, datetime, subprocess
+import getJSONInfo, os, CSGOsql, datetime
 
 
 #Run this script every 30 seconds or so to check for new games, increase if load increases
