@@ -1,7 +1,4 @@
-try:
-    import dbconnection
-except:
-    from . import dbconnection
+import dbconnection
 
 #This is where sub CSGOsql.py queries should be, where only dbconnection is needed
 
