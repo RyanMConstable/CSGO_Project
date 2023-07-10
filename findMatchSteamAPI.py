@@ -1,8 +1,4 @@
-import requests, time, os
-try:
-    import simplesql
-except:
-    from . import simplesql
+import requests, time, os, simplesql
 
 steamAPIKey = os.environ["STEAM_API_KEY"]
 
