@@ -353,7 +353,7 @@ def selectCombinedUserStat(stat, steamid):
 
 #Very useful stat function, type in the column name of the database, and the steam id and it will return the sum of that column
 def selectAvgUserStat(stat, steamid, limiter):
-    query = "SELECT AVG({}) FROM gamestats WHERE steamid = '{}' ORDER BY date ASC{}".format(stat, steamid, limiter)
+    query = "SELECT AVG({}) FROM gamestats WHERE steamid = '{}' ORDER BY date ASC LIMIT {}".format(stat, steamid, limiter)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
