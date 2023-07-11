@@ -231,7 +231,7 @@ def newRecentGame(steamid, code):
     query = "SELECT * FROM recentgame WHERE steamid = {}".format(steamid)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     
-    secondQuery = "SELECT * FROM gamecodes WHERE code = {}".format(code)
+    secondQuery = "SELECT * FROM gamecodes WHERE code = '{}'".format(code)
     secondResult = dbconnection.executeQuery(dbconnection.createConnection(), secondQuery)
     if secondResult is None or result == []:
         return
