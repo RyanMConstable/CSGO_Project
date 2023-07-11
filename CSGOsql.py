@@ -230,6 +230,10 @@ def inGameStats(code):
 def newRecentGame(steamid, code):
     query = "SELECT * FROM recentgame WHERE steamid = {}".format(steamid)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    
+    secondQuery = "SELECT * FROM gamecodes WHERE code = {}".format(code)
+    secondResult = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    
     if result is None or result == []:
         query = "INSERT INTO recentgame (steamid, code) VALUES (%s, %s)"
         result = dbconnection.executeQuery(dbconnection.createConnection(), query, True, (steamid, code))
@@ -426,3 +430,5 @@ def findBottom(category, limit):
     query = "SELECT name, {} FROM gamestats WHERE {} > 0.0 ORDER BY {} ASC LIMIT {}".format(category, category, category, limit)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     return result
+
+#Want a function that takes a steamid and checks for the most recent game
