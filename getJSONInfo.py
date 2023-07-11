@@ -185,7 +185,7 @@ def analyzeDem(code):
         return []
     if len(os.listdir(codeDir)) == 2:
         try:
-            subprocess.call(["csgodm", "json", codeDir, "--output", codeDir, "--force-analyze"])
+            subprocess.call(["csgodm", "json", codeDir, "--output", codeDir, "--force-analyze", ">>", "analyzeLOG.txt"])
         except Exception as e:
             os.system("echo [EXCEPTION] analyzeDem {} >> autoLOG.txt".format(e))
     if len(os.listdir(codeDir)) == 3:
