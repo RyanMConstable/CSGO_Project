@@ -163,7 +163,7 @@ def downloadDems(code):
         os.mkdir(downloadCodeDir)
         #Here we have a new directory with the name of the code, inside we want to just download the game
         try:
-            subprocess.call(["csgodm", "download", code, "--output", downloadCodeDir])
+            subprocess.call(["csgodm", "download", code, "--output", downloadCodeDir, ">>" , "downloadLOG.txt"])
         except Exception as e:
             os.system("echo [EXCEPTION] downloadDems {} >> autoLOG.txt".format(e))
         #Check to see if any files were downloaded, if not, delete the directory
