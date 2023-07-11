@@ -232,7 +232,9 @@ def newRecentGame(steamid, code):
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     
     secondQuery = "SELECT * FROM gamecodes WHERE code = {}".format(code)
-    secondResult = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    secondResult = dbconnection.executeQuery(dbconnection.createConnection(), secondQuery)
+    if secondResult is None or result == []:
+        return
     
     if result is None or result == []:
         query = "INSERT INTO recentgame (steamid, code) VALUES (%s, %s)"
