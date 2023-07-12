@@ -163,7 +163,7 @@ def downloadDems(code):
         os.mkdir(downloadCodeDir)
         #Here we have a new directory with the name of the code, inside we want to just download the game
         try:
-            subprocess.run(["csgodm", "download", code, "--output", downloadCodeDir])
+            subprocess.run(["csgodm", "download", code, "--output", downloadCodeDir], capture_output=True)
         except Exception as e:
             os.system("echo [EXCEPTION] downloadDems {} >> autoLOG.txt".format(e))
         #Check to see if any files were downloaded, if not, delete the directory
@@ -185,7 +185,7 @@ def analyzeDem(code):
         return []
     if len(os.listdir(codeDir)) == 2:
         try:
-            subprocess.run(["csgodm", "json", codeDir, "--output", codeDir, "--force-analyze"])
+            subprocess.run(["csgodm", "json", codeDir, "--output", codeDir, "--force-analyze"], capture_output=True)
         except Exception as e:
             os.system("echo [EXCEPTION] analyzeDem {} >> autoLOG.txt".format(e))
     if len(os.listdir(codeDir)) == 3:
