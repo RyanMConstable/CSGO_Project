@@ -162,10 +162,15 @@ def downloadDems(code):
     if code not in os.listdir(downloadDir):
         os.mkdir(downloadCodeDir)
         #Here we have a new directory with the name of the code, inside we want to just download the game
+        downloadResponse = None
         try:
-            subprocess.run(["csgodm", "download", code, "--output", downloadCodeDir], capture_output=True)
+            downloadResponse = subprocess.run(["csgodm", "download", code, "--output", downloadCodeDir], capture_output=True)
         except Exception as e:
             os.system("echo [EXCEPTION] downloadDems {} >> autoLOG.txt".format(e))
+        if downloadResponse != None:
+            with open(os.path.join(os.getcwd(), 'downloadLOG.txt'), "a+") as f:
+                f.write(str(downloadResponse.stdout))
+                f.close()
         #Check to see if any files were downloaded, if not, delete the directory
         if len(os.listdir(downloadCodeDir)) == 0:
             try:
