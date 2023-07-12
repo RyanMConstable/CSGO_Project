@@ -11,8 +11,6 @@ def populateStats():
         if CSGOsql.inGameStats(code):
             gameInfo = getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(code))
             if gameInfo == None:
-                print("Game info is empty")
                 continue
-            print("Adding stats")
             CSGOsql.addGameStats(gameInfo)
     return
