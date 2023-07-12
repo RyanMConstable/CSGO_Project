@@ -184,10 +184,15 @@ def analyzeDem(code):
     if len(os.listdir(codeDir)) == 0:
         return []
     if len(os.listdir(codeDir)) == 2:
+        analyzedResponse = None
         try:
-            subprocess.run(["csgodm", "json", codeDir, "--output", codeDir, "--force-analyze"], capture_output=True)
+            analyzedResponse = subprocess.run(["csgodm", "json", codeDir, "--output", codeDir, "--force-analyze"], capture_output=True)
         except Exception as e:
             os.system("echo [EXCEPTION] analyzeDem {} >> autoLOG.txt".format(e))
+        if analyzedResponse != None:
+            with open(os.path.join(os.getcwd(), 'analyzeLOG.txt'), "a+") as f:
+                f.write(str(analyzedResponse.stdout))
+                f.close()
     if len(os.listdir(codeDir)) == 3:
         try:
             for file in os.listdir(codeDir):
