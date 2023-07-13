@@ -169,7 +169,7 @@ def downloadDems(code):
             os.system("echo [EXCEPTION] downloadDems {} >> autoLOG.txt".format(e))
         if downloadResponse != None:
             with open(os.path.join(os.getcwd(), 'downloadLOG.txt'), "a+") as f:
-                f.write(str(downloadResponse.stdout))
+                f.write(downloadResponse.stdout.decode('utf-8'))
                 f.close()
         #Check to see if any files were downloaded, if not, delete the directory
         if len(os.listdir(downloadCodeDir)) == 0:
