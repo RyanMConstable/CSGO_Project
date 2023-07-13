@@ -437,7 +437,7 @@ def findBottom(category, limit):
 
 
 #Function to find highest X game stats
-def findBestScoreGame(steamID, category, ORDER):
+def findGameStats(steamID, category, ORDER):
     selection = "totalkills, score, tk_count, assist, deaths, 5k, 4k, 3k, 2k, 1k, headshot, kd, rws, shot_count, hit_count, flashbang_thrown, he_thrown, molly_thrown"
     selection += ", incendiary_thrown, decoy_thrown, round_count, date, adr, clutches, clutch_won_count, clutch_loss_count, entry_kill_won_count, entry_kill_loss_count"
     selection += ", entry_hold_kill_won_count, entry_hold_kill_loss_count, rank_old, rank_new, total_health_damage, total_armor_damage, total_health_damage_taken, "
