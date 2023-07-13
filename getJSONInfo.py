@@ -172,11 +172,11 @@ def downloadDems(code):
                 f.write(downloadResponse.stdout.decode('utf-8'))
                 f.close()
         #Check to see if any files were downloaded, if not, delete the directory
-        if len(os.listdir(downloadCodeDir)) == 0:
-            try:
-                os.system("rd /s /q {}".format(downloadCodeDir))
-            except Exception as e:
-                os.system("echo [EXCEPTION] downloadDems 'rd /s /q' {} >> autoLOG.txt".format(e))
+        #if len(os.listdir(downloadCodeDir)) == 0:
+            #try:
+                #os.system("rd /s /q {}".format(downloadCodeDir))
+            #except Exception as e:
+                #os.system("echo [EXCEPTION] downloadDems 'rd /s /q' {} >> autoLOG.txt".format(e))
     return
 
 
