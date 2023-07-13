@@ -177,6 +177,15 @@ def downloadDems(code):
                 #os.system("rd /s /q {}".format(downloadCodeDir))
             #except Exception as e:
                 #os.system("echo [EXCEPTION] downloadDems 'rd /s /q' {} >> autoLOG.txt".format(e))
+    else:
+        if len(os.listdir(os.path.join(downloadDir, code))) == 0:
+            try:
+                downloadResponse = subprocess.run(["csgodm", "download", code, "--output", downloadCodeDir], capture_output=True)
+                with open(os.path.join(os.getcwd(), 'downloadLOG.txt'), "a+") as f:
+                    f.write(downloadResponse.stdout.decode('utf-8'))
+                    f.close()
+            except Exception as e:
+                os.system("echo [EXCEPTION] downloadDems {} >> autoLOG.txt".format(e))
     return
 
 
