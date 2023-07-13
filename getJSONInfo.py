@@ -196,7 +196,7 @@ def analyzeDem(code):
             os.system("echo [EXCEPTION] analyzeDem {} >> autoLOG.txt".format(e))
         if analyzedResponse != None:
             with open(os.path.join(os.getcwd(), 'analyzeLOG.txt'), "a+") as f:
-                f.write(str(analyzedResponse.stdout))
+                f.write(analyzedResponse.stdout.decode('utf-8'))
                 f.close()
     if len(os.listdir(codeDir)) == 3:
         try:
