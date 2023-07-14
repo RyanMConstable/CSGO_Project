@@ -20,7 +20,7 @@ if __name__ == '__main__':
         updateList = API.generateNewCodes(user[0], user[1])
         
         #If there are new codes update the recentgame code and download the demo
-        if any(updateList):
+        if any(updateList) or any(os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))):
             os.system("echo [UPDATELIST] {} >> autoLOG.txt".format(updateList))
             CSGOsql.newRecentGame(user[0], updateList[-1])
             for code in updateList:
