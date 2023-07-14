@@ -196,7 +196,7 @@ def analyzeDem(code):
     codeDir = os.path.join(downloadDir, code)
     returnParse = None
     if len(os.listdir(codeDir)) == 0:
-        return []
+        downloadDems(code)
     if len(os.listdir(codeDir)) == 2:
         analyzedResponse = None
         try:
