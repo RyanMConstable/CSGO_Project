@@ -161,7 +161,9 @@ def downloadDems(code):
     downloadCodeDir = os.path.join(downloadDir, code)
     if code not in os.listdir(downloadDir):
         os.mkdir(downloadCodeDir)
-        #Here we have a new directory with the name of the code, inside we want to just download the game
+    #Here we have a new directory with the name of the code, inside we want to just download the game
+    
+    if len(os.listdir(downloadCodeDir)) == 0:
         downloadResponse = None
         try:
             downloadResponse = subprocess.run(["csgodm", "download", code, "--output", downloadCodeDir], capture_output=True)
@@ -171,21 +173,6 @@ def downloadDems(code):
             with open(os.path.join(os.getcwd(), 'downloadLOG.txt'), "a+") as f:
                 f.write(downloadResponse.stdout.decode('utf-8'))
                 f.close()
-        #Check to see if any files were downloaded, if not, delete the directory
-        #if len(os.listdir(downloadCodeDir)) == 0:
-            #try:
-                #os.system("rd /s /q {}".format(downloadCodeDir))
-            #except Exception as e:
-                #os.system("echo [EXCEPTION] downloadDems 'rd /s /q' {} >> autoLOG.txt".format(e))
-    else:
-        if len(os.listdir(os.path.join(downloadDir, code))) == 0:
-            try:
-                downloadResponse = subprocess.run(["csgodm", "download", code, "--output", downloadCodeDir], capture_output=True)
-                with open(os.path.join(os.getcwd(), 'downloadLOG.txt'), "a+") as f:
-                    f.write(downloadResponse.stdout.decode('utf-8'))
-                    f.close()
-            except Exception as e:
-                os.system("echo [EXCEPTION] downloadDems {} >> autoLOG.txt".format(e))
     return
 
 
@@ -196,7 +183,7 @@ def analyzeDem(code):
     codeDir = os.path.join(downloadDir, code)
     returnParse = None
     if len(os.listdir(codeDir)) == 0:
-        downloadDems(code)
+        return []
     if len(os.listdir(codeDir)) == 2:
         analyzedResponse = None
         try:
