@@ -34,7 +34,7 @@ if __name__ == '__main__':
         for game in x:
             currentTime = datetime.datetime.now()
             if game is None or game == []:
-                os.system("echo [NONE] game is none game='{}' >> autoLOG.txt".format(game))
+                os.system("echo [NONE] game is none >> autoLOG.txt")
                 continue
             if game[0] in gamesIngamecodes:
                 os.system("echo [INFO] Game is in gamecodes already >> autoLOG.txt")
