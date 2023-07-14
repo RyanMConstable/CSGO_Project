@@ -19,7 +19,8 @@ if __name__ == '__main__':
     for user in CSGOsql.findAllid():
         #HERE WE SHOULD CHECK FOR NEWER GAME IN TABLE?
         updateList = API.generateNewCodes(user[0], user[1])
-        CSGOsql.newRecentGame(user[0], updateList[-1])
+        if any(updateList):
+            CSGOsql.newRecentGame(user[0], updateList[-1])
         for code in updateList:
             if code not in ListToUpdate:
                 ListToUpdate.append(code)
