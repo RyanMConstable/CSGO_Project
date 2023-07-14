@@ -19,7 +19,7 @@ if __name__ == '__main__':
     for user in CSGOsql.findAllid():
         #HERE WE SHOULD CHECK FOR NEWER GAME IN TABLE?
         updateList = API.generateNewCodes(user[0], user[1])
-        
+        CSGOsql.newRecentGame(user[0], updateList[-1])
         for code in updateList:
             if code not in ListToUpdate:
                 ListToUpdate.append(code)
@@ -30,9 +30,8 @@ if __name__ == '__main__':
         
     #If there are new codes update the recentgame code and download the demo
     if any(ListToUpdate):
-        os.system("echo [UPDATELIST] {} >> autoLOG.txt".format(updateList))
-        CSGOsql.newRecentGame(user[0], updateList[-1])
-        for code in updateList:
+        os.system("echo [UPDATELIST] {} >> autoLOG.txt".format(ListToUpdate))
+        for code in ListToUpdate:
             #Checks to see if the code is in the database
             if (code in codesIngamecodes and code in codesInGamestats):
                 os.system("echo [DUPLICATE] Code: {} Already in gamecodes and gamestats >> autoLOG.txt".format(code))
