@@ -447,3 +447,8 @@ def findGameStats(steamID, category, ORDER):
     query = "SELECT {} FROM gamestats WHERE steamid = '{}' ORDER BY {} {} LIMIT 1".format(selection, steamID, category, ORDER)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     return result
+
+
+#Function to find the position a player is in given id, category, and reverse order
+def findPos(steamID, category, ORDER):
+    return
