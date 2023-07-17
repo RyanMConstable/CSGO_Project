@@ -87,7 +87,7 @@ def returnGameInfo(jsonInputFormat):
         playerListKills = [0]*(totalrounds)
         for kill in player["kills"]:
             playerListKills[kill["round_number"]-1] += 1
-        playersList.append("".join(map(str, playerListKills)))
+        thisPlayer.append("".join(map(str, playerListKills)))
         playersList.append(thisPlayer)
         
     for player in thisGame["team_t"]["team_players"]:
@@ -155,7 +155,7 @@ def returnGameInfo(jsonInputFormat):
         playerListKills = [0]*(totalrounds)
         for kill in player["kills"]:
             playerListKills[kill["round_number"]-1] += 1
-        playersList.append("".join(map(str, playerListKills)))
+        thisPlayer.append("".join(map(str, playerListKills)))
         playersList.append(thisPlayer)
     #Return the code, and the list
     return [jsonInputFormat[0], playersList]
