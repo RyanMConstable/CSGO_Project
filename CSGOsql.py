@@ -452,7 +452,7 @@ def findGameStats(steamID, category, ORDER):
     selection += ", entry_hold_kill_won_count, entry_hold_kill_loss_count, rank_old, rank_new, total_health_damage, total_armor_damage, total_health_damage_taken, "
     selection += "total_armor_damage_taken, kill_per_round, assist_per_round, death_per_round, total_time_death, avg_time_death, 1v1_won_count, 1v2_won_count, "
     selection += "1v3_won_count, 1v4_won_count, 1v5_won_count, 1v1_loss_count, 1v2_loss_count, 1v3_loss_count, 1v4_loss_count, 1v5_loss_count, 1v1_count, 1v2_count, "
-    selection += "1v3_count, 1v4_count, 1v5_count"
+    selection += "1v3_count, 1v4_count, 1v5_count, killsonround"
     query = "SELECT {} FROM gamestats WHERE steamid = '{}' ORDER BY {} {} LIMIT 1".format(selection, steamID, category, ORDER)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     return result
