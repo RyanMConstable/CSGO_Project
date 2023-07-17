@@ -18,6 +18,9 @@ def returnGameInfo(jsonInputFormat):
     #Set date of game played
     dt = thisGame["date"]
     
+    #Total rounds in the game
+    totalrounds = thisGame["score_team1"] + thisGame["score_team2"]
+    
     #Loop for every player on team_ct, add parsed data (obnoxiously long)
     for player in thisGame["team_ct"]["team_players"]:
         thisPlayer = []
@@ -81,6 +84,10 @@ def returnGameInfo(jsonInputFormat):
         thisPlayer.append(player['1v3_count'])
         thisPlayer.append(player['1v4_count'])
         thisPlayer.append(player['1v5_count'])
+        playerListKills = [0]*(totalrounds)
+        for kill in player["kills"]:
+            playerListKills[kill["round_number"]-1] += 1
+        playersList.append("".join(map(str, playerListKills)))
         playersList.append(thisPlayer)
         
     for player in thisGame["team_t"]["team_players"]:
@@ -145,6 +152,10 @@ def returnGameInfo(jsonInputFormat):
         thisPlayer.append(player['1v3_count'])
         thisPlayer.append(player['1v4_count'])
         thisPlayer.append(player['1v5_count'])
+        playerListKills = [0]*(totalrounds)
+        for kill in player["kills"]:
+            playerListKills[kill["round_number"]-1] += 1
+        playersList.append("".join(map(str, playerListKills)))
         playersList.append(thisPlayer)
     #Return the code, and the list
     return [jsonInputFormat[0], playersList]
