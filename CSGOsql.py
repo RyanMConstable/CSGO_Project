@@ -466,3 +466,12 @@ def findPos(steamID, category, ORDER = 'DESC'):
     if result != [] and result != None:
         return result[0][0]
     return
+
+
+#Return number of rows in gamestats
+def findNumStats():
+    query = "SELECT COUNT(*) FROM gamestats"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result != [] and result != None:
+        return result[0][0]
+    return
