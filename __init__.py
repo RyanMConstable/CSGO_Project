@@ -1,7 +1,8 @@
-__all__ = ["CSGOsql", "getJSONInfo", "simplesql", "findMatchSteamAPI", "dbconnection"]
+__all__ = ["csgosql", "getJSONInfo", "simplesql", "findMatchSteamAPI", "dbconnection", "discordMessage"]
 
-from . import CSGOsql
+from . import csgosql
 from . import getJSONInfo
 from . import simplesql
 from . import findMatchSteamAPI
 from . import dbconnection
+from . import discordMessage
