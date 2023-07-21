@@ -32,15 +32,15 @@ if __name__ == '__main__':
     #If there are new codes update the recentgame code and download the demo
     if any(ListToUpdate):
         autolog.info(F"[UPDATELIST {ListToUpdate}]")
-        os.system("echo [UPDATELIST] {} >> autoLOG.txt".format(ListToUpdate))
+        #os.system("echo [UPDATELIST] {} >> autoLOG.txt".format(ListToUpdate))
         for code in ListToUpdate:
             #Checks to see if the code is in the database
             if (code in codesIngamecodes and code in codesInGamestats):
                 autolog.info(F"[DUPLICATE] Code: {code} Already in gamecodes and gamestats")
-                os.system("echo [DUPLICATE] Code: {} Already in gamecodes and gamestats >> autoLOG.txt".format(code))
+                #os.system("echo [DUPLICATE] Code: {} Already in gamecodes and gamestats >> autoLOG.txt".format(code))
                 continue
             autolog.info(F"[DOWNLOADING] {code}")
-            os.system("echo [DOWNLOADING] {} >> autoLOG.txt".format(code))
+            #os.system("echo [DOWNLOADING] {} >> autoLOG.txt".format(code))
             getJSONInfo.downloadDems(code)
         
         
