@@ -1,11 +1,12 @@
 import findMatchSteamAPI as API
-import CSGOsql, getJSONInfo, os, subprocess, logging
+import CSGOsql, getJSONInfo, os, subprocess, logging, loggingsetup
 #1) Given a userid, and steamkey, find that users new list of codes
 #2) Generate every users new games
 #3) Update the users recentgamecode with the newest game code
 #4) Check the list 
 
 if __name__ == '__main__':
+    loggingsetup.logsetup()
     
     #Update function for new users (IE users who have a row in the user table, but not the recentgame table)
     CSGOsql.updateNewGames()
@@ -51,4 +52,5 @@ if __name__ == '__main__':
     subprocess.call(["python", os.path.join(os.getcwd(), "analyzeDemsMain.py")])
     #os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
 
+    logging.shutdown()
     exit(0)
