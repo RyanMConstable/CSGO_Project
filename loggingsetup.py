@@ -8,7 +8,7 @@ def autologf():
     fileHandler = logging.FileHandler("auto.log", mode = "a+")
     fileHandler.setFormatter(formatter)
     autolog.addHandler(fileHandler)
-    return
+    return autolog
 
 #For addlog
 def addlogf():
@@ -18,4 +18,4 @@ def addlogf():
     fileHandler = logging.FileHandler("add.log", mode = "a+")
     fileHandler.setFormatter(formatter)
     addlog.addHandler(fileHandler)
-    return
+    return addlog

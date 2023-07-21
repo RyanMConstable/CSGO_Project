@@ -1,12 +1,14 @@
 import findMatchSteamAPI as API
 import CSGOsql, getJSONInfo, os, subprocess
-from loggingsetup import autolog
+from loggingsetup import autologf
+
 #1) Given a userid, and steamkey, find that users new list of codes
 #2) Generate every users new games
 #3) Update the users recentgamecode with the newest game code
 #4) Check the list 
 
 if __name__ == '__main__':
+    autolog = autologf()
     #Update function for new users (IE users who have a row in the user table, but not the recentgame table)
     CSGOsql.updateNewGames()
 

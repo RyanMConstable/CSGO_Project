@@ -1,5 +1,5 @@
 import os, json, subprocess
-from loggingsetup import autolog
+from loggingsetup import autologf
 
 
 #Takes a list in the format [gameCode, jsonLoadedVariable] and parses the information for what we want.
@@ -168,6 +168,7 @@ def returnGameInfo(jsonInputFormat):
 
 #This function downloads a game code, only if the game is not in the folder already
 def downloadDems(code):
+    autolog = autologf()
     #Keep originalDir in case of adding new
     downloadDir = os.path.join(os.getcwd(), 'demoDownloads')
     downloadCodeDir = os.path.join(downloadDir, code)
@@ -195,6 +196,7 @@ def downloadDems(code):
 #New analyzeDem function... Outputs the same code and returnParse function but is able to be done with multiprocessing
 #Returns none if there is a weird error...
 def analyzeDem(code):
+    autolog = autologf()
     downloadDir = os.path.join(os.getcwd(), 'demoDownloads')
     codeDir = os.path.join(downloadDir, code)
     returnParse = None
