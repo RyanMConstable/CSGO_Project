@@ -1,4 +1,5 @@
-import os, json, subprocess, logging
+import os, json, subprocess
+from loggingsetup import autolog
 
 
 #Takes a list in the format [gameCode, jsonLoadedVariable] and parses the information for what we want.
@@ -179,11 +180,13 @@ def downloadDems(code):
         try:
             downloadResponse = subprocess.run(["csgodm", "download", code, "--output", downloadCodeDir], capture_output=True)
         except Exception as e:
-            os.system("echo [EXCEPTION] downloadDems {} >> autoLOG.txt".format(e))
+            autolog.critical(F'[EXCEPTION] downloadDems {e}')
+            #os.system("echo [EXCEPTION] downloadDems {} >> autoLOG.txt".format(e))
         if downloadResponse != None:
-            with open(os.path.join(os.getcwd(), 'downloadLOG.txt'), "a+") as f:
+            autolog.info(F"[CSGODM DOWNLOAD] {downloadResponse.stdout.decode('utf-8')}")
+            '''with open(os.path.join(os.getcwd(), 'downloadLOG.txt'), "a+") as f:
                 f.write(downloadResponse.stdout.decode('utf-8'))
-                f.close()
+                f.close()'''
     return
 
 
