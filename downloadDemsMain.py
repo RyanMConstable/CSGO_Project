@@ -7,7 +7,6 @@ from loggingsetup import autolog
 #4) Check the list 
 
 if __name__ == '__main__':
-    autolog.info("Test start")
     #Update function for new users (IE users who have a row in the user table, but not the recentgame table)
     CSGOsql.updateNewGames()
 
@@ -32,12 +31,15 @@ if __name__ == '__main__':
         
     #If there are new codes update the recentgame code and download the demo
     if any(ListToUpdate):
+        autolog.info(F"[UPDATELIST {ListToUpdate}]")
         os.system("echo [UPDATELIST] {} >> autoLOG.txt".format(ListToUpdate))
         for code in ListToUpdate:
             #Checks to see if the code is in the database
             if (code in codesIngamecodes and code in codesInGamestats):
+                autolog.info(F"[DUPLICATE] Code: {code} Already in gamecodes and gamestats")
                 os.system("echo [DUPLICATE] Code: {} Already in gamecodes and gamestats >> autoLOG.txt".format(code))
                 continue
+            autolog.info(F"[DOWNLOADING] {code}")
             os.system("echo [DOWNLOADING] {} >> autoLOG.txt".format(code))
             getJSONInfo.downloadDems(code)
         
@@ -51,6 +53,4 @@ if __name__ == '__main__':
     #os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
     subprocess.call(["python", os.path.join(os.getcwd(), "analyzeDemsMain.py")])
     #os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
-    autolog.info("test end")
-    autolog.shutdown()
     exit(0)

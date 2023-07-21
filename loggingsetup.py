@@ -1,14 +1,22 @@
 import logging
-autolog = logging
-addlog = logging
-autolog.basicConfig(format = '%(levelname)s: %(asctime)s %(message)s',
+autolog = logging.getLogger('auto_log')
+addlog = logging.getLogger('add_log')
+
+#For autolog
+autolog.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(levelname)s: %(asctime)s %(message)s', datefmt=r'%m/%d/%Y %I:%M:%S %p')
+fileHandler = logging.FileHandler("auto.log", mode = "a+")
+fileHandler.setFormatter(formatter)
+autolog.addHandler(fileHandler)
+
+addlog.setLevel(logging.INFO)
+formatter = logging.Formatter('%(levelname)s: %(asctime)s %(message)s', datefmt=r'%m/%d/%Y %I:%M:%S %p')
+fileHandler = logging.FileHandler("add.log", mode = "a+")
+fileHandler.setFormatter(formatter)
+addlog.addHandler(fileHandler)
+
+'''autolog.basicConfig(format = '%(levelname)s: %(asctime)s %(message)s',
                     datefmt=r'%m/%d/%Y %I:%M:%S %p',
                     filename = "auto.log",
                     filemode = 'a+',
-                    level = logging.DEBUG)
-
-addlog.basicConfig(format = '%(levelname)s: %(asctime)s %(message)s',
-                    datefmt=r'%m/%d/%Y %I:%M:%S %p',
-                    filename = "add.log",
-                    filemode = 'a+',
-                    level = logging.INFO)
+                    level = logging.DEBUG)'''
