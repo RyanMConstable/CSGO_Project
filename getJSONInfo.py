@@ -203,7 +203,8 @@ def analyzeDem(code):
         try:
             analyzedResponse = subprocess.run(["csgodm", "json", codeDir, "--output", codeDir, "--force-analyze"], capture_output=True)
         except Exception as e:
-            os.system("echo [EXCEPTION] analyzeDem {} >> autoLOG.txt".format(e))
+            autolog.critical(F"[EXCEPTION] analyzeDem {e}")
+            #os.system("echo [EXCEPTION] analyzeDem {} >> autoLOG.txt".format(e))
         if analyzedResponse != None:
             with open(os.path.join(os.getcwd(), 'analyzeLOG.txt'), "a+") as f:
                 f.write(analyzedResponse.stdout.decode('utf-8'))
@@ -217,7 +218,8 @@ def analyzeDem(code):
                     w.close()
                     returnParse = returnGameInfo([code, info])
         except Exception as e:
-            os.system("echo [EXCEPTION] anaylzeDem CODE: 2 {} >> autoLOG.txt".format(e))
+            autolog.critical(F"[EXCEPTION] anaylzeDem CODE: 2 {e}")
+            #os.system("echo [EXCEPTION] anaylzeDem CODE: 2 {} >> autoLOG.txt".format(e))
     if returnParse:
         return returnParse
     return
