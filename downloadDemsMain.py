@@ -7,7 +7,7 @@ from loggingsetup import autolog
 #4) Check the list 
 
 if __name__ == '__main__':
-    
+    autolog.info("Test start")
     #Update function for new users (IE users who have a row in the user table, but not the recentgame table)
     CSGOsql.updateNewGames()
 
@@ -51,6 +51,6 @@ if __name__ == '__main__':
     #os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
     subprocess.call(["python", os.path.join(os.getcwd(), "analyzeDemsMain.py")])
     #os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
-
+    autolog.info("test end")
     autolog.shutdown()
     exit(0)

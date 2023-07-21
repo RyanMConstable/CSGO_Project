@@ -1,5 +1,6 @@
 from multiprocessing import Pool
-import getJSONInfo, os, CSGOsql, datetime, discordMessage, logging
+import getJSONInfo, os, CSGOsql, datetime, discordMessage
+from loggingsetup import autolog
 
 
 #Run this script every 30 seconds or so to check for new games, increase if load increases
