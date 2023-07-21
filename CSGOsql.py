@@ -475,3 +475,17 @@ def findNumStats():
     if result != [] and result != None:
         return result[0][0]
     return
+
+
+#find all users info
+def findGameInfo(gameid = None):
+    if gameid == None:
+        query = "SELECT gameid FROM gamestats ORDER BY gameid DESC LIMIT 1"
+        result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+        if result == [] or result == None:
+            return
+        gameid = result[0][0]
+    #Here we want to find all the game info
+    query = F"SELECT name, adr FROM gamestats WHERE gameid = {gameid}"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    return result
