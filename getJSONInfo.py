@@ -1,4 +1,4 @@
-import os, json, subprocess
+import os, json, subprocess, logging
 
 
 #Takes a list in the format [gameCode, jsonLoadedVariable] and parses the information for what we want.
