@@ -176,6 +176,8 @@ def downloadDems(code):
     #Here we have a new directory with the name of the code, inside we want to just download the game
     
     if len(os.listdir(downloadCodeDir)) == 0:
+        steamPath = os.path.join(r"C:\Program Files (x86)\Steam\steam.exe")
+        subprocess.run(steamPath)
         downloadResponse = None
         try:
             downloadResponse = subprocess.run(["csgodm", "download", code, "--output", downloadCodeDir], capture_output=True)
