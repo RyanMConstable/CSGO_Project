@@ -1,4 +1,4 @@
-import requests, time, os, simplesql, logging
+import requests, time, os, simplesql
 
 steamAPIKey = os.environ["STEAM_API_KEY"]
 

@@ -1,5 +1,5 @@
 #For importing exceptions...
-import os, dbconnection, getJSONInfo, findMatchSteamAPI, logging
+import os, dbconnection, getJSONInfo, findMatchSteamAPI
 
 
 #This function adds a list of gamecodes to the database
