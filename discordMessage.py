@@ -1,4 +1,4 @@
-import requests, os
+import requests, os, logging
 #This file should notify the discord that the new game has been added... for now
 
 def notify():
