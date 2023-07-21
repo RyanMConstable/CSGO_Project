@@ -57,11 +57,11 @@ if __name__ == '__main__':
                         #os.system("echo [PATH] {} >> autoLOG.txt".format(os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), game[0])))
                 else:
                     CSGOsql.addGameStats(game)
-                    autolog.info(F"[ADD] Adding {game[0]} to gamestats [TIME] {currentTime}")
+                    addlog.info(F"[ADD] Adding {game[0]} to gamestats [TIME] {currentTime}")
                     #os.system("echo [ADD] Adding {} to gamestats [TIME] {} >> addLOG.txt".format(game[0], currentTime))
                     discordMessage.notify()
             else:
-                autolog.info(F"[DOUBLEADD] Game {game[0]} is being added to gamecodes and gamestats [TIME] {currentTime}")
+                addlog.info(F"[DOUBLEADD] Game {game[0]} is being added to gamecodes and gamestats [TIME] {currentTime}")
                 #os.system("echo [DOUBLEADD] Game {} is being added to gamecodes and gamestats [TIME] {} >> addLOG.txt".format(game[0], currentTime))
                 CSGOsql.addGameCodes([game[0]])
                 CSGOsql.addGameStats(game)
