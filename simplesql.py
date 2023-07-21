@@ -1,4 +1,4 @@
-import dbconnection
+import dbconnection, logging
 
 #This is where sub CSGOsql.py queries should be, where only dbconnection is needed
 
