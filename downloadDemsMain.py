@@ -1,12 +1,12 @@
 import findMatchSteamAPI as API
-import CSGOsql, getJSONInfo, os, subprocess, logging, loggingsetup
+import CSGOsql, getJSONInfo, os, subprocess
+from loggingsetup import autolog
 #1) Given a userid, and steamkey, find that users new list of codes
 #2) Generate every users new games
 #3) Update the users recentgamecode with the newest game code
 #4) Check the list 
 
 if __name__ == '__main__':
-    loggingdict = loggingsetup.logsetup()
     
     #Update function for new users (IE users who have a row in the user table, but not the recentgame table)
     CSGOsql.updateNewGames()
@@ -32,15 +32,12 @@ if __name__ == '__main__':
         
     #If there are new codes update the recentgame code and download the demo
     if any(ListToUpdate):
-        loggingdict['auto'].info(F"[UPDATELIST] {ListToUpdate}")
         os.system("echo [UPDATELIST] {} >> autoLOG.txt".format(ListToUpdate))
         for code in ListToUpdate:
             #Checks to see if the code is in the database
             if (code in codesIngamecodes and code in codesInGamestats):
-                loggingdict['auto'].info(F"[DUPLICATE] Code: {code} Already in gamecodes and gamestats")
                 os.system("echo [DUPLICATE] Code: {} Already in gamecodes and gamestats >> autoLOG.txt".format(code))
                 continue
-            loggingdict['auto'].info(F"[DOWNLOADING] {code}")
             os.system("echo [DOWNLOADING] {} >> autoLOG.txt".format(code))
             getJSONInfo.downloadDems(code)
         
@@ -55,5 +52,5 @@ if __name__ == '__main__':
     subprocess.call(["python", os.path.join(os.getcwd(), "analyzeDemsMain.py")])
     #os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
 
-    logging.shutdown()
+    autolog.shutdown()
     exit(0)
