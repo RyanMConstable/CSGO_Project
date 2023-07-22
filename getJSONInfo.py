@@ -92,13 +92,13 @@ def returnGameInfo(jsonInputFormat):
             playerListKills[kill["round_number"]-1] += 1
         thisPlayer.append("".join(map(str, playerListKills)))
         team_damage = 0
-        for player_hurted in [player]["players_hurted"]:
+        for player_hurted in player["players_hurted"]:
             if player_hurted["attacker_steamid"] == player["steamid"] and player_hurted["hurted_steamid"] in teammate_ct:
                 team_damage += player_hurted['health_damage']
         thisPlayer.append(team_damage)
         playersList.append(thisPlayer)
-    
-    
+        print(team_damage)
+    return
     teammate_t = [player["steamid"] for player in thisGame["team_ct"]["team_players"]]
     
     for player in thisGame["team_t"]["team_players"]:
