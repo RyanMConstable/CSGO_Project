@@ -389,6 +389,8 @@ def finduserandstat(category):
 def findBottom(category, limit):
     query = "SELECT name, {} FROM gamestats WHERE {} > 0.0 ORDER BY {} ASC LIMIT {}".format(category, category, category, limit)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return
     return result
 
 #Want a function that takes a steamid and checks for the most recent game
