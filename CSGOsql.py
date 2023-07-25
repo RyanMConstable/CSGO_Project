@@ -216,6 +216,25 @@ def addCodedbToStatdb():
                 print(e)
     return
 
+
+#New temp function
+def redownload():
+    query = "SELECT * from gamecodes"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    for items in result:
+        getJSONInfo.downloadDems(items[1])
+    #Find items in demoDownloads, then get the list of those items and remove them from gamestats, then re-add them
+    codeList = os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))
+    for code in codeList:
+        #Here we want to find the gameid from gamecodes then delete those rows from gamestats
+        query = "SELECT id from gamecodes WHERE code = '{}'".format(code)
+        result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+        if any(result):
+            print("Deleting: {}, id: {}".format(code, result[0][0]))
+            query = "DELETE FROM gamestats WHERE (gameid = {})".format(result[0][0])
+            dbconnection.executeQuery(dbconnection.createConnection(), query, True)
+    return
+
 ##################################################################################
 #################     END OF ADD FUNCTIONS              ##########################
 ##################################################################################
@@ -436,17 +455,6 @@ def findSteamID(discordUser):
     return [result[0][0], result[0][1]]
 
 
-
-
-################################### Below functions are for updating db ################################
-#Might want to think about creating a new file to separate these...
-
-
-
-
-
-
-
 #Check if a given game is in the gamestats table
 #returns boolean True if the game is in the table, otherwise Falses
 def inGameStats(code):
@@ -463,13 +471,6 @@ def inGameStats(code):
         return False
     return True
 
-
-
-
-
-#######################################################
-####New cleaner functions for multiprocessing##########
-#######################################################
 
 #Returns dictionary of game codes in gamecodes
 def findAllCodes():
@@ -504,13 +505,6 @@ def findAllid():
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     return result
 
-############################################################################
-#########################Finding Game Stats#################################
-############################################################################
-
-
-
-
 
 #New function to find a users steamid
 def findSteamID2(name):
@@ -519,24 +513,4 @@ def findSteamID2(name):
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if any(result):
         return result[0][0]
-    return
-
-
-
-#New temp function
-def redownload():
-    query = "SELECT * from gamecodes"
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    for items in result:
-        getJSONInfo.downloadDems(items[1])
-    #Find items in demoDownloads, then get the list of those items and remove them from gamestats, then re-add them
-    codeList = os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))
-    for code in codeList:
-        #Here we want to find the gameid from gamecodes then delete those rows from gamestats
-        query = "SELECT id from gamecodes WHERE code = '{}'".format(code)
-        result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-        if any(result):
-            print("Deleting: {}, id: {}".format(code, result[0][0]))
-            query = "DELETE FROM gamestats WHERE (gameid = {})".format(result[0][0])
-            dbconnection.executeQuery(dbconnection.createConnection(), query, True)
     return
