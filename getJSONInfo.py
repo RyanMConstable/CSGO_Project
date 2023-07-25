@@ -199,12 +199,8 @@ def downloadDems(code):
             downloadResponse = subprocess.run(["csgodm", "download", code, "--output", downloadCodeDir], capture_output=True)
         except Exception as e:
             autolog.critical(F'[EXCEPTION] downloadDems {e}')
-            #os.system("echo [EXCEPTION] downloadDems {} >> autoLOG.txt".format(e))
         if downloadResponse != None:
             autolog.info(F"[CSGODM DOWNLOAD] {downloadResponse.stdout.decode('utf-8')}")
-            '''with open(os.path.join(os.getcwd(), 'downloadLOG.txt'), "a+") as f:
-                f.write(downloadResponse.stdout.decode('utf-8'))
-                f.close()'''
     return
 
 
