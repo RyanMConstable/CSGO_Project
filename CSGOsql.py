@@ -2,6 +2,13 @@
 import os, dbconnection, getJSONInfo, findMatchSteamAPI
 
 
+
+
+################################################################################
+################    IMPORTANT ADD TO DB FUNCTIONS                   ############
+################################################################################
+
+
 #This function adds a list of gamecodes to the database
 #No duplicates
 def addGameCodes(codes):
