@@ -46,6 +46,30 @@ def addGameStats(playerStats):
             dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, val)
     return
 
+
+#Add the discorduser and steamid to the new table
+def setDiscordUser(discordUser, steamid, steamidkey):
+    #Here we want to validate the steamid, and steamidkey given
+    if findMatchSteamAPI.validateUser(steamid, steamidkey) == False:
+        return "Invalid steam id"
+    
+    query = "SELECT * FROM discorduser WHERE discordname = {}".format(discordUser)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    
+    
+    if result is None or result == []:
+        print("Empty")
+        newquery = "INSERT INTO discorduser (discordname, steamid, steamidkey) VALUES (%s, %s, %s)"
+        result = dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, (discordUser, steamid, steamidkey))
+        print(result)
+    else:
+        print("User here, newid:" + str(steamid) + " newidkey:" + str(steamidkey))
+        newquery = "UPDATE discorduser SET steamid = '{}', steamidkey = '{}' WHERE discordname = {}".format(steamid, steamidkey, discordUser)
+        dbconnection.executeQuery(dbconnection.createConnection(), newquery, True)
+    return
+
+
+
 #This function will find all of the game codes that are in the first table but not the second 
 #Then it will have those codes as a list and then populate the second table with them
 def populateSecondTableFromFirst():
@@ -64,6 +88,15 @@ def populateSecondTableFromFirst():
 #################     END OF ADD FUNCTIONS              ##########################
 ##################################################################################
 
+
+
+
+
+
+
+##################################################################################
+#################     GAMECODE INTERACTIONS             ##########################
+##################################################################################
 
 #This function returns all the codes in the first table
 def returnAllCodes():
@@ -95,6 +128,22 @@ def findMostRecentGame(userid):
     return result[0][0]
 
 
+
+##################################################################################
+#################     END OF GAMECODE FUNCTIONS         ##########################
+##################################################################################
+
+
+
+
+
+
+
+
+##################################################################################
+#################             STAT QUERIES              ##########################
+##################################################################################
+
 #Find top X amount for a category with a query
 def findTopX(category, num):
     if int(num) < 0 or int(num) > 100:
@@ -125,26 +174,12 @@ def findTopUser(category, userid, limit):
     head = ["Name", category]
     return [result, head]
 
-#Add the discorduser and steamid to the new table
-def setDiscordUser(discordUser, steamid, steamidkey):
-    #Here we want to validate the steamid, and steamidkey given
-    if findMatchSteamAPI.validateUser(steamid, steamidkey) == False:
-        return "Invalid steam id"
-    
-    query = "SELECT * FROM discorduser WHERE discordname = {}".format(discordUser)
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    
-    
-    if result is None or result == []:
-        print("Empty")
-        newquery = "INSERT INTO discorduser (discordname, steamid, steamidkey) VALUES (%s, %s, %s)"
-        result = dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, (discordUser, steamid, steamidkey))
-        print(result)
-    else:
-        print("User here, newid:" + str(steamid) + " newidkey:" + str(steamidkey))
-        newquery = "UPDATE discorduser SET steamid = '{}', steamidkey = '{}' WHERE discordname = {}".format(steamid, steamidkey, discordUser)
-        dbconnection.executeQuery(dbconnection.createConnection(), newquery, True)
-    return
+
+##################################################################################
+#################     END OF STAT FUNCTIONS             ##########################
+##################################################################################
+
+
 
 
 #Finds a steamid from a discorduser
