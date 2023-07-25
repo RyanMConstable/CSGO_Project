@@ -34,15 +34,12 @@ if __name__ == '__main__':
     #If there are new codes update the recentgame code and download the demo
     if any(ListToUpdate):
         autolog.info(F"[UPDATELIST {ListToUpdate}]")
-        #os.system("echo [UPDATELIST] {} >> autoLOG.txt".format(ListToUpdate))
         for code in ListToUpdate:
             #Checks to see if the code is in the database
             if (code in codesIngamecodes and code in codesInGamestats):
                 autolog.info(F"[DUPLICATE] Code: {code} Already in gamecodes and gamestats")
-                #os.system("echo [DUPLICATE] Code: {} Already in gamecodes and gamestats >> autoLOG.txt".format(code))
                 continue
             autolog.info(F"[DOWNLOADING] {code}")
-            #os.system("echo [DOWNLOADING] {} >> autoLOG.txt".format(code))
             getJSONInfo.downloadDems(code)
         
         
@@ -52,7 +49,5 @@ if __name__ == '__main__':
 
     #Call analyze only if there are directories in demoDownloads
     #Calls up to 10 times, if it calls more than twice there is most likely an issue (enable logging at that point)
-    #os.system("echo [CALL] Starting Analyze File >> autoLOG.txt")
     subprocess.call(["python", os.path.join(os.getcwd(), "analyzeDemsMain.py")])
-    #os.system("echo [CALL] Ending Analyze File >> autoLOG.txt")
     exit(0)
