@@ -234,6 +234,60 @@ def finduserandstat(category):
         return
     return str(result[0][0]) + ": " + str(result[0][1])
 
+#Function to find the bottom X Users
+def findBottom(category, limit):
+    query = "SELECT name, {} FROM gamestats WHERE {} > 0.0 ORDER BY {} ASC LIMIT {}".format(category, category, category, limit)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    return result
+
+#Want a function that takes a steamid and checks for the most recent game
+
+
+#Function to find highest X game stats
+def findGameStats(steamID, category, ORDER):
+    selection = "totalkills, score, tk_count, assist, deaths, 5k, 4k, 3k, 2k, 1k, headshot, kd, rws, shot_count, hit_count, flashbang_thrown, he_thrown, molly_thrown"
+    selection += ", incendiary_thrown, decoy_thrown, round_count, date, adr, clutches, clutch_won_count, clutch_loss_count, entry_kill_won_count, entry_kill_loss_count"
+    selection += ", entry_hold_kill_won_count, entry_hold_kill_loss_count, rank_old, rank_new, total_health_damage, total_armor_damage, total_health_damage_taken, "
+    selection += "total_armor_damage_taken, kill_per_round, assist_per_round, death_per_round, total_time_death, avg_time_death, 1v1_won_count, 1v2_won_count, "
+    selection += "1v3_won_count, 1v4_won_count, 1v5_won_count, 1v1_loss_count, 1v2_loss_count, 1v3_loss_count, 1v4_loss_count, 1v5_loss_count, 1v1_count, 1v2_count, "
+    selection += "1v3_count, 1v4_count, 1v5_count, killsonround"
+    query = "SELECT {} FROM gamestats WHERE steamid = '{}' ORDER BY {} {} LIMIT 1".format(selection, steamID, category, ORDER)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    return result
+
+
+#Function to find the position a player is in given id, category, and reverse order
+def findPos(steamID, category, ORDER = 'DESC'):
+    query = "SELECT Position FROM (SELECT ROW_NUMBER() OVER(ORDER BY {} {}) AS Position".format(category, ORDER)
+    query += ", steamid, name, totalkills FROM csgochadtable.gamestats) as sortedInfo WHERE steamid = '{}' limit 1".format(steamID)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result != [] and result != None:
+        return result[0][0]
+    return
+
+
+#Return number of rows in gamestats
+def findNumStats():
+    query = "SELECT COUNT(*) FROM gamestats"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result != [] and result != None:
+        return result[0][0]
+    return
+
+
+#find all users info
+def findGameInfo(gameid = None):
+    if gameid == None:
+        query = "SELECT gameid FROM gamestats ORDER BY gameid DESC LIMIT 1"
+        result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+        if result == [] or result == None:
+            return
+        gameid = result[0][0]
+    #Here we want to find all the game info
+    query = F"SELECT name, adr, team_damage FROM gamestats WHERE gameid = {gameid}"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    return result
+
 ##################################################################################
 #################     END OF STAT FUNCTIONS             ##########################
 ##################################################################################
@@ -480,58 +534,3 @@ def redownload():
             query = "DELETE FROM gamestats WHERE (gameid = {})".format(result[0][0])
             dbconnection.executeQuery(dbconnection.createConnection(), query, True)
     return
-
-
-#Function to find the bottom X Users
-def findBottom(category, limit):
-    query = "SELECT name, {} FROM gamestats WHERE {} > 0.0 ORDER BY {} ASC LIMIT {}".format(category, category, category, limit)
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    return result
-
-#Want a function that takes a steamid and checks for the most recent game
-
-
-#Function to find highest X game stats
-def findGameStats(steamID, category, ORDER):
-    selection = "totalkills, score, tk_count, assist, deaths, 5k, 4k, 3k, 2k, 1k, headshot, kd, rws, shot_count, hit_count, flashbang_thrown, he_thrown, molly_thrown"
-    selection += ", incendiary_thrown, decoy_thrown, round_count, date, adr, clutches, clutch_won_count, clutch_loss_count, entry_kill_won_count, entry_kill_loss_count"
-    selection += ", entry_hold_kill_won_count, entry_hold_kill_loss_count, rank_old, rank_new, total_health_damage, total_armor_damage, total_health_damage_taken, "
-    selection += "total_armor_damage_taken, kill_per_round, assist_per_round, death_per_round, total_time_death, avg_time_death, 1v1_won_count, 1v2_won_count, "
-    selection += "1v3_won_count, 1v4_won_count, 1v5_won_count, 1v1_loss_count, 1v2_loss_count, 1v3_loss_count, 1v4_loss_count, 1v5_loss_count, 1v1_count, 1v2_count, "
-    selection += "1v3_count, 1v4_count, 1v5_count, killsonround"
-    query = "SELECT {} FROM gamestats WHERE steamid = '{}' ORDER BY {} {} LIMIT 1".format(selection, steamID, category, ORDER)
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    return result
-
-
-#Function to find the position a player is in given id, category, and reverse order
-def findPos(steamID, category, ORDER = 'DESC'):
-    query = "SELECT Position FROM (SELECT ROW_NUMBER() OVER(ORDER BY {} {}) AS Position".format(category, ORDER)
-    query += ", steamid, name, totalkills FROM csgochadtable.gamestats) as sortedInfo WHERE steamid = '{}' limit 1".format(steamID)
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    if result != [] and result != None:
-        return result[0][0]
-    return
-
-
-#Return number of rows in gamestats
-def findNumStats():
-    query = "SELECT COUNT(*) FROM gamestats"
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    if result != [] and result != None:
-        return result[0][0]
-    return
-
-
-#find all users info
-def findGameInfo(gameid = None):
-    if gameid == None:
-        query = "SELECT gameid FROM gamestats ORDER BY gameid DESC LIMIT 1"
-        result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-        if result == [] or result == None:
-            return
-        gameid = result[0][0]
-    #Here we want to find all the game info
-    query = F"SELECT name, adr, team_damage FROM gamestats WHERE gameid = {gameid}"
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    return result
