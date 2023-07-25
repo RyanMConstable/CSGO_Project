@@ -139,6 +139,83 @@ def updateAllUsers():
         updateGames(id[0], id[1])
     return "Complete!"
 
+
+#Function to add to the recentgame table
+def newRecentGame(steamid, code):
+    query = "SELECT * FROM recentgame WHERE steamid = {}".format(steamid)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    
+    secondQuery = "SELECT * FROM gamecodes WHERE code = '{}'".format(code)
+    secondResult = dbconnection.executeQuery(dbconnection.createConnection(), secondQuery)
+    if secondResult is None or result == []:
+        return
+    
+    if result is None or result == []:
+        query = "INSERT INTO recentgame (steamid, code) VALUES (%s, %s)"
+        result = dbconnection.executeQuery(dbconnection.createConnection(), query, True, (steamid, code))
+    else:
+        query = "UPDATE recentgame SET code = '{}' WHERE steamid = '{}'".format(code, steamid)
+        result = dbconnection.executeQuery(dbconnection.createConnection(), query, True)
+    return
+
+
+
+
+
+#Function to get every id from discorduser and check if they're in the the newestgame list
+#If they're not use the oldest game to check first
+def updateNewGames():
+    #Get all steamids from the discorduser table
+    query = "SELECT steamid FROM discorduser"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return
+    
+    #Check if the user id is in the recentgame table
+    #If the id is not in the table, then we update the table
+    listToUpdate = []
+    for id in result:
+        query = "SELECT steamid FROM recentgame WHERE steamid = '{}'".format(id[0])
+        result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+        if result is None or result == []:
+            listToUpdate.append(id[0])
+            
+    #Now for every user in listToUpdate, we update the recent game after searching the table
+    for user in listToUpdate:
+        #This query finds the oldest game from the given user in the table
+        query = "SELECT gameid FROM gamestats WHERE steamid = '{}' ORDER BY date ASC LIMIT 1".format(user)
+        result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+        
+        #This finds the actual code
+        if result is not None or result != []:
+            query = "SELECT code FROM gamecodes WHERE id = '{}'".format(result[0][0])
+            result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+            
+            #This inserts the code into the recentgame
+            if result is not None:
+                query = "INSERT INTO recentgame (steamid, code) VALUES (%s, %s)"
+                result = dbconnection.executeQuery(dbconnection.createConnection(), query, True, (user, result[0][0]))
+        
+    return
+
+
+
+#Function to find all game codes in the first table to add to the second one
+def addCodedbToStatdb():
+    #Find id
+    query = "SELECT id, code FROM gamecodes WHERE id NOT IN (SELECT gameid FROM gamestats) ORDER BY id DESC"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    print(result)
+    if result != []:
+        for firstResult in result:
+            try:
+                addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(firstResult[1])))
+                print("Added: {}".format(firstResult[1]))
+            except Exception as e:
+                print("Exception, can't add: {}".format(firstResult[1]))
+                print(e)
+    return
+
 ##################################################################################
 #################     END OF ADD FUNCTIONS              ##########################
 ##################################################################################
@@ -387,81 +464,7 @@ def inGameStats(code):
     return True
 
 
-#Function to add to the recentgame table
-def newRecentGame(steamid, code):
-    query = "SELECT * FROM recentgame WHERE steamid = {}".format(steamid)
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    
-    secondQuery = "SELECT * FROM gamecodes WHERE code = '{}'".format(code)
-    secondResult = dbconnection.executeQuery(dbconnection.createConnection(), secondQuery)
-    if secondResult is None or result == []:
-        return
-    
-    if result is None or result == []:
-        query = "INSERT INTO recentgame (steamid, code) VALUES (%s, %s)"
-        result = dbconnection.executeQuery(dbconnection.createConnection(), query, True, (steamid, code))
-    else:
-        query = "UPDATE recentgame SET code = '{}' WHERE steamid = '{}'".format(code, steamid)
-        result = dbconnection.executeQuery(dbconnection.createConnection(), query, True)
-    return
 
-
-
-
-
-#Function to get every id from discorduser and check if they're in the the newestgame list
-#If they're not use the oldest game to check first
-def updateNewGames():
-    #Get all steamids from the discorduser table
-    query = "SELECT steamid FROM discorduser"
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    if result is None or result == []:
-        return
-    
-    #Check if the user id is in the recentgame table
-    #If the id is not in the table, then we update the table
-    listToUpdate = []
-    for id in result:
-        query = "SELECT steamid FROM recentgame WHERE steamid = '{}'".format(id[0])
-        result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-        if result is None or result == []:
-            listToUpdate.append(id[0])
-            
-    #Now for every user in listToUpdate, we update the recent game after searching the table
-    for user in listToUpdate:
-        #This query finds the oldest game from the given user in the table
-        query = "SELECT gameid FROM gamestats WHERE steamid = '{}' ORDER BY date ASC LIMIT 1".format(user)
-        result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-        
-        #This finds the actual code
-        if result is not None or result != []:
-            query = "SELECT code FROM gamecodes WHERE id = '{}'".format(result[0][0])
-            result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-            
-            #This inserts the code into the recentgame
-            if result is not None:
-                query = "INSERT INTO recentgame (steamid, code) VALUES (%s, %s)"
-                result = dbconnection.executeQuery(dbconnection.createConnection(), query, True, (user, result[0][0]))
-        
-    return
-
-
-
-#Function to find all game codes in the first table to add to the second one
-def addCodedbToStatdb():
-    #Find id
-    query = "SELECT id, code FROM gamecodes WHERE id NOT IN (SELECT gameid FROM gamestats) ORDER BY id DESC"
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    print(result)
-    if result != []:
-        for firstResult in result:
-            try:
-                addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(firstResult[1])))
-                print("Added: {}".format(firstResult[1]))
-            except Exception as e:
-                print("Exception, can't add: {}".format(firstResult[1]))
-                print(e)
-    return
 
 
 #######################################################
