@@ -4,7 +4,7 @@ from loggingsetup import autologf, addlogf
 
 
 
-#Run this script every 30 seconds or so to check for new games, increase if load increases
+#This script is called from downloadDemsMain and is run to analyze all games in the folder
 if __name__ == '__main__':
     autolog = autologf()
     addlog = addlogf()
