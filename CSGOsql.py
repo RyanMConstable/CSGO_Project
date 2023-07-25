@@ -446,6 +446,12 @@ def findGameInfo(gameid = None):
 
 
 
+
+
+##################################################################################
+#################     RANDOM QUERY FUNCTIONS            ##########################
+##################################################################################
+
 #Finds a steamid from a discorduser
 def findSteamID(discordUser):
     query = "SELECT steamid, steamidkey FROM discorduser WHERE discordname = {}".format(discordUser)
@@ -514,3 +520,8 @@ def findSteamID2(name):
     if any(result):
         return result[0][0]
     return
+
+
+##################################################################################
+#################     END OF RANDOM FUNCTIONS           ##########################
+##################################################################################
