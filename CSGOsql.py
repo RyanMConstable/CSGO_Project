@@ -47,6 +47,12 @@ def addGameStats(playerStats):
     return
 
 
+
+##################################################################################
+#################     END OF ADD FUNCTIONS              ##########################
+##################################################################################
+
+
 #This function returns all the codes in the first table
 def returnAllCodes():
     query = "SELECT code from gamecodes"
