@@ -461,7 +461,7 @@ def findSteamID(discordUser):
     query = "SELECT steamid, steamidkey FROM discorduser WHERE discordname = {}".format(discordUser)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
-        return None
+        return
     return [result[0][0], result[0][1]]
 
 
@@ -514,7 +514,7 @@ def findAllid():
     query = "SELECT steamid, steamidkey FROM discorduser"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
-        return None
+        return
     return result
 
 
