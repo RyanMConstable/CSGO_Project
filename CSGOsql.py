@@ -513,6 +513,8 @@ def findAllCodesInStats():
 def findAllid():
     query = "SELECT steamid, steamidkey FROM discorduser"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return None
     return result
 
 
