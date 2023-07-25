@@ -404,6 +404,8 @@ def findGameStats(steamID, category, ORDER):
     selection += "1v3_count, 1v4_count, 1v5_count, killsonround"
     query = "SELECT {} FROM gamestats WHERE steamid = '{}' ORDER BY {} {} LIMIT 1".format(selection, steamID, category, ORDER)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result == [] or result == None:
+        return
     return result
 
 
