@@ -46,7 +46,19 @@ def addGameStats(playerStats):
             dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, val)
     return
 
-
+#This function will find all of the game codes that are in the first table but not the second 
+#Then it will have those codes as a list and then populate the second table with them
+def populateSecondTableFromFirst():
+    query = "SELECT code from gamecodes WHERE code NOT IN (SELECT code FROM gamecodes WHERE id IN (SELECT gameid FROM gamestats))"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return
+    for code in result:
+        try:
+            addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(code[0])))
+        except:
+            continue
+    return
 
 ##################################################################################
 #################     END OF ADD FUNCTIONS              ##########################
@@ -81,21 +93,6 @@ def findMostRecentGame(userid):
         return
     #Returns match code of the most recent game
     return result[0][0]
-
-
-#This function will find all of the game codes that are in the first table but not the second 
-#Then it will have those codes as a list and then populate the second table with them
-def populateSecondTableFromFirst():
-    query = "SELECT code from gamecodes WHERE code NOT IN (SELECT code FROM gamecodes WHERE id IN (SELECT gameid FROM gamestats))"
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    if result is None or result == []:
-        return
-    for code in result:
-        try:
-            addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(code[0])))
-        except:
-            continue
-    return
 
 
 #Find top X amount for a category with a query
