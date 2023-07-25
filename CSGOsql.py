@@ -84,6 +84,61 @@ def populateSecondTableFromFirst():
             continue
     return
 
+
+#This function not only needs to add the games, but then update the most recent game in the recent game table
+def updateGames(steamid, steamidkey):
+    codes = findMatchSteamAPI.generateNewCodes(steamid, steamidkey)
+    codesToUpdate = []
+    #Remove codes that are already in the database to save time
+    for code in codes:
+        try:
+            query = "SELECT id from gamecodes WHERE code = '{}'".format(code)
+            result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+            if result == []:
+                codesToUpdate.append(code)
+                continue
+            query = "SELECT * from gamestats WHERE gameid = '{}'".format(result[0][0])
+            result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+            if result == []:
+                codesToUpdate.append(code)
+        except Exception as e:
+            print("Exception code remove: " + str(code))
+            codesToUpdate.append(code)
+    
+    print("Original List:" + str(codes))
+    print("Codes to update:" + str(codesToUpdate))    
+    if codesToUpdate is None or codesToUpdate == []:
+        print("Already updated...")
+        return
+    codes = codesToUpdate
+    
+    addGameCodes(codes)
+    for code in codes:
+        print("Attempting to add code: '{}'".format(code))
+        try:
+            addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(code)))
+            print("Successfully added game stats!")
+        except Exception as e:
+            print("Exception")
+            print(e)
+            continue
+    newRecentGame(steamid, codes[-1])
+    return "Games Added"
+
+
+
+#Update all users games...
+def updateAllUsers():
+    query = "SELECT steamid, steamidkey FROM discorduser"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return None
+    #Here we want each id to call updategames
+    for id in result:
+        print("\n-------------------------------\nUpdating user:"+str(id[0])+"\n-------------------------------\n")
+        updateGames(id[0], id[1])
+    return "Complete!"
+
 ##################################################################################
 #################     END OF ADD FUNCTIONS              ##########################
 ##################################################################################
@@ -311,59 +366,7 @@ def findSteamID(discordUser):
 
 
 
-#This function not only needs to add the games, but then update the most recent game in the recent game table
-def updateGames(steamid, steamidkey):
-    codes = findMatchSteamAPI.generateNewCodes(steamid, steamidkey)
-    codesToUpdate = []
-    #Remove codes that are already in the database to save time
-    for code in codes:
-        try:
-            query = "SELECT id from gamecodes WHERE code = '{}'".format(code)
-            result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-            if result == []:
-                codesToUpdate.append(code)
-                continue
-            query = "SELECT * from gamestats WHERE gameid = '{}'".format(result[0][0])
-            result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-            if result == []:
-                codesToUpdate.append(code)
-        except Exception as e:
-            print("Exception code remove: " + str(code))
-            codesToUpdate.append(code)
-    
-    print("Original List:" + str(codes))
-    print("Codes to update:" + str(codesToUpdate))    
-    if codesToUpdate is None or codesToUpdate == []:
-        print("Already updated...")
-        return
-    codes = codesToUpdate
-    
-    addGameCodes(codes)
-    for code in codes:
-        print("Attempting to add code: '{}'".format(code))
-        try:
-            addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(code)))
-            print("Successfully added game stats!")
-        except Exception as e:
-            print("Exception")
-            print(e)
-            continue
-    newRecentGame(steamid, codes[-1])
-    return "Games Added"
 
-
-
-#Update all users games...
-def updateAllUsers():
-    query = "SELECT steamid, steamidkey FROM discorduser"
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    if result is None or result == []:
-        return None
-    #Here we want each id to call updategames
-    for id in result:
-        print("\n-------------------------------\nUpdating user:"+str(id[0])+"\n-------------------------------\n")
-        updateGames(id[0], id[1])
-    return "Complete!"
 
 
 
