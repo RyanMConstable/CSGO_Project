@@ -49,7 +49,7 @@ if __name__ == '__main__':
                 else:
                     CSGOsql.addGameStats(game)
                     addlog.info(F"[ADD] Adding {game[0]} to gamestats [TIME] {currentTime}")
-                    discordMessage.notify()
+                    discordMessage.notify(game)
             else:
                 addlog.info(F"[DOUBLEADD] Game {game[0]} is being added to gamecodes and gamestats [TIME] {currentTime}")
                 CSGOsql.addGameCodes([game[0]])
