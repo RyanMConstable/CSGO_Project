@@ -3,7 +3,7 @@ import requests, os
 
 def notify():
     payload = {
-        'content' : "-Summary of last game"
+        'content' : "-Summary Time"
     }
     header = {
         'Authorization' : F'Bot {os.environ["DISCORD_TOKEN"]}'
