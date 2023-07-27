@@ -296,6 +296,12 @@ def findMostRecentGame(userid):
 
 ############# REFACTORED #############
 #Find top users in a given category, finds 'num' amount of users
+
+
+
+
+
+####### FUNCTIONS TO FIND THE HIGHEST ON A GIVEN CATEGORY #########
 def findTopX(category, limit):
     if int(limit) < 1 or int(limit) > 100:
         print("1 <= num <= 100")
@@ -316,6 +322,9 @@ def findTopXUser(category, userid, limit):
     if result is None or result == []:
         return
     return result
+#####################################################################
+
+
 
 #Find top X for a specific user with a query
 def findTopUser(category, userid, limit):
