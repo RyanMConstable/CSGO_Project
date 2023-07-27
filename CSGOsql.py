@@ -294,7 +294,7 @@ def findMostRecentGame(userid):
 #################             STAT QUERIES              ##########################
 ##################################################################################
 
-#Find top X amount for a category with a query
+#Find top users in a given category, finds 'num' amount of users
 def findTopX(category, num):
     if int(num) < 1 or int(num) > 100:
         return "1 <= num <= 100"
