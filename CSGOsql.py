@@ -294,9 +294,10 @@ def findMostRecentGame(userid):
 #################             STAT QUERIES              ##########################
 ##################################################################################
 
+############# REFACTORED #############
 #Find top users in a given category, finds 'num' amount of users
-def findTopX(category, num):
-    if int(num) < 1 or int(num) > 100:
+def findTopX(category, limit):
+    if int(limit) < 1 or int(limit) > 100:
         print("1 <= num <= 100")
         return
     query = "SELECT name, {} FROM gamestats ORDER BY {} DESC LIMIT {}".format(category, category, num)
@@ -307,6 +308,9 @@ def findTopX(category, num):
 
 #Find top X for a specific user with a query
 def findTop10user(category, userid, limit):
+    if int(limit) < 1 or int(limit) > 100:
+        print("1 <= num <= 100")
+        return
     query = "SELECT name, {} FROM gamestats WHERE steamid = {} ORDER BY {} DESC LIMIT {}".format(category, userid, category, limit)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
