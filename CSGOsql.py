@@ -313,11 +313,9 @@ def findTopX(category, limit):
     return result
 
 #Find top X for a specific user with a query
-def findTopXUser(category, userid, limit):
-    if int(limit) < 1 or int(limit) > 100:
-        print("1 <= num <= 100")
-        return
-    query = "SELECT name, {} FROM gamestats WHERE steamid = {} ORDER BY {} DESC LIMIT {}".format(category, userid, category, limit)
+#Returns only the list of numbers from each game
+def findTopUser(category, userid, limit):
+    query = "SELECT {} FROM gamestats WHERE steamid = {} ORDER BY {} DESC LIMIT {}".format(category, userid, category, limit)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
@@ -326,14 +324,6 @@ def findTopXUser(category, userid, limit):
 
 
 
-#Find top X for a specific user with a query
-def findTopUser(category, userid, limit):
-    query = "SELECT {} FROM gamestats WHERE steamid = {} ORDER BY {} DESC LIMIT {}".format(category, userid, category, limit)
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    if result is None or result == []:
-        return
-    head = ["Name", category]
-    return [result, head]
 
 #Very useful stat function, type in the column name of the database, and the steam id and it will return the sum of that column
 def selectCombinedUserStat(stat, steamid):
