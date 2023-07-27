@@ -303,8 +303,7 @@ def findTopX(category, num):
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
-    head = ["Name", category]
-    return [result, head]
+    return result
 
 #Find top X for a specific user with a query
 def findTop10user(category, userid, limit):
