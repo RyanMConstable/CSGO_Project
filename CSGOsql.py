@@ -307,7 +307,7 @@ def findTopX(category, limit):
     return result
 
 #Find top X for a specific user with a query
-def findTop10user(category, userid, limit):
+def findTopXUser(category, userid, limit):
     if int(limit) < 1 or int(limit) > 100:
         print("1 <= num <= 100")
         return
