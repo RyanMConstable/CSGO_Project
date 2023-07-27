@@ -294,9 +294,6 @@ def findMostRecentGame(userid):
 #################             STAT QUERIES              ##########################
 ##################################################################################
 
-############# REFACTORED #############
-#Find top users in a given category, finds 'num' amount of users
-
 
 
 
