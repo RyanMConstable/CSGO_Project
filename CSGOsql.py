@@ -328,6 +328,15 @@ def findTop1user(category, userid):
     if result is None or result == []:
         return
     return result[0][1]
+
+
+#Function to find user and stat
+def finduserandstat(category):
+    query = "SELECT name, {} FROM gamestats ORDER BY {} DESC LIMIT 1".format(category, category)
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None or result == []:
+        return
+    return str(result[0][0]) + ": " + str(result[0][1])
 #####################################################################
 
 
@@ -376,14 +385,6 @@ def returnAllUserRows(steamid):
         return
     return result
 
-
-#Function to find user and stat
-def finduserandstat(category):
-    query = "SELECT name, {} FROM gamestats ORDER BY {} DESC LIMIT 1".format(category, category)
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    if result is None or result == []:
-        return
-    return str(result[0][0]) + ": " + str(result[0][1])
 
 #Function to find the bottom X Users
 def findBottom(category, limit):
