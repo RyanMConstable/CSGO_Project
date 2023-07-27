@@ -300,7 +300,7 @@ def findTopX(category, limit):
     if int(limit) < 1 or int(limit) > 100:
         print("1 <= num <= 100")
         return
-    query = "SELECT name, {} FROM gamestats ORDER BY {} DESC LIMIT {}".format(category, category, num)
+    query = "SELECT name, {} FROM gamestats ORDER BY {} DESC LIMIT {}".format(category, category, limit)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
