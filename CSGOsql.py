@@ -297,7 +297,8 @@ def findMostRecentGame(userid):
 #Find top users in a given category, finds 'num' amount of users
 def findTopX(category, num):
     if int(num) < 1 or int(num) > 100:
-        return "1 <= num <= 100"
+        print("1 <= num <= 100")
+        return
     query = "SELECT name, {} FROM gamestats ORDER BY {} DESC LIMIT {}".format(category, category, num)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
