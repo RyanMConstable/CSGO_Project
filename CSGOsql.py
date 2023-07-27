@@ -296,9 +296,8 @@ def findMostRecentGame(userid):
 
 #Find top X amount for a category with a query
 def findTopX(category, num):
-    if int(num) < 0 or int(num) > 100:
-        return "Number must be between 0 and 100"
-    
+    if int(num) < 1 or int(num) > 100:
+        return "1 <= num <= 100"
     query = "SELECT name, {} FROM gamestats ORDER BY {} DESC LIMIT {}".format(category, category, num)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
