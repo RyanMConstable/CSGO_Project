@@ -526,6 +526,14 @@ def findSteamID2(name):
     return
 
 
+#Find a discordid from a steamuser
+def findDiscordID(steamid):
+    query = F"SELECT discordname FROM discorduser WHERE steamid = '{steamid}'"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if any(result):
+        return result[0][0]
+    return
+
 ##################################################################################
 #################     END OF RANDOM FUNCTIONS           ##########################
 ##################################################################################
