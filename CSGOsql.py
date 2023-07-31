@@ -239,8 +239,19 @@ def redownload():
 ##################################################################################
 
 
+##################################################
+################# HELPER FUNCTIONS ###############
+##################################################
 
-
+def findGameCodeID(gameCode):
+    query = F"SELECT id FROM gamecodes WHERE code = '{gameCode}'"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if result is None:
+        return None
+    return result[0][0]
+##################################################
+##################################################
+##################################################
 
 
 
