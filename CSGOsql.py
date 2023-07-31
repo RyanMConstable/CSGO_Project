@@ -273,14 +273,14 @@ def returnAllCodes():
 #This function takes in a steamid and returns the most recent match code from the table
 def findMostRecentGame(userid):
     #This is the SQL query to find the most recent game id
-    query = "SELECT gameid from gamestats WHERE steamid = {} order by date DESC limit 1".format(userid)
+    query = F"SELECT gameid from gamestats WHERE steamid = {userid} order by date DESC limit 1"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
     gameid = result[0][0]
     
     #Now we use the gameid to find the matchcode from the first table
-    query = "SELECT code from gamecodes WHERE id = {}".format(gameid)
+    query = F"SELECT code from gamecodes WHERE id = {gameid}"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
