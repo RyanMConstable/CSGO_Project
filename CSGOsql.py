@@ -330,7 +330,7 @@ def findTopUser(category, userid, limit):
 
 #function to find the top 1 user
 def findTop1user(category, userid):
-    query = "SELECT name, {} FROM gamestats WHERE steamid = {} ORDER BY {} DESC LIMIT 1".format(category, userid, category)
+    query = F"SELECT name, {category} FROM gamestats WHERE steamid = {userid} ORDER BY {category} DESC LIMIT 1"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
