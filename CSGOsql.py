@@ -414,7 +414,7 @@ def findGameStats(steamID, category, ORDER, gamecode = None):
     selection += "1v3_count, 1v4_count, 1v5_count, killsonround"
     query = ""
     if gamecode == None:
-        query = "SELECT {} FROM gamestats WHERE steamid = '{}' ORDER BY {} {} LIMIT 1".format(selection, steamID, category, ORDER)
+        query = F"SELECT {selection} FROM gamestats WHERE steamid = '{steamID}' ORDER BY {category} {ORDER} LIMIT 1"
     elif findGameCodeID(gamecode) != None:
         query = F"SELECT {selection} FROM gamestats WHERE gameid = {findGameCodeID(gamecode)} AND steamid = '{steamID}'"
     
