@@ -368,7 +368,7 @@ def selectAvgUserStat(stat, steamid, limiter):
 
 #Very useful stat function, type in the column name of the database, and the steam id and it will return the sum of that column
 def selectSumUserStat(stat, steamid, limiter):
-    query = "SELECT SUM({}) FROM (SELECT {} FROM gamestats WHERE steamid = '{}' ORDER BY date DESC LIMIT {}) as test".format(stat, stat, steamid, limiter)
+    query = F"SELECT SUM({stat}) FROM (SELECT {stat} FROM gamestats WHERE steamid = '{steamid}' ORDER BY date DESC LIMIT {limiter}) as test"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
