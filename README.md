@@ -14,4 +14,4 @@ Files that need to be created
 1) dbconnection.py -> this will be a connection to your own personal database
 
 ### Run time
-downloadDemsMain.py will be your 'exec' file
+downloadDemsMain.py is the main executable
