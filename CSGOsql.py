@@ -189,7 +189,7 @@ def updateNewGames():
     #If the id is not in the table, then we update the table
     listToUpdate = []
     for id in result:
-        query = "SELECT steamid FROM recentgame WHERE steamid = '{}'".format(id[0])
+        query = F"SELECT steamid FROM recentgame WHERE steamid = '{id[0]}'"
         result = dbconnection.executeQuery(dbconnection.createConnection(), query)
         if result is None or result == []:
             listToUpdate.append(id[0])
@@ -197,12 +197,12 @@ def updateNewGames():
     #Now for every user in listToUpdate, we update the recent game after searching the table
     for user in listToUpdate:
         #This query finds the oldest game from the given user in the table
-        query = "SELECT gameid FROM gamestats WHERE steamid = '{}' ORDER BY date ASC LIMIT 1".format(user)
+        query = F"SELECT gameid FROM gamestats WHERE steamid = '{user}' ORDER BY date ASC LIMIT 1"
         result = dbconnection.executeQuery(dbconnection.createConnection(), query)
         
         #This finds the actual code
         if result is not None or result != []:
-            query = "SELECT code FROM gamecodes WHERE id = '{}'".format(result[0][0])
+            query = F"SELECT code FROM gamecodes WHERE id = '{result[0][0]}'"
             result = dbconnection.executeQuery(dbconnection.createConnection(), query)
             
             #This inserts the code into the recentgame
