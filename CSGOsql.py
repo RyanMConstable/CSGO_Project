@@ -244,7 +244,7 @@ def redownload():
         result = findGameCodeID(code)
         if any(result) or result != None:
             print(F"Deleting: {code}, id: {result[0][0]}")
-            query = "DELETE FROM gamestats WHERE (gameid = {})".format(result[0][0])
+            query = F"DELETE FROM gamestats WHERE (gameid = {result[0][0]})"
             dbconnection.executeQuery(dbconnection.createConnection(), query, True)
     return
 
