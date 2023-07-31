@@ -68,7 +68,7 @@ def setDiscordUser(discordUser, steamid, steamidkey):
     if findMatchSteamAPI.validateUser(steamid, steamidkey) == False:
         return "Invalid steam id"
     
-    query = "SELECT * FROM discorduser WHERE discordname = {}".format(discordUser)
+    query = F"SELECT * FROM discorduser WHERE discordname = {discordUser}"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     
     
@@ -79,7 +79,7 @@ def setDiscordUser(discordUser, steamid, steamidkey):
         print(result)
     else:
         print("User here, newid:" + str(steamid) + " newidkey:" + str(steamidkey))
-        newquery = "UPDATE discorduser SET steamid = '{}', steamidkey = '{}' WHERE discordname = {}".format(steamid, steamidkey, discordUser)
+        newquery = F"UPDATE discorduser SET steamid = '{steamid}', steamidkey = '{steamidkey}' WHERE discordname = {discordUser}"
         dbconnection.executeQuery(dbconnection.createConnection(), newquery, True)
     return
 
