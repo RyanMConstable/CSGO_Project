@@ -156,10 +156,10 @@ def updateAllUsers():
 
 #Function to add to the recentgame table
 def newRecentGame(steamid, code):
-    query = "SELECT * FROM recentgame WHERE steamid = {}".format(steamid)
+    query = F"SELECT * FROM recentgame WHERE steamid = {steamid}"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     
-    secondQuery = "SELECT * FROM gamecodes WHERE code = '{}'".format(code)
+    secondQuery = F"SELECT * FROM gamecodes WHERE code = '{code}'"
     secondResult = dbconnection.executeQuery(dbconnection.createConnection(), secondQuery)
     if secondResult is None or result == []:
         return
@@ -168,7 +168,7 @@ def newRecentGame(steamid, code):
         query = "INSERT INTO recentgame (steamid, code) VALUES (%s, %s)"
         result = dbconnection.executeQuery(dbconnection.createConnection(), query, True, (steamid, code))
     else:
-        query = "UPDATE recentgame SET code = '{}' WHERE steamid = '{}'".format(code, steamid)
+        query = F"UPDATE recentgame SET code = '{code}' WHERE steamid = '{steamid}'"
         result = dbconnection.executeQuery(dbconnection.createConnection(), query, True)
     return
 
