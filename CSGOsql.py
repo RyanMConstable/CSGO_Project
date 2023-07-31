@@ -111,7 +111,7 @@ def updateGames(steamid, steamidkey):
             if gameid == [] or gameid == None:
                 codesToUpdate.append(code)
                 continue
-            query = "SELECT * from gamestats WHERE gameid = '{}'".format(result[0][0])
+            query = F"SELECT * from gamestats WHERE gameid = '{result[0][0]}'"
             result = dbconnection.executeQuery(dbconnection.createConnection(), query)
             if result == []:
                 codesToUpdate.append(code)
@@ -128,7 +128,7 @@ def updateGames(steamid, steamidkey):
     
     addGameCodes(codes)
     for code in codes:
-        print("Attempting to add code: '{}'".format(code))
+        print(F"Attempting to add code: '{code}'")
         try:
             addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(code)))
             print("Successfully added game stats!")
