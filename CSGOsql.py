@@ -426,8 +426,8 @@ def findGameStats(steamID, category, ORDER, gamecode = None):
 
 #Function to find the position a player is in given id, category, and reverse order
 def findPos(steamID, category, ORDER = 'DESC'):
-    query = "SELECT Position FROM (SELECT ROW_NUMBER() OVER(ORDER BY {} {}) AS Position".format(category, ORDER)
-    query += ", steamid, name, totalkills FROM csgochadtable.gamestats) as sortedInfo WHERE steamid = '{}' limit 1".format(steamID)
+    query = F"SELECT Position FROM (SELECT ROW_NUMBER() OVER(ORDER BY {category} {ORDER}) AS Position"
+    query += F", steamid, name, totalkills FROM csgochadtable.gamestats) as sortedInfo WHERE steamid = '{steamID}' limit 1"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result != [] and result != None:
         return result[0][0]
