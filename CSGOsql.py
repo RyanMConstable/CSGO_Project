@@ -322,7 +322,7 @@ def findTopX(category, limit):
 #Find top X for a specific user with a query
 #Returns only the list of numbers from each game
 def findTopUser(category, userid, limit):
-    query = "SELECT {} FROM gamestats WHERE steamid = {} ORDER BY {} DESC LIMIT {}".format(category, userid, category, limit)
+    query = F"SELECT {category} FROM gamestats WHERE steamid = {userid} ORDER BY {category} DESC LIMIT {limit}"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
