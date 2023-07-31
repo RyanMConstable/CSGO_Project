@@ -360,7 +360,7 @@ def selectCombinedUserStat(stat, steamid):
 
 #Very useful stat function, type in the column name of the database, and the steam id and it will return the avg of that column
 def selectAvgUserStat(stat, steamid, limiter):
-    query = "SELECT AVG({}) FROM (SELECT {} FROM gamestats WHERE steamid = '{}' ORDER BY date DESC LIMIT {}) as test".format(stat, stat, steamid, limiter)
+    query = F"SELECT AVG({stat}) FROM (SELECT {stat} FROM gamestats WHERE steamid = '{steamid}' ORDER BY date DESC LIMIT {limiter}) as test"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
