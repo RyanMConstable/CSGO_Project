@@ -471,7 +471,7 @@ def findGameInfo(gameid = None):
 
 #Finds a steamid from a discorduser
 def findSteamID(discordUser):
-    query = "SELECT steamid, steamidkey FROM discorduser WHERE discordname = {}".format(discordUser)
+    query = F"SELECT steamid, steamidkey FROM discorduser WHERE discordname = {discordUser}"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
@@ -486,7 +486,7 @@ def inGameStats(code):
     if result is None or result == []:
         return False
     
-    query = "SELECT * FROM gamestats WHERE gameid = {}".format(result)
+    query = F"SELECT * FROM gamestats WHERE gameid = {result}"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return False
