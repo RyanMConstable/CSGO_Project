@@ -45,11 +45,10 @@ def addGameCodes(codes):
 #input in the form of a list [matchCode, statsOfGame]
 def addGameStats(playerStats):
     #Takes the id from the first table and stores in result
-    query = "SELECT id FROM gamecodes WHERE code = '{}'".format(playerStats[0])
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    if result == []:
+    gameid = findGameCodeID(playerStats[0])
+    if gameid == [] or gameid == None:
         return "Not in match table?"
-    result = result[0][0]
+    result = gameid
     
     for player in playerStats[1]:
         query = "SELECT * FROM gamestats WHERE gameid = '{}' AND steamid = '{}'".format(result, player[0])
@@ -108,9 +107,8 @@ def updateGames(steamid, steamidkey):
     #Remove codes that are already in the database to save time
     for code in codes:
         try:
-            query = "SELECT id from gamecodes WHERE code = '{}'".format(code)
-            result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-            if result == []:
+            gameid = findGameCodeID(code)
+            if gameid == [] or gameid == None:
                 codesToUpdate.append(code)
                 continue
             query = "SELECT * from gamestats WHERE gameid = '{}'".format(result[0][0])
@@ -243,9 +241,8 @@ def redownload():
     codeList = os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))
     for code in codeList:
         #Here we want to find the gameid from gamecodes then delete those rows from gamestats
-        query = "SELECT id from gamecodes WHERE code = '{}'".format(code)
-        result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-        if any(result):
+        result = findGameCodeID(code)
+        if any(result) or result != None:
             print("Deleting: {}, id: {}".format(code, result[0][0]))
             query = "DELETE FROM gamestats WHERE (gameid = {})".format(result[0][0])
             dbconnection.executeQuery(dbconnection.createConnection(), query, True)
@@ -485,11 +482,9 @@ def findSteamID(discordUser):
 #returns boolean True if the game is in the table, otherwise Falses
 def inGameStats(code):
     #Part 1 check code is in first database
-    query = "SELECT id FROM gamecodes WHERE code = '{}'".format(code)
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    result = findGameCodeID(code)
     if result is None or result == []:
         return False
-    result = result[0][0]
     
     query = "SELECT * FROM gamestats WHERE gameid = {}".format(result)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
