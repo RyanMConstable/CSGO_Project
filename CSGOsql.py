@@ -51,7 +51,7 @@ def addGameStats(playerStats):
     result = gameid
     
     for player in playerStats[1]:
-        query = "SELECT * FROM gamestats WHERE gameid = '{}' AND steamid = '{}'".format(result, player[0])
+        query = F"SELECT * FROM gamestats WHERE gameid = '{result}' AND steamid = '{player[0]}'"
         newresult = dbconnection.executeQuery(dbconnection.createConnection(), query)
         if newresult == [] or newresult == None:
             #Insert the player into the new database
