@@ -243,7 +243,7 @@ def redownload():
         #Here we want to find the gameid from gamecodes then delete those rows from gamestats
         result = findGameCodeID(code)
         if any(result) or result != None:
-            print("Deleting: {}, id: {}".format(code, result[0][0]))
+            print(F"Deleting: {code}, id: {result[0][0]}")
             query = "DELETE FROM gamestats WHERE (gameid = {})".format(result[0][0])
             dbconnection.executeQuery(dbconnection.createConnection(), query, True)
     return
