@@ -224,9 +224,9 @@ def addCodedbToStatdb():
         for firstResult in result:
             try:
                 addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(firstResult[1])))
-                print("Added: {}".format(firstResult[1]))
+                print(F"Added: {firstResult[1]}")
             except Exception as e:
-                print("Exception, can't add: {}".format(firstResult[1]))
+                print(F"Exception, can't add: {firstResult[1]}")
                 print(e)
     return
 
