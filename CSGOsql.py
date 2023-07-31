@@ -339,7 +339,7 @@ def findTop1user(category, userid):
 
 #Function to find user and stat
 def finduserandstat(category):
-    query = "SELECT name, {} FROM gamestats ORDER BY {} DESC LIMIT 1".format(category, category)
+    query = F"SELECT name, {category} FROM gamestats ORDER BY {category} DESC LIMIT 1"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if result is None or result == []:
         return
