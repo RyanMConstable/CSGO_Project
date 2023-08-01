@@ -14,7 +14,7 @@ import requests, os
 #4 If there is a channel with "bot" in the name, send it there, otherwise send to random 1 channel
 
 
-def notify(game):
+def notify(game = None):
     payload = {
         'content' : "-Summary Time"
     }
