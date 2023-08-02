@@ -62,6 +62,9 @@ def addGameStats(playerStats):
     return
 
 
+#Need a new function here that takes in the discorduserid, the steamid, the steamidkey, and the 
+
+
 #Add the discorduser and steamid to the new table
 def setDiscordUser(discordUser, steamid, steamidkey):
     #Here we want to validate the steamid, and steamidkey given
