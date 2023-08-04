@@ -36,3 +36,12 @@ def validateUser(steamid, steamidkey):
     if requests.get(testRequest).status_code != 200:
         return False
     return True
+
+
+
+#A true validation
+def trueValidation(steamID, steamidkey, knownCode):
+    testRequest = 'https://api.steampowered.com/ICSGOPlayers_730/GetNextMatchSharingCode/v1?key={}&steamid={}&steamidkey={}&knowncode={}'.format(steamAPIKey, steamID, steamidkey, knownCode)
+    if requests.get(testRequest).status_code in [202,200]:
+        return True
+    return False
