@@ -10,7 +10,9 @@ def giveCodes(steamID, knownCode, steamidkey):
     r = requests.get(sharedUrl)
     #Create loop until status code is not 200
     #This will find every code until the newest, or it times out with 429 HTTP status code
-    while r.status_code == 200:
+    while r.status_code == 200 or r.status_code == 429:
+        if r.status_code == 429:
+            time.sleep(2)
         time.sleep(1/5)
         newCode = r.json()['result']['nextcode']
         gamesList.append(newCode)
