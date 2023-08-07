@@ -42,9 +42,6 @@ if __name__ == '__main__':
             autolog.info(F"[DOWNLOADING] {code}")
             getJSONInfo.downloadDems(code)
         
-        
-    #Uncomment the below line if you wish to redownload-analyze all files possible for more info
-    #CSGOsql.redownload()
     
 
     #Call analyze only if there are directories in demoDownloads
