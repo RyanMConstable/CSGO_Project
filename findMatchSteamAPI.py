@@ -3,6 +3,7 @@ import requests, time, os, simplesql
 steamAPIKey = os.environ["STEAM_API_KEY"]
 
 #Return list of game codes since given code (include code given)
+#Should be faster if we add a linked list to the db
 def giveCodes(steamID, knownCode, steamidkey):
     gamesList = []
     gamesList.append(knownCode)
