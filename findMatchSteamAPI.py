@@ -39,7 +39,7 @@ def validateUser(steamid, steamidkey):
 
 
 
-#A true validation
+#A true validation, this should replace previous validation for only checking a users steamid exists
 def trueValidation(steamID, steamidkey, knownCode):
     testRequest = 'https://api.steampowered.com/ICSGOPlayers_730/GetNextMatchSharingCode/v1?key={}&steamid={}&steamidkey={}&knowncode={}'.format(steamAPIKey, steamID, steamidkey, knownCode)
     if requests.get(testRequest).status_code in [202,200]:
