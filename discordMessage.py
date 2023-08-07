@@ -7,12 +7,6 @@ import requests, os
 #We might want to send directly to users after a game?
 
 
-#1 find all servers that the bot is in
-#2 find all servers that the user is in
-    
-#3 If there is a text channel in a server that the user and the bot are both in
-#4 If there is a channel with "bot" in the name, send it there, otherwise send to random 1 channel
-
 
 def notify(game = None):
     payload = {
