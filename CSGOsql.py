@@ -5,6 +5,7 @@ import os, dbconnection, getJSONInfo, findMatchSteamAPI
 ################# HELPER FUNCTIONS ###############
 ##################################################
 
+#Gets the id of the game from gamecodes that the code corresponds to
 def findGameCodeID(gameCode):
     query = F"SELECT id FROM gamecodes WHERE code = '{gameCode}'"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
