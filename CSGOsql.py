@@ -27,7 +27,6 @@ def findGameCodeID(gameCode):
 
 
 #This function adds a list of gamecodes to the database
-#No duplicates
 def addGameCodes(codes):
     #The following line creates a connection to the database
     #dbconnection.createConnection()
