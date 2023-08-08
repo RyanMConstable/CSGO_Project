@@ -299,7 +299,7 @@ def findMostRecentGame(userid):
 
 
 
-####### FUNCTIONS TO FIND THE HIGHEST ON A GIVEN CATEGORY #########
+####### FUNCTIONS TO FIND THE HIGHEST X AMOUNT ON A GIVEN CATEGORY #########
 def findTopX(category, limit):
     if int(limit) < 1 or int(limit) > 100:
         print("1 <= num <= 100")
