@@ -392,7 +392,6 @@ def findBottom(category, limit):
         return
     return result
 
-#Want a function that takes a steamid and checks for the most recent game
 
 
 #Function to find highest X game stats
