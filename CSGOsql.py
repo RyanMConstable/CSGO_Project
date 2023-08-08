@@ -519,9 +519,8 @@ def findAllid():
     return result
 
 
-#New function to find a users steamid
+#New function to find a users steamid from a name
 def findSteamID2(name):
-    #Given a users name find their id
     query = F"SELECT steamid FROM gamestats WHERE name = '{name}' ORDER BY date DESC LIMIT 1"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if any(result):
