@@ -259,7 +259,6 @@ def returnAllCodes():
     if result == None or result == []:
         return None
     
-    #Fix the weird SQL format, probably a better and more efficient way to do (TODO)
     for i in range(0, len(result)):
         result[i] = result[i][0]
     return result
