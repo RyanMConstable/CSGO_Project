@@ -328,7 +328,7 @@ def findTop1user(category, userid):
     return result[0][1]
 
 
-#Function to find user and stat
+#Function to find user and stat, used for leaderboard
 def finduserandstat(category):
     query = F"SELECT name, {category} FROM gamestats ORDER BY {category} DESC LIMIT 1"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
