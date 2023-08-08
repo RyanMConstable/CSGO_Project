@@ -227,7 +227,7 @@ def addCodedbToStatdb():
     return
 
 
-#New temp function
+#New temp function to redownload games in gamecodes
 def redownload():
     query = "SELECT * from gamecodes"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
