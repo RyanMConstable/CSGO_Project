@@ -58,12 +58,9 @@ def addGameStats(playerStats):
     return
 
 
-#Need a new function here that takes in the discorduserid, the steamid, the steamidkey, and the 
 
-
-#Add the discorduser and steamid to the new table
+#Adds to the discorduser table, this is now called through the flask website
 def setDiscordUser(discordUser, steamid, steamidkey):
-    #Here we want to validate the steamid, and steamidkey given
     if findMatchSteamAPI.validateUser(steamid, steamidkey) == False:
         return "Invalid steam id"
     
