@@ -233,10 +233,8 @@ def redownload():
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     for items in result:
         getJSONInfo.downloadDems(items[1])
-    #Find items in demoDownloads, then get the list of those items and remove them from gamestats, then re-add them
     codeList = os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))
     for code in codeList:
-        #Here we want to find the gameid from gamecodes then delete those rows from gamestats
         result = findGameCodeID(code)
         if any(result) or result != None:
             print(F"Deleting: {code}, id: {result[0][0]}")
