@@ -28,15 +28,12 @@ def findGameCodeID(gameCode):
 
 #This function adds a list of gamecodes to the database
 def addGameCodes(codes):
-    #The following line creates a connection to the database
-    #dbconnection.createConnection()
     for singleCode in codes:
         try:
             newquery = "INSERT INTO gamecodes (code) VALUES (%s)"
             val = ([singleCode])
             dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, val)
         except Exception as e:
-            #print("Error in addGameCodes: " + str(e))
             pass
     return
 
