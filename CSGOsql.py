@@ -510,6 +510,10 @@ def findAllCodesInStats():
                 codeDict[code[0]] = True
     return codeDict
 
+#Returns dictionary of game codes in gameinfo
+def findAllCodesIngameinfo():
+    return
+
 #Returns list of steamid and steamidkeys
 def findAllid():
     query = "SELECT steamid, steamidkey FROM discorduser"
