@@ -176,10 +176,8 @@ def returnGameInfo(jsonInputFormat):
     #Return the code, and the list
     return [jsonInputFormat[0], playersList]
 
-def findGeneralGameInformation(jsonGameInfo):
+def findGeneralGameInformation(thisGame):
     gameList = []
-    
-    thisGame = jsonGameInfo[1]
     
     gameList.append(thisGame["duration"])
     gameList.append(thisGame["map_name"])
@@ -191,8 +189,8 @@ def findGeneralGameInformation(jsonGameInfo):
     gameList.append(thisGame["score_half2_team2"])
     gameList.append(thisGame["team_surrender"])
     gameList.append(thisGame["team_winner"]["$id"])
-    gameList.append(thisGame["most_killing_weapon"])
-    gameList.append(thisGame["most_damaging_weapon"])
+    gameList.append(thisGame["most_killing_weapon"]["weapon_name"])
+    gameList.append(thisGame["most_damaging_weapon"]["weapon_name"])
     gameList.append("")
     gameList.append(thisGame["kill_count"])
     gameList.append(thisGame["clutch_count"])
