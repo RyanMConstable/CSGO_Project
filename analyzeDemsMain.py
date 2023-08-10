@@ -19,6 +19,7 @@ if __name__ == '__main__':
     
     
     #This way they are not called multiple times, increases speed of program, increases amount of memory used
+    #These all return dictionaries, even if empty dictionaries
     gamesIngamecodes = CSGOsql.findAllCodes()
     gamesIngamestats = CSGOsql.findAllCodesInStats()
     gamesIngameinfo = CSGOsql.findAllCodesIngameinfo()

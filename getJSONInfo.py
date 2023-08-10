@@ -228,9 +228,7 @@ def analyzeDem(code):
         except Exception as e:
             autolog.critical(F"[EXCEPTION] analyzeDem {e}")
         if analyzedResponse != None:
-            with open(os.path.join(os.getcwd(), 'analyzeLOG.txt'), "a+") as f:
-                f.write(analyzedResponse.stdout.decode('utf-8'))
-                f.close()
+            autolog.info(analyzedResponse.stdout.decode('utf-8'))
     if len(os.listdir(codeDir)) == 3:
         try:
             for file in os.listdir(codeDir):
