@@ -40,12 +40,12 @@ if __name__ == '__main__':
             if game[0] in gamesIngamecodes:
                 autolog.info("[INFO] Game is in gamecodes already")
                 
-                #This is for gameinfo table
+                '''#This is for gameinfo table
                 if game[0] in gamesIngameinfo:
                     autolog.info(F"[INFO] Game is also in gameinfo {os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), game[0])}")
                 else:
-                    CSGOsql.addGameInfo(game)
-                    addlog.info(F"[ADD] Adding {game[0]} to gameinfo [TIME] {currentTime}")
+                    #CSGOsql.addGameInfo(game)
+                    addlog.info(F"[ADD] Adding {game[0]} to gameinfo [TIME] {currentTime}")'''
                 
                 #this is for gamestats table
                 if game[0] in gamesIngamestats:
@@ -64,6 +64,6 @@ if __name__ == '__main__':
                 addlog.info(F"[DOUBLEADD] Game {game[0]} is being added to gamecodes and gamestats [TIME] {currentTime}")
                 CSGOsql.addGameCodes([game[0]])
                 CSGOsql.addGameStats(game)
-                CSGOsql.addGameInfo(game)
+                #CSGOsql.addGameInfo(game)
                 discordMessage.notify()
     exit(0)
