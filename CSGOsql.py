@@ -67,7 +67,7 @@ def addGameInfo(gameInfo):
     query = F"SELECT * FROM gameinfo WHERE id = '{result}'"
     newresult = dbconnection.executeQuery(dbconnection.createConnection(), query)
     if newresult == [] or newresult == None:
-        newquery = "INSERT INTO gameinfo (id, duration, map_name, score_team1, score_team2, score_half1_team1, score_half1_team2, score_half2,team1, score_half2,team2, team_surrender, team_winner, most_killing_weapon, most_damaging_weapon, overtimes, kill_count, clutch_count, trade_kill_count, flashbang_thrown_count, smoke_thrown_count, he_thrown_count, decoy_thrown_count, molotov_thrown_count, incendiary_thrown_count, damage_health_count, damage_armor_count, jump_kill_count, crouch_kill_count, headshot_count, death_count, assist_count, entry_kill_count, knife_kill_count, teamkill_count, clutch_lost_count, clutch_won_count, shot_count, hit_count) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        newquery = "INSERT INTO gameinfo (id, duration, map_name, score_team1, score_team2, score_half1_team1, score_half1_team2, score_half2_team1, score_half2_team2, team_surrender, team_winner, most_killing_weapon, most_damaging_weapon, overtimes, kill_count, clutch_count, trade_kill_count, flashbang_thrown_count, smoke_thrown_count, he_thrown_count, decoy_thrown_count, molotov_thrown_count, incendiary_thrown_count, damage_health_count, damage_armor_count, jump_kill_count, crouch_kill_count, headshot_count, death_count, assist_count, entry_kill_count, knife_kill_count, teamkill_count, clutch_lost_count, clutch_won_count, shot_count, hit_count) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         gameInfo[2].insert(0, result)
         val = (gameInfo[2])
         dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, val)
@@ -526,7 +526,7 @@ def findAllCodesInStats():
 
 #Returns dictionary of game codes in gameinfo
 def findAllCodesIngameinfo():
-    query = "SELECT code FROM gamecodes WHERE id IN (SELECT DISTINCT gameid FROM gameinfo)"
+    query = "SELECT code FROM gamecodes WHERE id IN (SELECT id FROM gameinfo)"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     codeDict = {}
     if any(result):
