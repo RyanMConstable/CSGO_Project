@@ -41,7 +41,6 @@ if __name__ == '__main__':
                     try:
                         autolog.info(F"[INFO] Game is also in gamestats {os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), game[0])}")
                         os.system("rd /s /q {}".format(os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), game[0])))
-                        #subprocess.call(["rm", "-r", os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), game[0])])
                     except Exception as e:
                         autolog.critical(F"[ERROR] {e}\n")
                         autolog.critical(F"[PATH] {os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), game[0])}")
