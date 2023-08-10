@@ -57,6 +57,10 @@ def addGameStats(playerStats):
             dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, val)
     return
 
+#Input in the same form as gamestats
+def addGameInfo(gameInfo):
+    return
+
 
 
 #Adds to the discorduser table, this is now called through the flask website
