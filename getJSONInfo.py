@@ -176,6 +176,14 @@ def returnGameInfo(jsonInputFormat):
     #Return the code, and the list
     return [jsonInputFormat[0], playersList]
 
+def findGeneralGameInformation(gameCodeID, jsonGameInfo):
+    return
+
+
+
+
+
+
 ###############################################################
 ##### New function to allow for multithreading procedures #####
 ###############################################################
