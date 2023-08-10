@@ -177,7 +177,47 @@ def returnGameInfo(jsonInputFormat):
     return [jsonInputFormat[0], playersList]
 
 def findGeneralGameInformation(jsonGameInfo):
-    return
+    gameList = []
+    
+    thisGame = jsonGameInfo[1]
+    
+    gameList.append(thisGame["duration"])
+    gameList.append(thisGame["map_name"])
+    gameList.append(thisGame["score_team1"])
+    gameList.append(thisGame["score_team2"])
+    gameList.append(thisGame["score_half1_team1"])
+    gameList.append(thisGame["score_half1_team2"])
+    gameList.append(thisGame["score_half2_team1"])
+    gameList.append(thisGame["score_half2_team2"])
+    gameList.append(thisGame["team_surrender"])
+    gameList.append(thisGame["team_winner"]["$id"])
+    gameList.append(thisGame["most_killing_weapon"])
+    gameList.append(thisGame["most_damaging_weapon"])
+    gameList.append("")
+    gameList.append(thisGame["kill_count"])
+    gameList.append(thisGame["clutch_count"])
+    gameList.append(thisGame["trade_kill_count"])
+    gameList.append(thisGame["flashbang_thrown_count"])
+    gameList.append(thisGame["smoke_thrown_count"])
+    gameList.append(thisGame["he_thrown_count"])
+    gameList.append(thisGame["decoy_thrown_count"])
+    gameList.append(thisGame["molotov_thrown_count"])
+    gameList.append(thisGame["incendiary_thrown_count"])
+    gameList.append(thisGame["damage_health_count"])
+    gameList.append(thisGame["damage_armor_count"])
+    gameList.append(thisGame["jump_kill_count"])
+    gameList.append(thisGame["crouch_kill_count"])
+    gameList.append(thisGame["headshot_count"])
+    gameList.append(thisGame["death_count"])
+    gameList.append(thisGame["assist_count"])
+    gameList.append(thisGame["entry_kill_count"])
+    gameList.append(thisGame["knife_kill_count"])
+    gameList.append(thisGame["teamkill_count"])
+    gameList.append(thisGame["clutch_lost_count"])
+    gameList.append(thisGame["clutch_won_count"])
+    gameList.append(thisGame["shot_count"])
+    gameList.append(thisGame["hit_count"])
+    return gameList
 
 
 
