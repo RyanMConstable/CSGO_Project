@@ -512,7 +512,14 @@ def findAllCodesInStats():
 
 #Returns dictionary of game codes in gameinfo
 def findAllCodesIngameinfo():
-    return
+    query = "SELECT code FROM gamecodes WHERE id IN (SELECT DISTINCT gameid FROM gameinfo)"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    codeDict = {}
+    if any(result):
+        for code in result:
+            if code[0] not in codeDict:
+                codeDict[code[0]] = True
+    return codeDict
 
 #Returns list of steamid and steamidkeys
 def findAllid():
