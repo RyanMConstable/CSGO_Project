@@ -174,7 +174,7 @@ def returnGameInfo(jsonInputFormat):
         thisPlayer.append(team_damage)
         playersList.append(thisPlayer)
     #Return the code, and the list
-    return [jsonInputFormat[0], playersList]
+    return [jsonInputFormat[0], playersList, findGeneralGameInformation(jsonInputFormat[1])]
 
 def findGeneralGameInformation(thisGame):
     gameList = []
