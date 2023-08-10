@@ -21,7 +21,7 @@ if __name__ == '__main__':
     #This way they are not called multiple times, increases speed of program, increases amount of memory used
     gamesIngamecodes = CSGOsql.findAllCodes()
     gamesIngamestats = CSGOsql.findAllCodesInStats()
-    
+    gamesIngameinfo = CSGOsql.findAllCodesIngameinfo()
 
     #Multiprocesses demoDownloads to speed up analyzing
     with Pool(processes) as p:
@@ -32,9 +32,11 @@ if __name__ == '__main__':
             exit(0)
         for game in x:
             currentTime = datetime.datetime.now()
+            
             if game is None or game == []:
                 autolog.warning("[NONE] Game is none")
                 continue
+            
             if game[0] in gamesIngamecodes:
                 autolog.info("[INFO] Game is in gamecodes already")
                 if game[0] in gamesIngamestats:
@@ -48,6 +50,7 @@ if __name__ == '__main__':
                     CSGOsql.addGameStats(game)
                     addlog.info(F"[ADD] Adding {game[0]} to gamestats [TIME] {currentTime}")
                     discordMessage.notify(game)
+                    
             else:
                 addlog.info(F"[DOUBLEADD] Game {game[0]} is being added to gamecodes and gamestats [TIME] {currentTime}")
                 CSGOsql.addGameCodes([game[0]])
