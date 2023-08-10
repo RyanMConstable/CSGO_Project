@@ -18,7 +18,7 @@ if __name__ == '__main__':
         autolog.info(F"[DIRECTORIES] {os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))}")
     
     
-    #This way they are not called multiple times, increases speed of program
+    #This way they are not called multiple times, increases speed of program, increases amount of memory used
     gamesIngamecodes = CSGOsql.findAllCodes()
     gamesIngamestats = CSGOsql.findAllCodesInStats()
     
