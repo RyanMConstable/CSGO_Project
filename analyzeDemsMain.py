@@ -8,7 +8,6 @@ from loggingsetup import autologf, addlogf
 if __name__ == '__main__':
     autolog = autologf()
     addlog = addlogf()
-    #Sets the number of processes it should run, max is 60 on windows, so the max will be set to 40 just in case
     processes = len(os.listdir(os.path.join(os.getcwd(), 'demoDownloads')))
     if processes <= 0:
         exit(0)
