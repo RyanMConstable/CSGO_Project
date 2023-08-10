@@ -497,8 +497,6 @@ def findAllCodes():
 
 #Returns dictionary of game codes in gamestats
 def findAllCodesInStats():
-    query = "SELECT DISTINCT gameid FROM gamestats"
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     #Now we want to find these game codes
     query = "SELECT code FROM gamecodes WHERE id IN (SELECT DISTINCT gameid FROM gamestats)"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
