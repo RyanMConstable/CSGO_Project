@@ -564,3 +564,16 @@ def findDiscordID(steamid):
 ##################################################################################
 #################     END OF RANDOM FUNCTIONS           ##########################
 ##################################################################################
+
+
+
+
+##################################################################################
+#################     STATS FOR GAME INFO               ##########################
+##################################################################################
+def findGameInfoLastGame():
+    query = F"SELECT * FROM gameinfo ORDER BY id DESC LIMIT 1"
+    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
+    if any(result):
+        return result[0][0]
+    return
