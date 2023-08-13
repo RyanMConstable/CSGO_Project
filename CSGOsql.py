@@ -26,6 +26,8 @@ def findGameCodeID(gameCode):
 ################################################################################
 
 
+#We might want to create one function to add to all tables, this would decrease weird things happening on failure TODO
+
 #This function adds a list of gamecodes to the database
 def addGameCodes(codes):
     for singleCode in codes:
