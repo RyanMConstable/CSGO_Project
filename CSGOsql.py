@@ -322,9 +322,11 @@ def findMostRecentGame(userid):
 
 
 ####### FUNCTIONS TO FIND THE HIGHEST X AMOUNT ON A GIVEN CATEGORY #########
+
+
 def findTopX(category, limit):
-    if int(limit) < 1 or int(limit) > 100:
-        print("1 <= num <= 100")
+    if int(limit) < 1:
+        print("1 <= num")
         return
     query = F"SELECT name, {category} FROM gamestats ORDER BY {category} DESC LIMIT {limit}"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
