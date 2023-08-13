@@ -158,6 +158,7 @@ def updateGames(steamid, steamidkey):
 
 
 #Update all users games...
+#TODO Look at how it does this and update documentation
 def updateAllUsers():
     query = "SELECT steamid, steamidkey FROM discorduser"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
