@@ -34,7 +34,7 @@ if __name__ == '__main__':
     if any(ListToUpdate):
         autolog.info(F"[UPDATELIST {ListToUpdate}]")
         for code in ListToUpdate:
-            #Checks to see if the code is in the database
+            #Checks to see if the code is in the database, if it is then it doesn't download it, otherwise it downloads it
             if (code in codesIngamecodes and code in codesInGamestats):
                 autolog.info(F"[DUPLICATE] Code: {code} Already in gamecodes and gamestats")
                 continue
