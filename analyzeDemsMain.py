@@ -31,6 +31,7 @@ if __name__ == '__main__':
         except Exception as e:
             autolog.critical(F"[ERROR] {e}")
             exit(0)
+        #THIS SECTION NEEDS TO BE SIMPLIFIED TODO
         for game in x:
             currentTime = datetime.datetime.now()
             
