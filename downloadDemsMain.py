@@ -44,6 +44,6 @@ if __name__ == '__main__':
     
 
     #Call analyze only if there are directories in demoDownloads (TODO)
-    #Calls up to 10 times, if it calls more than twice there is most likely an issue (enable logging at that point)
+    #Calls up to 10 times, if it calls more than twice there is most likely an issue
     subprocess.call(["python", os.path.join(os.getcwd(), "analyzeDemsMain.py")])
     exit(0)
