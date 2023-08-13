@@ -10,7 +10,8 @@ if __name__ == '__main__':
     #THIS SHOULD EITHER BE UPDATED OR NO LONGER CALLED (LOOK INTO IT) (TODO)
     CSGOsql.updateNewGames()
 
-    #Set variables early so time isn't wasted in the loop, these are all game codes that exist (there has to be a faster way to check this)
+    #Set variables early so time isn't wasted in the loop, these are all game codes that exist (there has to be a faster way to check this) 
+    #ALSO LOOK INTO THIS (TODO)
     codesIngamecodes = CSGOsql.findAllCodes()
     codesInGamestats = CSGOsql.findAllCodesInStats()
 
