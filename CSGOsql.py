@@ -59,7 +59,7 @@ def addGameStats(playerStats):
             dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, val)
     return
 
-#Input in the same form as gamestats
+#Input in the same form as gamestats, adds to gameinfo table
 def addGameInfo(gameInfo):
     gameid = findGameCodeID(gameInfo[0])
     if gameid == [] or gameid == None:
