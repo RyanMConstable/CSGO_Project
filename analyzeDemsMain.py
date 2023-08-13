@@ -62,9 +62,13 @@ if __name__ == '__main__':
                     discordMessage.notify(game)
                     
             else:
-                addlog.info(F"[DOUBLEADD] Game {game[0]} is being added to gamecodes and gamestats [TIME] {currentTime}")
-                CSGOsql.addGameCodes([game[0]])
-                CSGOsql.addGameStats(game)
-                CSGOsql.addGameInfo(game)
-                discordMessage.notify()
+                try:
+                    addlog.info(F"[DOUBLEADD] Game {game[0]} is being added to gamecodes and gamestats [TIME] {currentTime}")
+                    CSGOsql.addGameCodes([game[0]])
+                    CSGOsql.addGameStats(game)
+                    CSGOsql.addGameInfo(game)
+                    os.system("rd /s /q {}".format(os.path.join(os.path.join(os.getcwd(), 'demoDownloads'), game[0])))
+                    discordMessage.notify()
+                except:
+                    autolog.critical("[FAILURE] Failure to add")
     exit(0)
