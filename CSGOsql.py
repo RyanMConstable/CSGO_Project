@@ -172,6 +172,7 @@ def updateAllUsers():
 
 
 #Function to add to the recentgame table
+#TODO Look at what this does too
 def newRecentGame(steamid, code):
     query = F"SELECT * FROM recentgame WHERE steamid = {steamid}"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
