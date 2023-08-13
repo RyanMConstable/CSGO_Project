@@ -119,7 +119,6 @@ def populateSecondTableFromFirst():
 def updateGames(steamid, steamidkey):
     codes = findMatchSteamAPI.generateNewCodes(steamid, steamidkey)
     codesToUpdate = []
-    #Remove codes that are already in the database to save time
     for code in codes:
         try:
             gameid = findGameCodeID(code)
