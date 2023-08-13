@@ -3,7 +3,6 @@ import CSGOsql, getJSONInfo, os, subprocess
 from loggingsetup import autologf
 
 
-#Create fine documentation for each file
 if __name__ == '__main__':
     autolog = autologf()
     #Update function for new users (IE users who have a row in the user table, but not the recentgame table)
