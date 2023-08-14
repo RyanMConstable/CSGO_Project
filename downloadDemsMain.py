@@ -23,11 +23,11 @@ if __name__ == '__main__':
         for code in updateList:
             if code not in ListToUpdate:
                 ListToUpdate.append(code)
-        
+
     for code in os.listdir(os.path.join(os.getcwd(), 'demoDownloads')):
         if code not in ListToUpdate:
             ListToUpdate.append(code)
-        
+
     #If there are new codes update the recentgame code and download the demo
     if any(ListToUpdate):
         autolog.info(F"[UPDATELIST {ListToUpdate}]")
