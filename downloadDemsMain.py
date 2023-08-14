@@ -1,9 +1,10 @@
 import findMatchSteamAPI as API
 import CSGOsql, getJSONInfo, os, subprocess
 from loggingsetup import autologf
-import timeit
+import time
 
 if __name__ == '__main__':
+    start = time.time()
     autolog = autologf()
     #Update function for new users (IE users who have a row in the user table, but not the recentgame table)
     
@@ -43,5 +44,7 @@ if __name__ == '__main__':
     #Only call if there are files within demoDownloads
     if len(os.listdir(os.path.join("./", "demoDownloads"))) > 0:
         subprocess.call(["python", os.path.join(os.getcwd(), "analyzeDemsMain.py")])
-        
+    
+    end = time.time()
+    print(end-start)
     exit(0)
