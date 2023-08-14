@@ -7,8 +7,6 @@ if __name__ == '__main__':
     autolog = autologf()
     #Update function for new users (IE users who have a row in the user table, but not the recentgame table)
     
-    #THIS SHOULD EITHER BE UPDATED OR NO LONGER CALLED (LOOK INTO IT) (TODO)
-    CSGOsql.updateNewGames()
 
     #Set variables early so time isn't wasted in the loop, these are all game codes that exist (there has to be a faster way to check this) 
     #ALSO LOOK INTO THIS (TODO)
