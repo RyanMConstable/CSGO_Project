@@ -1,7 +1,7 @@
 import findMatchSteamAPI as API
 import CSGOsql, getJSONInfo, os, subprocess
 from loggingsetup import autologf
-
+import timeit
 
 if __name__ == '__main__':
     autolog = autologf()
