@@ -5,6 +5,7 @@ steamAPIKey = os.environ["STEAM_API_KEY"]
 #Return list of game codes since given code (include code given)
 #Should be faster if we add a linked list to the db
 def giveCodes(steamID, knownCode, steamidkey):
+    start = time.time()
     gamesList = []
     gamesList.append(knownCode)
     sharedUrl = 'https://api.steampowered.com/ICSGOPlayers_730/GetNextMatchSharingCode/v1?key={}&steamid={}&steamidkey={}&knowncode={}'.format(steamAPIKey, steamID, steamidkey, knownCode)
@@ -13,12 +14,15 @@ def giveCodes(steamID, knownCode, steamidkey):
     #This will find every code until the newest, or it times out with 429 HTTP status code
     while r.status_code == 200 or r.status_code == 429:
         if r.status_code == 429:
+            print("Sleeping, 429 code...")
             time.sleep(2)
         time.sleep(1/5)
         newCode = r.json()['result']['nextcode']
         gamesList.append(newCode)
         sharedUrl = 'https://api.steampowered.com/ICSGOPlayers_730/GetNextMatchSharingCode/v1?key={}&steamid={}&steamidkey={}&knowncode={}'.format(steamAPIKey, steamID, steamidkey, newCode)
         r = requests.get(sharedUrl)
+    end = time.time()
+    print(f"Timing: {end-start}")
     return gamesList
 
 #This function takes your steam info and generates new codes by finding the newest code from the database
