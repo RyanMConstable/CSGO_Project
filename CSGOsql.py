@@ -174,20 +174,8 @@ def updateAllUsers():
 #Function to add to the recentgame table
 #TODO Look at what this does too
 def newRecentGame(steamid, code):
-    query = F"SELECT * FROM recentgame WHERE steamid = {steamid}"
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    
-    secondQuery = F"SELECT * FROM gamecodes WHERE code = '{code}'"
-    secondResult = dbconnection.executeQuery(dbconnection.createConnection(), secondQuery)
-    if secondResult is None or result == []:
-        return
-    
-    if result is None or result == []:
-        query = "INSERT INTO recentgame (steamid, code) VALUES (%s, %s)"
-        result = dbconnection.executeQuery(dbconnection.createConnection(), query, True, (steamid, code))
-    else:
-        query = F"UPDATE recentgame SET code = '{code}' WHERE steamid = '{steamid}'"
-        result = dbconnection.executeQuery(dbconnection.createConnection(), query, True)
+    query = F"UPDATE discorduser SET gamecode = '{code}' WHERE steamid = '{steamid}'"
+    dbconnection.executeQuery(dbconnection.createConnection(), query, True)
     return
 
 
