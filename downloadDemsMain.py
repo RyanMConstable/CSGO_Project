@@ -16,6 +16,7 @@ if __name__ == '__main__':
 
     ListToUpdate = []
     #For every user in the user db, find the new codes and then download new ones
+    #TODO THIS SECTION IS WAY TOOOOOOOO SLOW
     for user in CSGOsql.findAllid():
         updateList = API.generateNewCodes(user[0], user[1])
         if any(updateList):
