@@ -41,7 +41,7 @@ if __name__ == '__main__':
         
     
 
-    
+    #Only call if there are files within demoDownloads
     if len(os.listdir(os.path.join("./", "demoDownloads"))) > 0:
         subprocess.call(["python", os.path.join(os.getcwd(), "analyzeDemsMain.py")])
         
