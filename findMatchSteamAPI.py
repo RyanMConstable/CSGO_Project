@@ -5,9 +5,9 @@ steamAPIKey = os.environ["STEAM_API_KEY"]
 #Return list of game codes since given code (include code given)
 #Should be faster if we add a linked list to the db
 def giveCodes(steamID, knownCode, steamidkey):
-    start = time.time()
     gamesList = []
     gamesList.append(knownCode)
+    #THIS SLOWS DOWN THE ENTIRE PROGRAM, IT'S THE SLOWEST PART
     sharedUrl = 'https://api.steampowered.com/ICSGOPlayers_730/GetNextMatchSharingCode/v1?key={}&steamid={}&steamidkey={}&knowncode={}'.format(steamAPIKey, steamID, steamidkey, knownCode)
     r = requests.get(sharedUrl)
     #Create loop until status code is not 200
@@ -21,7 +21,6 @@ def giveCodes(steamID, knownCode, steamidkey):
         gamesList.append(newCode)
         sharedUrl = 'https://api.steampowered.com/ICSGOPlayers_730/GetNextMatchSharingCode/v1?key={}&steamid={}&steamidkey={}&knowncode={}'.format(steamAPIKey, steamID, steamidkey, newCode)
         r = requests.get(sharedUrl)
-    end = time.time()
     print(f"Timing: {end-start}")
     return gamesList
 
