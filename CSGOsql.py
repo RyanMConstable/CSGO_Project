@@ -79,8 +79,9 @@ def addGameInfo(gameInfo):
 
 #Adds to the discorduser table, this is now called through the flask website
 #THIS SHOULD BE UPDATED SO THAT THE RECENT GAME CODE IS CONNECTED TO THIS TABLE, AND RENAME TABLE TO USERS TODO
-def setDiscordUser(discordUser, steamid, steamidkey):
-    if findMatchSteamAPI.validateUser(steamid, steamidkey) == False:
+def setDiscordUser(discordUser, steamid, steamidkey, gamecode):
+    newRecentGame(steamid, gamecode)
+    if findMatchSteamAPI.trueValidation(steamid, steamidkey) == False:
         return "Invalid steam id"
     
     query = F"SELECT * FROM discorduser WHERE discordname = {discordUser}"
