@@ -169,8 +169,7 @@ def updateAllUsers():
     return "Complete!"
 
 
-#Function to add to the recentgame table
-#TODO Look at what this does too
+#Function to add to set the gamecode in discorduser
 def newRecentGame(steamid, code):
     query = F"UPDATE discorduser SET gamecode = '{code}' WHERE steamid = '{steamid}'"
     dbconnection.executeQuery(dbconnection.createConnection(), query, True)
