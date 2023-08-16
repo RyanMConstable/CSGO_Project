@@ -21,7 +21,6 @@ def giveCodes(steamID, knownCode, steamidkey):
         gamesList.append(newCode)
         sharedUrl = 'https://api.steampowered.com/ICSGOPlayers_730/GetNextMatchSharingCode/v1?key={}&steamid={}&steamidkey={}&knowncode={}'.format(steamAPIKey, steamID, steamidkey, newCode)
         r = requests.get(sharedUrl)
-    print(f"Timing: {end-start}")
     return gamesList
 
 #This function takes your steam info and generates new codes by finding the newest code from the database
