@@ -4,7 +4,6 @@ from loggingsetup import autologf
 import time
 
 if __name__ == '__main__':
-    start = time.time()
     autolog = autologf()
     #Update function for new users (IE users who have a row in the user table, but not the recentgame table)
     
@@ -18,7 +17,11 @@ if __name__ == '__main__':
     #For every user in the user db, find the new codes and then download new ones
     #TODO THIS SECTION IS WAY TOOOOOOOO SLOW
     for user in CSGOsql.findAllid():
+        #THIS SPECIFIC API CALL IS SLOW TODO FIX IT
+        start = time.time()
         updateList = API.generateNewCodes(user[0], user[1])
+        end = time.time()
+        print(end-start)
         if any(updateList):
             CSGOsql.newRecentGame(user[0], updateList[-1])
         for code in updateList:
@@ -45,7 +48,6 @@ if __name__ == '__main__':
     #Only call if there are files within demoDownloads
     if len(os.listdir(os.path.join("./", "demoDownloads"))) > 0:
         subprocess.call(["python", os.path.join(os.getcwd(), "analyzeDemsMain.py")])
-    
-    end = time.time()
-    print(end-start)
+        
+        
     exit(0)
