@@ -78,7 +78,6 @@ def addGameInfo(gameInfo):
 
 
 #Adds to the discorduser table, this is now called through the flask website
-#THIS SHOULD BE UPDATED SO THAT THE RECENT GAME CODE IS CONNECTED TO THIS TABLE, AND RENAME TABLE TO USERS TODO
 def newUser(discordUser, steamid, steamidkey, gamecode):
     newRecentGame(steamid, gamecode)
     
