@@ -99,17 +99,6 @@ def newUser(discordUser, steamid, steamidkey, gamecode):
 
 
 #TODO LOOK AT WHAT THESE FUNCTIONS DO AGAIN
-def populateSecondTableFromFirst():
-    query = "SELECT code from gamecodes WHERE code NOT IN (SELECT code FROM gamecodes WHERE id IN (SELECT gameid FROM gamestats))"
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    if result is None or result == []:
-        return
-    for code in result:
-        try:
-            addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(code[0])))
-        except:
-            continue
-    return
 
 
 #This function not only needs to add the games, but then update the most recent game in the recent game table
