@@ -89,13 +89,10 @@ def newUser(discordUser, steamid, steamidkey, gamecode):
     
     
     if result is None or result == []:
-        print("Empty")
-        newquery = "INSERT INTO discorduser (discordname, steamid, steamidkey) VALUES (%s, %s, %s)"
-        result = dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, (discordUser, steamid, steamidkey))
-        print(result)
+        newquery = "INSERT INTO discorduser (discordname, steamid, steamidkey, gamecode) VALUES (%s, %s, %s, %s)"
+        result = dbconnection.executeQuery(dbconnection.createConnection(), newquery, True, (discordUser, steamid, steamidkey, gamecode))
     else:
-        print("User here, newid:" + str(steamid) + " newidkey:" + str(steamidkey))
-        newquery = F"UPDATE discorduser SET steamid = '{steamid}', steamidkey = '{steamidkey}' WHERE discordname = {discordUser}"
+        newquery = F"UPDATE discorduser SET discordname = '{discordUser}', steamidkey = '{steamidkey}', gamecode = '{gamecode}'  WHERE steamid = {steamid}"
         dbconnection.executeQuery(dbconnection.createConnection(), newquery, True)
     return
 
