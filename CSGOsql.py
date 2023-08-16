@@ -95,11 +95,6 @@ def newUser(discordUser, steamid, steamidkey, gamecode):
         dbconnection.executeQuery(dbconnection.createConnection(), newquery, True)
     return
 
-
-
-
-#TODO LOOK AT WHAT THESE FUNCTIONS DO AGAIN
-
 #Function to add to set the gamecode in discorduser
 def newRecentGame(steamid, code):
     query = F"UPDATE discorduser SET gamecode = '{code}' WHERE steamid = '{steamid}'"
