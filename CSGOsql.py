@@ -97,8 +97,6 @@ def newUser(discordUser, steamid, steamidkey, gamecode):
 
 
 
-#This function will find all of the game codes that are in the first table but not the second 
-#Then it will have those codes as a list and then populate the second table with them
 
 #TODO LOOK AT WHAT THESE FUNCTIONS DO AGAIN
 def populateSecondTableFromFirst():
