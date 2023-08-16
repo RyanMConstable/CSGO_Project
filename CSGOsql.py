@@ -100,49 +100,6 @@ def newUser(discordUser, steamid, steamidkey, gamecode):
 
 #TODO LOOK AT WHAT THESE FUNCTIONS DO AGAIN
 
-
-#This function not only needs to add the games, but then update the most recent game in the recent game table
-def updateGames(steamid, steamidkey):
-    codes = findMatchSteamAPI.generateNewCodes(steamid, steamidkey)
-    codesToUpdate = []
-    for code in codes:
-        try:
-            gameid = findGameCodeID(code)
-            if gameid == [] or gameid == None:
-                codesToUpdate.append(code)
-                continue
-            query = F"SELECT * from gamestats WHERE gameid = '{result[0][0]}'"
-            result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-            if result == []:
-                codesToUpdate.append(code)
-        except Exception as e:
-            print("Exception code remove: " + str(code))
-            codesToUpdate.append(code)
-    
-    print("Original List:" + str(codes))
-    print("Codes to update:" + str(codesToUpdate))    
-    if codesToUpdate is None or codesToUpdate == []:
-        print("Already updated...")
-        return
-    codes = codesToUpdate
-    
-    addGameCodes(codes)
-    for code in codes:
-        print(F"Attempting to add code: '{code}'")
-        try:
-            addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(code)))
-            print("Successfully added game stats!")
-        except Exception as e:
-            print("Exception")
-            print(e)
-            continue
-    newRecentGame(steamid, codes[-1])
-    return "Games Added"
-
-
-
-
-
 #Function to add to set the gamecode in discorduser
 def newRecentGame(steamid, code):
     query = F"UPDATE discorduser SET gamecode = '{code}' WHERE steamid = '{steamid}'"
