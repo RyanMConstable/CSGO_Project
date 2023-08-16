@@ -141,18 +141,6 @@ def updateGames(steamid, steamidkey):
 
 
 
-#Update all users games...
-#TODO Look at how it does this and update documentation
-def updateAllUsers():
-    query = "SELECT steamid, steamidkey FROM discorduser"
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    if result is None or result == []:
-        return None
-    #Here we want each id to call updategames
-    for id in result:
-        print("\n-------------------------------\nUpdating user:"+str(id[0])+"\n-------------------------------\n")
-        updateGames(id[0], id[1])
-    return "Complete!"
 
 
 #Function to add to set the gamecode in discorduser
