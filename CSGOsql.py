@@ -81,6 +81,8 @@ def addGameInfo(gameInfo):
 #THIS SHOULD BE UPDATED SO THAT THE RECENT GAME CODE IS CONNECTED TO THIS TABLE, AND RENAME TABLE TO USERS TODO
 def setDiscordUser(discordUser, steamid, steamidkey, gamecode):
     newRecentGame(steamid, gamecode)
+    
+    
     if findMatchSteamAPI.trueValidation(steamid, steamidkey) == False:
         return "Invalid steam id"
     

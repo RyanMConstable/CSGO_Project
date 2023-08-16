@@ -35,15 +35,6 @@ def generateNewCodes(steamID, steamidkey):
     codeList.remove(newestCode)
     return codeList
 
-#This is still in use, should depreciate it
-def validateUser(steamid, steamidkey):
-    testRequest = 'http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key={}&steamid={}'.format(steamAPIKey, steamid)
-    if requests.get(testRequest).status_code != 200:
-        return False
-    return True
-
-
-
 #A true validation, this should replace previous validation for only checking a users steamid exists
 def trueValidation(steamID, steamidkey, knownCode):
     testRequest = 'https://api.steampowered.com/ICSGOPlayers_730/GetNextMatchSharingCode/v1?key={}&steamid={}&steamidkey={}&knowncode={}'.format(steamAPIKey, steamID, steamidkey, knownCode)
