@@ -125,22 +125,6 @@ def addCodedbToStatdb():
                 print(e)
     return
 
-
-#New temp function to redownload games in gamecodes
-def redownload():
-    query = "SELECT * from gamecodes"
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    for items in result:
-        getJSONInfo.downloadDems(items[1])
-    codeList = os.listdir(os.path.join(os.getcwd(), 'demoDownloads'))
-    for code in codeList:
-        result = findGameCodeID(code)
-        if any(result) or result != None:
-            print(F"Deleting: {code}, id: {result[0][0]}")
-            query = F"DELETE FROM gamestats WHERE (gameid = {result[0][0]})"
-            dbconnection.executeQuery(dbconnection.createConnection(), query, True)
-    return
-
 ##################################################################################
 #################     END OF ADD FUNCTIONS              ##########################
 ##################################################################################
