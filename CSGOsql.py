@@ -106,25 +106,6 @@ def newRecentGame(steamid, code):
     dbconnection.executeQuery(dbconnection.createConnection(), query, True)
     return
 
-
-
-
-#Function to find all game codes in the first table to add to the second one
-def addCodedbToStatdb():
-    #Find id
-    query = "SELECT id, code FROM gamecodes WHERE id NOT IN (SELECT gameid FROM gamestats) ORDER BY id DESC"
-    result = dbconnection.executeQuery(dbconnection.createConnection(), query)
-    print(result)
-    if result != []:
-        for firstResult in result:
-            try:
-                addGameStats(getJSONInfo.returnGameInfo(getJSONInfo.getJSONInfo(firstResult[1])))
-                print(F"Added: {firstResult[1]}")
-            except Exception as e:
-                print(F"Exception, can't add: {firstResult[1]}")
-                print(e)
-    return
-
 ##################################################################################
 #################     END OF ADD FUNCTIONS              ##########################
 ##################################################################################
