@@ -19,6 +19,9 @@ def returnGameInfo(jsonInputFormat):
     #Set date of game played
     dt = thisGame["date"]
     
+    #Calculate dictionary flashEvents
+    
+    
     #Total rounds in the game
     totalrounds = thisGame["score_team1"] + thisGame["score_team2"]
     
