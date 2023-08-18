@@ -193,6 +193,14 @@ def returnGameInfo(jsonInputFormat):
             if player_hurted["attacker_steamid"] == player["steamid"] and player_hurted["hurted_steamid"] in teammate_t:
                 team_damage += player_hurted['health_damage']
         thisPlayer.append(team_damage)
+        if thisPlayer[0] not in flashEventDict:
+            thisPlayer.append(0)
+            thisPlayer.append(0)
+            thisPlayer.append(0)
+            thisPlayer.append(0)
+        else:
+            for x in flashEventDict[thisPlayer[0]]:
+                thisPlayer.append(x)
         playersList.append(thisPlayer)
     #Return the code, and the list
     return [jsonInputFormat[0], playersList, findGeneralGameInformation(jsonInputFormat[1])]
