@@ -24,7 +24,8 @@ def returnGameInfo(jsonInputFormat):
     for flashEvent in thisGame["player_blinded_events"]:
         if flashEvent["thrower_steamid"] not in flashEventDict:
             flashEventDict[flashEvent["thrower_steamid"]] = [0,0,0,0]
-            
+        if flashEvent["duration"] == 0:
+            continue
         if flashEvent["thrower_team_name"] == flashEvent["victim_team_name"]:
             flashEventDict[flashEvent["thrower_steamid"]][0] += 1
             flashEventDict[flashEvent["thrower_steamid"]][2] += flashEvent["duration"]
