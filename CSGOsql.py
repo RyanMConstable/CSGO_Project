@@ -287,7 +287,7 @@ def findGameInfo(gameid = None):
             return
         gameid = result[0][0]
     #Here we want to find all the game info
-    query = F"SELECT name, adr, team_damage, tk_count FROM gamestats WHERE gameid = {gameid}"
+    query = F"SELECT name, adr, team_damage, tk_count, teamflashcount, enemyflashcount, teamflashduration, enemyflashduration FROM gamestats WHERE gameid = {gameid}"
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
     return result
 
