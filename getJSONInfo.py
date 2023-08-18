@@ -20,7 +20,17 @@ def returnGameInfo(jsonInputFormat):
     dt = thisGame["date"]
     
     #Calculate dictionary flashEvents
-    
+    flashEventDict = {}
+    for flashEvent in thisGame["player_blinded_events"]:
+        if flashEvent["thrower_steamid"] not in flashEventDict:
+            flashEventDict[flashEvent["thrower_steamid"]] = [0,0,0,0]
+            
+        if flashEvent["thrower_team_name"] == flashEvent["victim_team_name"]:
+            flashEventDict[flashEvent["thrower_steamid"]][0] += 1
+            flashEventDict[flashEvent["thrower_steamid"]][2] += flashEvent["duration"]
+        else:
+            flashEventDict[flashEvent["thrower_steamid"]][1] += 1
+            flashEventDict[flashEvent["thrower_steamid"]][3] += flashEvent["duration"]
     
     #Total rounds in the game
     totalrounds = thisGame["score_team1"] + thisGame["score_team2"]
