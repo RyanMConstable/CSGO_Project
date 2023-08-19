@@ -215,6 +215,10 @@ def returnGameInfo(jsonInputFormat):
         else:
             for x in flashEventDict[thisPlayer[0]]:
                 thisPlayer.append(x)
+        if thisPlayer[0] not in msgDict:
+            thisPlayer.append(0)
+        else:
+            thisPlayer.append(len(msgDict[thisPlayer[0]]))
         playersList.append(thisPlayer)
     #Return the code, and the list
     return [jsonInputFormat[0], playersList, findGeneralGameInformation(jsonInputFormat[1])]
