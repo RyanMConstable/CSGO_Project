@@ -33,6 +33,15 @@ def returnGameInfo(jsonInputFormat):
             flashEventDict[flashEvent["thrower_steamid"]][1] += 1
             flashEventDict[flashEvent["thrower_steamid"]][3] += flashEvent["duration"]
     
+    #Calculate message dictionary events
+    msgDict = {}
+    for message in thisGame["chat_messages"]:
+        if message["sender_steamid"] not in msgDict:
+            msgDict[message["sender_steamid"]] = []
+            
+        if message["text"].lower() not in msgDict[message["sender_steamid"]]:
+            msgDict[message["sender_steamid"]].append(message["text"].lower())
+    
     #Total rounds in the game
     totalrounds = thisGame["score_team1"] + thisGame["score_team2"]
     
