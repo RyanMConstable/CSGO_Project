@@ -1,8 +1,6 @@
 import dbconnection
 
-#This is where sub CSGOsql.py queries should be, where only dbconnection is needed
-
-#This function takes in a steamid and returns the most recent match code from the table
+#This function takes in a steamid and returns the most recent match code from the discorduser table
 def findMostRecentGame(userid):
     query = "SELECT gamecode FROM discorduser WHERE steamid = '{}'".format(userid)
     result = dbconnection.executeQuery(dbconnection.createConnection(), query)
