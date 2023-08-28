@@ -1,6 +1,6 @@
 import logging
 
-#For autolog
+#For autolog.log file
 def autologf():
     autolog = logging.getLogger('auto_log')
     autolog.setLevel(logging.DEBUG)
