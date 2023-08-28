@@ -10,7 +10,7 @@ def autologf():
     autolog.addHandler(fileHandler)
     return autolog
 
-#For addlog
+#For addlog.log file
 def addlogf():
     addlog = logging.getLogger('add_log')
     addlog.setLevel(logging.INFO)
