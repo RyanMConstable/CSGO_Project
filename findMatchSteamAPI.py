@@ -33,7 +33,7 @@ def generateNewCodes(steamID, steamidkey):
     codeList.remove(newestCode)
     return codeList
 
-#This validation ensures that the user who is logging in is who they say they are
+#This validation ensures that the user who is logging in is who they say they are, validation!
 def trueValidation(steamID, steamidkey, knownCode):
     testRequest = 'https://api.steampowered.com/ICSGOPlayers_730/GetNextMatchSharingCode/v1?key={}&steamid={}&steamidkey={}&knowncode={}'.format(steamAPIKey, steamID, steamidkey, knownCode)
     if requests.get(testRequest).status_code in [202,200]:
